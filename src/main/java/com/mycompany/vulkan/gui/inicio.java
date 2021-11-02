@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.vulkan.gui;
+
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author gabri
@@ -12,6 +15,7 @@ public class inicio extends javax.swing.JFrame {
     /**
      * Creates new form inicio
      */
+    
     public inicio() {
         initComponents();
     }
@@ -28,23 +32,22 @@ public class inicio extends javax.swing.JFrame {
         Background = new javax.swing.JPanel();
         Card = new javax.swing.JPanel();
         Grid_1_1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        img_inicio = new javax.swing.JLabel();
         Grid_1_2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        login_box = new javax.swing.JPanel();
         lbl_ingresar_datos = new javax.swing.JLabel();
         lbl_usuario = new javax.swing.JLabel();
         txt_usuario = new javax.swing.JTextField();
         lbl_contrasenia = new javax.swing.JLabel();
-        txt_contrasenia = new javax.swing.JTextField();
         btn_iniciar_sesion = new javax.swing.JButton();
         img_usuario = new javax.swing.JLabel();
         img_contrasenia = new javax.swing.JLabel();
+        txt_contrasenia = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setEnabled(false);
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         Background.setBackground(new java.awt.Color(244, 255, 255));
@@ -56,16 +59,16 @@ public class inicio extends javax.swing.JFrame {
 
         Grid_1_1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/vulkan/Imagenes/incio.jpg"))); // NOI18N
-        Grid_1_1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 370));
+        img_inicio.setIcon(new javax.swing.ImageIcon("/home/fer3dev/NetBeansProjects/vulkan/src/main/java/com/mycompany/vulkan/Imagenes/incio.jpg")); // NOI18N
+        Grid_1_1.add(img_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 370));
 
         Card.add(Grid_1_1);
 
         Grid_1_2.setBackground(new java.awt.Color(255, 255, 255));
         Grid_1_2.setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(300, 300));
+        login_box.setBackground(new java.awt.Color(255, 255, 255));
+        login_box.setPreferredSize(new java.awt.Dimension(300, 300));
 
         lbl_ingresar_datos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lbl_ingresar_datos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -77,8 +80,6 @@ public class inicio extends javax.swing.JFrame {
 
         lbl_contrasenia.setText("Contraseña");
 
-        txt_contrasenia.setToolTipText("");
-
         btn_iniciar_sesion.setText("Inicia Sesión");
         btn_iniciar_sesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,66 +87,70 @@ public class inicio extends javax.swing.JFrame {
             }
         });
 
-        img_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/vulkan/Imagenes/user.png"))); // NOI18N
+        img_usuario.setIcon(new javax.swing.ImageIcon("/home/fer3dev/NetBeansProjects/vulkan/src/main/java/com/mycompany/vulkan/Imagenes/user.png")); // NOI18N
 
-        img_contrasenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/vulkan/Imagenes/pass.png"))); // NOI18N
+        img_contrasenia.setIcon(new javax.swing.ImageIcon("/home/fer3dev/NetBeansProjects/vulkan/src/main/java/com/mycompany/vulkan/Imagenes/pass.png")); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbl_ingresar_datos, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_usuario)
-                            .addComponent(txt_contrasenia)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(img_contrasenia)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lbl_contrasenia))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(img_usuario)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lbl_usuario)))
-                                .addGap(128, 128, 128)))))
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        txt_contrasenia.setToolTipText("");
+
+        javax.swing.GroupLayout login_boxLayout = new javax.swing.GroupLayout(login_box);
+        login_box.setLayout(login_boxLayout);
+        login_boxLayout.setHorizontalGroup(
+            login_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, login_boxLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_iniciar_sesion)
                 .addGap(81, 81, 81))
+            .addGroup(login_boxLayout.createSequentialGroup()
+                .addGroup(login_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(login_boxLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbl_ingresar_datos, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, login_boxLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(login_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_usuario)
+                            .addGroup(login_boxLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(login_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(login_boxLayout.createSequentialGroup()
+                                        .addGroup(login_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(login_boxLayout.createSequentialGroup()
+                                                .addComponent(img_contrasenia)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(lbl_contrasenia))
+                                            .addGroup(login_boxLayout.createSequentialGroup()
+                                                .addComponent(img_usuario)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(lbl_usuario)))
+                                        .addGap(128, 128, 128))
+                                    .addComponent(txt_contrasenia))))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        login_boxLayout.setVerticalGroup(
+            login_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(login_boxLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(lbl_ingresar_datos)
                 .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(login_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(login_boxLayout.createSequentialGroup()
                         .addComponent(lbl_usuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(login_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(img_contrasenia)
-                            .addComponent(lbl_contrasenia))
-                        .addGap(11, 11, 11)
-                        .addComponent(txt_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbl_contrasenia)))
                     .addComponent(img_usuario))
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(btn_iniciar_sesion)
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
-        Grid_1_2.add(jPanel1, new java.awt.GridBagConstraints());
+        Grid_1_2.add(login_box, new java.awt.GridBagConstraints());
 
         Card.add(Grid_1_2);
 
@@ -202,13 +207,13 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JPanel Grid_1_2;
     private javax.swing.JButton btn_iniciar_sesion;
     private javax.swing.JLabel img_contrasenia;
+    private javax.swing.JLabel img_inicio;
     private javax.swing.JLabel img_usuario;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_contrasenia;
     private javax.swing.JLabel lbl_ingresar_datos;
     private javax.swing.JLabel lbl_usuario;
-    private javax.swing.JTextField txt_contrasenia;
+    private javax.swing.JPanel login_box;
+    private javax.swing.JPasswordField txt_contrasenia;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }

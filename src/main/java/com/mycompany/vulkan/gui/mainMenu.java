@@ -26,67 +26,132 @@ public class mainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        titulo = new javax.swing.JPanel();
+        lbl_titulo = new javax.swing.JLabel();
+        menu = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        btn_clientes = new javax.swing.JButton();
+        btn_empleados = new javax.swing.JButton();
+        btn_proveedores = new javax.swing.JButton();
+        btn_inventario = new javax.swing.JButton();
+        btn_factura = new javax.swing.JButton();
+        btn_pedidos = new javax.swing.JButton();
+        btn_mesas = new javax.swing.JButton();
+        btn_reservaciones = new javax.swing.JButton();
+        btn_historial_precios = new javax.swing.JButton();
+        btn_tipo_documento = new javax.swing.JButton();
+        btn_menu = new javax.swing.JButton();
+        btn_cerrar_sesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        titulo.setBackground(new java.awt.Color(255, 255, 255));
+        titulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        titulo.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("Clientes");
+        lbl_titulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lbl_titulo.setForeground(new java.awt.Color(0, 0, 255));
+        lbl_titulo.setText("MENU PRINCIPAL");
+        titulo.add(lbl_titulo, new java.awt.GridBagConstraints());
 
-        jButton2.setText("Empleados");
+        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1310, 80));
 
-        jButton3.setText("Provedores");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        menu.setBackground(new java.awt.Color(244, 255, 255));
+        menu.setLayout(new java.awt.GridBagLayout());
+
+        jPanel4.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel4.setPreferredSize(new java.awt.Dimension(1100, 400));
+        jPanel4.setLayout(new java.awt.GridLayout(2, 7, 20, 100));
+
+        btn_clientes.setBackground(new java.awt.Color(204, 204, 204));
+        btn_clientes.setForeground(new java.awt.Color(0, 0, 255));
+        btn_clientes.setText("Clientes");
+        btn_clientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_clientesActionPerformed(evt);
             }
         });
+        jPanel4.add(btn_clientes);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jButton1)
-                .addGap(61, 61, 61)
-                .addComponent(jButton2)
-                .addGap(79, 79, 79)
-                .addComponent(jButton3)
-                .addContainerGap(233, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(372, Short.MAX_VALUE))
-        );
+        btn_empleados.setBackground(new java.awt.Color(204, 204, 204));
+        btn_empleados.setForeground(new java.awt.Color(0, 0, 255));
+        btn_empleados.setText("Empleados");
+        jPanel4.add(btn_empleados);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        btn_proveedores.setBackground(new java.awt.Color(204, 204, 204));
+        btn_proveedores.setForeground(new java.awt.Color(0, 0, 255));
+        btn_proveedores.setText("Proveedores");
+        jPanel4.add(btn_proveedores);
+
+        btn_inventario.setBackground(new java.awt.Color(204, 204, 204));
+        btn_inventario.setForeground(new java.awt.Color(0, 0, 255));
+        btn_inventario.setText("Inventario");
+        jPanel4.add(btn_inventario);
+
+        btn_factura.setBackground(new java.awt.Color(204, 204, 204));
+        btn_factura.setForeground(new java.awt.Color(0, 0, 255));
+        btn_factura.setText("Factura");
+        jPanel4.add(btn_factura);
+
+        btn_pedidos.setBackground(new java.awt.Color(204, 204, 204));
+        btn_pedidos.setForeground(new java.awt.Color(0, 0, 255));
+        btn_pedidos.setText("Pedidos");
+        jPanel4.add(btn_pedidos);
+
+        btn_mesas.setBackground(new java.awt.Color(204, 204, 204));
+        btn_mesas.setForeground(new java.awt.Color(0, 0, 255));
+        btn_mesas.setText("Mesas");
+        btn_mesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mesasActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_mesas);
+
+        btn_reservaciones.setBackground(new java.awt.Color(204, 204, 204));
+        btn_reservaciones.setForeground(new java.awt.Color(0, 0, 255));
+        btn_reservaciones.setText("Reservaciones");
+        jPanel4.add(btn_reservaciones);
+
+        btn_historial_precios.setBackground(new java.awt.Color(204, 204, 204));
+        btn_historial_precios.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        btn_historial_precios.setForeground(new java.awt.Color(0, 0, 255));
+        btn_historial_precios.setText("Historial de precios");
+        jPanel4.add(btn_historial_precios);
+
+        btn_tipo_documento.setBackground(new java.awt.Color(204, 204, 204));
+        btn_tipo_documento.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        btn_tipo_documento.setForeground(new java.awt.Color(0, 0, 255));
+        btn_tipo_documento.setText("Tipos de Documento");
+        jPanel4.add(btn_tipo_documento);
+
+        btn_menu.setBackground(new java.awt.Color(204, 204, 204));
+        btn_menu.setForeground(new java.awt.Color(0, 0, 255));
+        btn_menu.setText("Menu");
+        jPanel4.add(btn_menu);
+
+        btn_cerrar_sesion.setBackground(new java.awt.Color(204, 204, 204));
+        btn_cerrar_sesion.setForeground(new java.awt.Color(255, 0, 51));
+        btn_cerrar_sesion.setText("Cerrar Sesion");
+        jPanel4.add(btn_cerrar_sesion);
+
+        menu.add(jPanel4, new java.awt.GridBagConstraints());
+
+        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1310, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clientesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_clientesActionPerformed
+
+    private void btn_mesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mesasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_mesasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,9 +189,21 @@ public class mainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton btn_cerrar_sesion;
+    private javax.swing.JButton btn_clientes;
+    private javax.swing.JButton btn_empleados;
+    private javax.swing.JButton btn_factura;
+    private javax.swing.JButton btn_historial_precios;
+    private javax.swing.JButton btn_inventario;
+    private javax.swing.JButton btn_menu;
+    private javax.swing.JButton btn_mesas;
+    private javax.swing.JButton btn_pedidos;
+    private javax.swing.JButton btn_proveedores;
+    private javax.swing.JButton btn_reservaciones;
+    private javax.swing.JButton btn_tipo_documento;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lbl_titulo;
+    private javax.swing.JPanel menu;
+    private javax.swing.JPanel titulo;
     // End of variables declaration//GEN-END:variables
 }
