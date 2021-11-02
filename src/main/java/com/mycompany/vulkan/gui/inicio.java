@@ -44,7 +44,6 @@ public class inicio extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setEnabled(false);
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         Background.setBackground(new java.awt.Color(244, 255, 255));

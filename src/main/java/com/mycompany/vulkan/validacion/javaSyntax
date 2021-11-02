@@ -1,2 +1,2 @@
 Esta es para mostrar tipo de error
-JOptionPane.showMessageDialog(this, "Xd buenas noches");
+JOptionPane.showMessageDialog(this, "Error");
