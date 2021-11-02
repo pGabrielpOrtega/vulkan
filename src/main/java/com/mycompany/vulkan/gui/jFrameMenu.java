@@ -29,24 +29,23 @@ public class jFrameMenu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbl_menu_restaurante = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        lbl_id_menu = new javax.swing.JLabel();
+        txt_id_menu = new javax.swing.JTextField();
+        lbl_nombre = new javax.swing.JLabel();
+        txt_nombre = new javax.swing.JTextField();
+        txt_precio = new javax.swing.JTextField();
+        lbl_precio = new javax.swing.JLabel();
+        btn_agregar = new javax.swing.JButton();
+        btn_modificar = new javax.swing.JButton();
+        btn_desactivar = new javax.swing.JButton();
+        btn_regresar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_registros = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -61,51 +60,51 @@ public class jFrameMenu extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(1280, 50));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("MENU DE RESTAURANTE");
-        jPanel4.add(jLabel1, new java.awt.GridBagConstraints());
+        lbl_menu_restaurante.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lbl_menu_restaurante.setText("MENU DE RESTAURANTE");
+        jPanel4.add(lbl_menu_restaurante, new java.awt.GridBagConstraints());
 
         jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
         jPanel5.setBackground(new java.awt.Color(244, 255, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("ID de menu");
-        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 250, -1));
+        lbl_id_menu.setText("ID de menu");
+        jPanel5.add(lbl_id_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+        jPanel5.add(txt_id_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 250, -1));
 
-        jLabel3.setText("Nombre");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
-        jPanel5.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 250, -1));
-        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 250, -1));
+        lbl_nombre.setText("Nombre");
+        jPanel5.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jPanel5.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 250, -1));
+        jPanel5.add(txt_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 250, -1));
 
-        jLabel4.setText("Precio");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+        lbl_precio.setText("Precio");
+        jPanel5.add(lbl_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setForeground(new java.awt.Color(0, 0, 255));
-        jButton1.setText("AGREGAR");
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, -1));
+        btn_agregar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_agregar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_agregar.setText("AGREGAR");
+        jPanel5.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setForeground(new java.awt.Color(0, 0, 255));
-        jButton2.setText("MODIFICAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_modificar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_modificar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_modificar.setText("MODIFICAR");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_modificarActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 200, -1, -1));
+        jPanel5.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 200, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(204, 204, 204));
-        jButton3.setForeground(new java.awt.Color(0, 0, 255));
-        jButton3.setText("DESACTIVAR");
-        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 200, -1, -1));
+        btn_desactivar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_desactivar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_desactivar.setText("DESACTIVAR");
+        jPanel5.add(btn_desactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 200, -1, -1));
 
-        jButton4.setBackground(new java.awt.Color(204, 204, 204));
-        jButton4.setForeground(new java.awt.Color(255, 0, 51));
-        jButton4.setText("REGRESAR");
-        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 200, -1, -1));
+        btn_regresar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_regresar.setForeground(new java.awt.Color(255, 0, 51));
+        btn_regresar.setText("REGRESAR");
+        jPanel5.add(btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 200, -1, -1));
 
         jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -114,7 +113,7 @@ public class jFrameMenu extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(244, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -125,7 +124,7 @@ public class jFrameMenu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_registros);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 420));
 
@@ -136,9 +135,9 @@ public class jFrameMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,23 +176,23 @@ public class jFrameMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btn_agregar;
+    private javax.swing.JButton btn_desactivar;
+    private javax.swing.JButton btn_modificar;
+    private javax.swing.JButton btn_regresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lbl_id_menu;
+    private javax.swing.JLabel lbl_menu_restaurante;
+    private javax.swing.JLabel lbl_nombre;
+    private javax.swing.JLabel lbl_precio;
+    private javax.swing.JTable tbl_registros;
+    private javax.swing.JTextField txt_id_menu;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_precio;
     // End of variables declaration//GEN-END:variables
 }
