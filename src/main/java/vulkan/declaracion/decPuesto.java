@@ -38,11 +38,6 @@ public class decPuesto implements Serializable{
     public void setDescripcion(String apellido) {
         this.descripcion = apellido;
     }
-
-    
-
-    
-
     public int getId() {
         return id;
     }

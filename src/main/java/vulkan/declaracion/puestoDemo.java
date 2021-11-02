@@ -6,15 +6,18 @@ package vulkan.declaracion;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import vulkan.declaracion.decPuesto;
 /**
  *
  * @author gabri
  */
 public class puestoDemo {
     public static void main(String[] args) {
-        SessionFactory factory = new Configuration();
-                                .configure("hibernate.cfg.xml");
-                                .addAnnotedClass(decPuesto.class);
+        SessionFactory factory = new Configuration()
+                                .configure("hibernate.cfg.xml")
+                                .addAnnotatedClass(decPuesto.class)
                                 .buildSessionFactory();
+        
+        Session session = factory.getCurrentSession();
     } 
 }
