@@ -18,6 +18,6 @@ public class puestoDemo {
                                 .addAnnotatedClass(decPuesto.class)
                                 .buildSessionFactory();
         
-        Session session = factory.getCurrentSession();
+        //Session session = factory.getCurrentSession();
     } 
 }

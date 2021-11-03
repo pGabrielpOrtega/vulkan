@@ -28,21 +28,99 @@ public class jFramePuesto extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        lbl_puestos_trabajo = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        lbl_id_area = new javax.swing.JLabel();
+        txt_id_area = new javax.swing.JTextField();
+        lbl_nombre_puesto = new javax.swing.JLabel();
+        txt_nombre_puestos = new javax.swing.JTextField();
+        lbl_descripcion = new javax.swing.JLabel();
+        btn_agregar = new javax.swing.JButton();
+        btn_modificar = new javax.swing.JButton();
+        btn_desactivar = new javax.swing.JButton();
+        btn_regresar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_descripcion = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        tbl_registros = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(239, 231, 231));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setText("Id puesto");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+        jPanel3.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1280, 300));
+        jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setPreferredSize(new java.awt.Dimension(1280, 50));
+        jPanel4.setLayout(new java.awt.GridBagLayout());
+
+        lbl_puestos_trabajo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lbl_puestos_trabajo.setText("PUESTOS DE TRABAJO");
+        jPanel4.add(lbl_puestos_trabajo, new java.awt.GridBagConstraints());
+
+        jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
+
+        jPanel5.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl_id_area.setText("ID de area");
+        jPanel5.add(lbl_id_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+        jPanel5.add(txt_id_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 250, -1));
+
+        lbl_nombre_puesto.setText("Nombre de puesto");
+        jPanel5.add(lbl_nombre_puesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jPanel5.add(txt_nombre_puestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 250, -1));
+
+        lbl_descripcion.setText("Descripcion");
+        jPanel5.add(lbl_descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+
+        btn_agregar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_agregar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_agregar.setText("AGREGAR");
+        jPanel5.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, -1));
+
+        btn_modificar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_modificar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_modificar.setText("MODIFICAR");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 200, -1, -1));
+
+        btn_desactivar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_desactivar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_desactivar.setText("DESACTIVAR");
+        jPanel5.add(btn_desactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 200, -1, -1));
+
+        btn_regresar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_regresar.setForeground(new java.awt.Color(255, 0, 51));
+        btn_regresar.setText("REGRESAR");
+        jPanel5.add(btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 200, -1, -1));
+
+        txt_descripcion.setColumns(20);
+        txt_descripcion.setRows(5);
+        jScrollPane2.setViewportView(txt_descripcion);
+
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 250, -1));
+
+        jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+
+        jPanel2.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tbl_registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,46 +131,20 @@ public class jFramePuesto extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_registros);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 420));
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, -1));
+        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +172,7 @@ public class jFramePuesto extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(jFramePuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -130,11 +183,24 @@ public class jFramePuesto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btn_agregar;
+    private javax.swing.JButton btn_desactivar;
+    private javax.swing.JButton btn_modificar;
+    private javax.swing.JButton btn_regresar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_descripcion;
+    private javax.swing.JLabel lbl_id_area;
+    private javax.swing.JLabel lbl_nombre_puesto;
+    private javax.swing.JLabel lbl_puestos_trabajo;
+    private javax.swing.JTable tbl_registros;
+    private javax.swing.JTextArea txt_descripcion;
+    private javax.swing.JTextField txt_id_area;
+    private javax.swing.JTextField txt_nombre_puestos;
     // End of variables declaration//GEN-END:variables
 }

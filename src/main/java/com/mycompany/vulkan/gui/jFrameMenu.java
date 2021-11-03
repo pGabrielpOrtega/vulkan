@@ -27,152 +27,117 @@ public class jFrameMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        lbl_menu_restaurante = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        lbl_id_menu = new javax.swing.JLabel();
+        txt_id_menu = new javax.swing.JTextField();
+        lbl_nombre = new javax.swing.JLabel();
+        txt_nombre = new javax.swing.JTextField();
+        txt_precio = new javax.swing.JTextField();
+        lbl_precio = new javax.swing.JLabel();
+        btn_agregar = new javax.swing.JButton();
+        btn_modificar = new javax.swing.JButton();
+        btn_desactivar = new javax.swing.JButton();
+        btn_regresar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtPrecio = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_registros = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(228, 219, 219));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBackground(new java.awt.Color(164, 136, 136));
+        jPanel3.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1280, 300));
+        jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jLabel4.setText("jLabel4");
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setPreferredSize(new java.awt.Dimension(1280, 50));
+        jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        lbl_menu_restaurante.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lbl_menu_restaurante.setText("MENU DE RESTAURANTE");
+        jPanel4.add(lbl_menu_restaurante, new java.awt.GridBagConstraints());
+
+        jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
+
+        jPanel5.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl_id_menu.setText("ID de menu");
+        jPanel5.add(lbl_id_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+        jPanel5.add(txt_id_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 250, -1));
+
+        lbl_nombre.setText("Nombre");
+        jPanel5.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jPanel5.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 250, -1));
+        jPanel5.add(txt_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 250, -1));
+
+        lbl_precio.setText("Precio");
+        jPanel5.add(lbl_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+
+        btn_agregar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_agregar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_agregar.setText("AGREGAR");
+        jPanel5.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, -1));
+
+        btn_modificar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_modificar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_modificar.setText("MODIFICAR");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_modificarActionPerformed(evt);
             }
         });
+        jPanel5.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 200, -1, -1));
 
-        jButton3.setText("Actualizar");
+        btn_desactivar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_desactivar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_desactivar.setText("DESACTIVAR");
+        jPanel5.add(btn_desactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 200, -1, -1));
 
-        jButton4.setText("Desactivar");
+        btn_regresar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_regresar.setForeground(new java.awt.Color(255, 0, 51));
+        btn_regresar.setText("REGRESAR");
+        jPanel5.add(btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 200, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(917, 917, 917)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
-                            .addComponent(jButton1)
-                            .addComponent(jButton4))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jButton1)
-                .addGap(36, 36, 36)
-                .addComponent(jButton3)
-                .addGap(31, 31, 31)
-                .addComponent(jButton4)
-                .addGap(218, 218, 218)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 260, 360));
+        jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_START);
 
-        jLabel1.setText("Id platillo");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
+        jPanel2.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Nombre platillo");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
-
-        jLabel3.setText("Precio");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 60, 30));
-
-        txtId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdActionPerformed(evt);
-            }
-        });
-        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtIdKeyTyped(evt);
-            }
-        });
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 170, 30));
-
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 180, 20));
-        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 120, 30));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Id platillo", "Nombre platillo", "Precio"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_registros);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 780, 360));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 420));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdActionPerformed
-
-    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
-        // TODO add your handling code here:
-        char b = evt.getKeyChar();
-        String txId = txtId.getText();
-        
-    }//GEN-LAST:event_txtIdKeyTyped
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +166,7 @@ public class jFrameMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(jFrameMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -211,19 +177,23 @@ public class jFrameMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btn_agregar;
+    private javax.swing.JButton btn_desactivar;
+    private javax.swing.JButton btn_modificar;
+    private javax.swing.JButton btn_regresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JLabel lbl_id_menu;
+    private javax.swing.JLabel lbl_menu_restaurante;
+    private javax.swing.JLabel lbl_nombre;
+    private javax.swing.JLabel lbl_precio;
+    private javax.swing.JTable tbl_registros;
+    private javax.swing.JTextField txt_id_menu;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_precio;
     // End of variables declaration//GEN-END:variables
 }
