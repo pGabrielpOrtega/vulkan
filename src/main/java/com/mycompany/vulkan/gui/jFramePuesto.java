@@ -10,8 +10,8 @@ import vulkan.declaracion.decPuesto;
 import com.mycompany.controlador.controlPuesto;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author gabri
@@ -21,6 +21,7 @@ public class jFramePuesto extends javax.swing.JFrame {
     valNumero valN = new valNumero();
     mainMenu prin = new mainMenu();
     controlPuesto puestoDao = new controlPuesto();
+    decPuesto puesto = new decPuesto();
     /**
      * Creates new form jFramePuesto
      */
@@ -53,6 +54,7 @@ public class jFramePuesto extends javax.swing.JFrame {
         btn_regresar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_descripcion = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_registros = new javax.swing.JTable();
@@ -112,6 +114,11 @@ public class jFramePuesto extends javax.swing.JFrame {
         btn_agregar.setBackground(new java.awt.Color(204, 204, 204));
         btn_agregar.setForeground(new java.awt.Color(0, 0, 255));
         btn_agregar.setText("AGREGAR");
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarActionPerformed(evt);
+            }
+        });
         jPanel5.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, -1));
 
         btn_modificar.setBackground(new java.awt.Color(204, 204, 204));
@@ -150,6 +157,14 @@ public class jFramePuesto extends javax.swing.JFrame {
 
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 250, -1));
 
+        jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
+
         jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_START);
@@ -181,6 +196,15 @@ public class jFramePuesto extends javax.swing.JFrame {
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
+        puesto.setId(Integer.parseInt(txt_id_area.getText()));
+        puesto.setNombre(txt_nombre_puestos.getText());
+        puesto.setDescripcion(txt_descripcion.getText());
+       
+        try {
+            puestoDao.edit(puesto);
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void txt_nombre_puestosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombre_puestosKeyTyped
@@ -208,10 +232,20 @@ public class jFramePuesto extends javax.swing.JFrame {
         // TODO add your handling code here: if(Tab_vendedores.getSelectedIndex()==1)
              if(tbl_registros.getSelectedColumn()==1)
         { 
-            DefaultTableModel modelo = new DefaultTableModel();
+           
+        }else if (tbl_registros.getSelectedColumn()== 0)
+             txt_nombre_puestos.requestFocus();    
+ 
+   
+    
+    }//GEN-LAST:event_lbl_id_areaMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         DefaultTableModel modelo = new DefaultTableModel();
             tbl_registros.setModel(modelo);
             modelo.addColumn("Id");
-            modelo.addColumn("Nombre");
+            modelo.addColumn("Nombre Puesto");
             modelo.addColumn("Descripcion");
         
             List<decPuesto> puesto = puestoDao.findclientesEntities();
@@ -219,19 +253,27 @@ public class jFramePuesto extends javax.swing.JFrame {
             for(decPuesto cliente : puesto){
                 modelo.addRow(
                     new Object[]{
-                        cliente.getNombre(),
+                        
                             cliente.getId(),
                             cliente.getNombre(),
                             cliente.getDescripcion()
                     }
                 );
             }
-        }else if (tbl_registros.getSelectedColumn()== 0)
-             txt_nombre_puestos.requestFocus();    
- 
-   
-    
-    }//GEN-LAST:event_lbl_id_areaMouseClicked
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+        // TODO add your handling code here:
+        puesto.setId(Integer.parseInt(txt_id_area.getText()));
+        puesto.setNombre(txt_nombre_puestos.getText());
+        puesto.setDescripcion(txt_descripcion.getText());
+       
+        try {
+            puestoDao.guardar(puesto);
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_agregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,6 +316,7 @@ public class jFramePuesto extends javax.swing.JFrame {
     private javax.swing.JButton btn_desactivar;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_regresar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

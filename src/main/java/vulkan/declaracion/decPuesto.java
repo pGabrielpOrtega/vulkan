@@ -22,7 +22,7 @@ public class decPuesto implements Serializable{
     @Column
     private String descripcion;
     @Id
-    private int id;
+    private int id_puesto;
      public String getNombre() {
         return nombre;
     }
@@ -39,11 +39,11 @@ public class decPuesto implements Serializable{
         this.descripcion = apellido;
     }
     public int getId() {
-        return id;
+        return id_puesto;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_puesto = id;
     }
     
     

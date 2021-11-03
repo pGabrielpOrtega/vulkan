@@ -4,8 +4,13 @@
  */
 package com.mycompany.vulkan.gui;
 import com.mycompany.vulkan.validacion.valString;
-import com.mycompany.vulkan.gui.mainMenu;
 import com.mycompany.vulkan.validacion.valNumero;
+import com.mycompany.controlador.controlMenu;
+import vulkan.declaracion.decMenu;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author gabri
@@ -13,7 +18,8 @@ import com.mycompany.vulkan.validacion.valNumero;
 public class jFrameMenu extends javax.swing.JFrame {
     valString valS = new valString();
     valNumero valN = new valNumero();
-    
+    controlMenu menuDao = new controlMenu();
+    decMenu menu = new decMenu();
     /**
      * Creates new form jFrameMenu
      */
@@ -45,6 +51,7 @@ public class jFrameMenu extends javax.swing.JFrame {
         btn_modificar = new javax.swing.JButton();
         btn_desactivar = new javax.swing.JButton();
         btn_regresar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_registros = new javax.swing.JTable();
@@ -88,6 +95,11 @@ public class jFrameMenu extends javax.swing.JFrame {
         btn_agregar.setBackground(new java.awt.Color(204, 204, 204));
         btn_agregar.setForeground(new java.awt.Color(0, 0, 255));
         btn_agregar.setText("AGREGAR");
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarActionPerformed(evt);
+            }
+        });
         jPanel5.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, -1));
 
         btn_modificar.setBackground(new java.awt.Color(204, 204, 204));
@@ -114,6 +126,14 @@ public class jFrameMenu extends javax.swing.JFrame {
             }
         });
         jPanel5.add(btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 200, -1, -1));
+
+        jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, -1, -1));
 
         jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -146,12 +166,58 @@ public class jFrameMenu extends javax.swing.JFrame {
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
-        
+        menu.setId(Integer.parseInt(txt_id_menu.getText()));
+        menu.setNombre(txt_nombre.getText());
+        menu.setPrecio(Integer.parseInt(txt_precio.getText()));
+       
+        try {
+            menuDao.edit(menu);
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btn_regresarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modelo = new DefaultTableModel();
+        tbl_registros.setModel(modelo);
+        modelo.addColumn("Id");
+        modelo.addColumn("Nombre Plato");
+        modelo.addColumn("precio");
+
+        List<decMenu> puesto = menuDao.findclientesEntities();
+
+        for(decMenu cliente : puesto){
+            modelo.addRow(
+                new Object[]{
+
+                    cliente.getId(),
+                    cliente.getNombre(),
+                    cliente.getPrecio()
+                }
+            );
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+        // TODO add your handling code here:
+        
+        menu.setId(Integer.parseInt(txt_id_menu.getText()));
+        menu.setNombre(txt_nombre.getText());
+        menu.setPrecio(Integer.parseInt(txt_precio.getText()));
+       
+        try {
+            menuDao.guardar(menu);
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }//GEN-LAST:event_btn_agregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,6 +261,7 @@ public class jFrameMenu extends javax.swing.JFrame {
     private javax.swing.JButton btn_desactivar;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_regresar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

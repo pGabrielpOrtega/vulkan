@@ -3,8 +3,9 @@
   <persistence-unit name="base_datos_mysql" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>vulkan.declaracion.decPuesto</class>
+    <class>vulkan.declaracion.decMenu</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/prueba"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/vulkan?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="JKphG1#L"/>
