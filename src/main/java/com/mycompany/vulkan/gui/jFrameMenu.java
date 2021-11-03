@@ -4,11 +4,15 @@
  */
 package com.mycompany.vulkan.gui;
 import com.mycompany.vulkan.validacion.valString;
+import com.mycompany.vulkan.gui.mainMenu;
+import com.mycompany.vulkan.validacion.valNumero;
 /**
  *
  * @author gabri
  */
 public class jFrameMenu extends javax.swing.JFrame {
+    valString valS = new valString();
+    valNumero valN = new valNumero();
     
     /**
      * Creates new form jFrameMenu
@@ -104,6 +108,11 @@ public class jFrameMenu extends javax.swing.JFrame {
         btn_regresar.setBackground(new java.awt.Color(204, 204, 204));
         btn_regresar.setForeground(new java.awt.Color(255, 0, 51));
         btn_regresar.setText("REGRESAR");
+        btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_regresarActionPerformed(evt);
+            }
+        });
         jPanel5.add(btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 200, -1, -1));
 
         jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -138,6 +147,11 @@ public class jFrameMenu extends javax.swing.JFrame {
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_modificarActionPerformed
+
+    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+        
+        
+    }//GEN-LAST:event_btn_regresarActionPerformed
 
     /**
      * @param args the command line arguments

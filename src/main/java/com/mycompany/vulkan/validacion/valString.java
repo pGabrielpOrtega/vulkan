@@ -10,12 +10,15 @@ package com.mycompany.vulkan.validacion;
  */
 public class valString {
     //validar que sea solamente letras en el key type
-    public void letras(char c){
+    public void letras(java.awt.event.KeyEvent evt){
+        char c = evt.getKeyChar();
         if((c < 'A' || c > 'Z') && (c <'a' || c > 'z')){
             if(c == 32 || c == 45 || c == 47){
                 
             }
-            
+            else{
+                evt.consume();
+            }
         }
     }
     

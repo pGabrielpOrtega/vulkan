@@ -8,6 +8,11 @@ package com.mycompany.vulkan.validacion;
  *
  * @author gabri
  */
-public class numeroInt {
-    
+public class valNumero {
+    public void valKeyTypeNumeros(java.awt.event.KeyEvent evt){
+        char c = evt.getKeyChar();
+        if(!Character.isDigit(c)){
+            evt.consume();
+        }
+    }
 }

@@ -4,13 +4,23 @@
  * and open the template in the editor.
  */
 package com.mycompany.vulkan.gui;
-
+import com.mycompany.vulkan.validacion.*;
+import com.mycompany.vulkan.gui.mainMenu;
+import vulkan.declaracion.decPuesto;
+import com.mycompany.controlador.controlPuesto;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import java.util.logging.Level;
 /**
  *
  * @author gabri
  */
 public class jFramePuesto extends javax.swing.JFrame {
-
+    valString valS = new valString();
+    valNumero valN = new valNumero();
+    mainMenu prin = new mainMenu();
+    controlPuesto puestoDao = new controlPuesto();
     /**
      * Creates new form jFramePuesto
      */
@@ -72,11 +82,28 @@ public class jFramePuesto extends javax.swing.JFrame {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_id_area.setText("ID de area");
+        lbl_id_area.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_id_areaMouseClicked(evt);
+            }
+        });
         jPanel5.add(lbl_id_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+
+        txt_id_area.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_id_areaKeyTyped(evt);
+            }
+        });
         jPanel5.add(txt_id_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 250, -1));
 
         lbl_nombre_puesto.setText("Nombre de puesto");
         jPanel5.add(lbl_nombre_puesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        txt_nombre_puestos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombre_puestosKeyTyped(evt);
+            }
+        });
         jPanel5.add(txt_nombre_puestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 250, -1));
 
         lbl_descripcion.setText("Descripcion");
@@ -105,10 +132,20 @@ public class jFramePuesto extends javax.swing.JFrame {
         btn_regresar.setBackground(new java.awt.Color(204, 204, 204));
         btn_regresar.setForeground(new java.awt.Color(255, 0, 51));
         btn_regresar.setText("REGRESAR");
+        btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_regresarActionPerformed(evt);
+            }
+        });
         jPanel5.add(btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 200, -1, -1));
 
         txt_descripcion.setColumns(20);
         txt_descripcion.setRows(5);
+        txt_descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_descripcionKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(txt_descripcion);
 
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 250, -1));
@@ -145,6 +182,56 @@ public class jFramePuesto extends javax.swing.JFrame {
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_modificarActionPerformed
+
+    private void txt_nombre_puestosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombre_puestosKeyTyped
+        // TODO add your handling code here:
+        valS.letras(evt);
+    }//GEN-LAST:event_txt_nombre_puestosKeyTyped
+
+    private void txt_id_areaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id_areaKeyTyped
+        // TODO add your handling code here:
+        valN.valKeyTypeNumeros(evt);
+    }//GEN-LAST:event_txt_id_areaKeyTyped
+
+    private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
+        // TODO add your handling code here:
+        valS.letras(evt);
+    }//GEN-LAST:event_txt_descripcionKeyTyped
+
+    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+        // TODO add your handling code here:
+        prin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_regresarActionPerformed
+
+    private void lbl_id_areaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_id_areaMouseClicked
+        // TODO add your handling code here: if(Tab_vendedores.getSelectedIndex()==1)
+             if(tbl_registros.getSelectedColumn()==1)
+        { 
+            DefaultTableModel modelo = new DefaultTableModel();
+            tbl_registros.setModel(modelo);
+            modelo.addColumn("Id");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Descripcion");
+        
+            List<decPuesto> puesto = puestoDao.findclientesEntities();
+        
+            for(decPuesto cliente : puesto){
+                modelo.addRow(
+                    new Object[]{
+                        cliente.getNombre(),
+                            cliente.getId(),
+                            cliente.getNombre(),
+                            cliente.getDescripcion()
+                    }
+                );
+            }
+        }else if (tbl_registros.getSelectedColumn()== 0)
+             txt_nombre_puestos.requestFocus();    
+ 
+   
+    
+    }//GEN-LAST:event_lbl_id_areaMouseClicked
 
     /**
      * @param args the command line arguments

@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.vulkan.gui;
+import com.mycompany.vulkan.gui.mainMenu;
 /**
  *
  * @author gabri
  */
 public class inicio extends javax.swing.JFrame {
-
+    mainMenu menu = new mainMenu();
     /**
      * Creates new form inicio
      */
@@ -54,8 +55,6 @@ public class inicio extends javax.swing.JFrame {
         Card.setLayout(new java.awt.GridLayout(1, 2));
 
         Grid_1_1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/vulkan/Imagenes/incio.jpg"))); // NOI18N
         Grid_1_1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 370));
 
         Card.add(Grid_1_1);
@@ -115,7 +114,7 @@ public class inicio extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lbl_usuario)))
                                 .addGap(128, 128, 128)))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_iniciar_sesion)
@@ -141,7 +140,7 @@ public class inicio extends javax.swing.JFrame {
                     .addComponent(img_usuario))
                 .addGap(37, 37, 37)
                 .addComponent(btn_iniciar_sesion)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         Grid_1_2.add(jPanel1, new java.awt.GridBagConstraints());
@@ -157,6 +156,7 @@ public class inicio extends javax.swing.JFrame {
 
     private void btn_iniciar_sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciar_sesionActionPerformed
         // TODO add your handling code here:
+        menu.setVisible(true);
     }//GEN-LAST:event_btn_iniciar_sesionActionPerformed
 
     /**
