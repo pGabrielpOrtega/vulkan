@@ -82,11 +82,29 @@ public class jFrameMenu extends javax.swing.JFrame {
 
         lbl_id_menu.setText("ID de menu");
         jPanel5.add(lbl_id_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+
+        txt_id_menu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_id_menuKeyTyped(evt);
+            }
+        });
         jPanel5.add(txt_id_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 250, -1));
 
         lbl_nombre.setText("Nombre");
         jPanel5.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyTyped(evt);
+            }
+        });
         jPanel5.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 250, -1));
+
+        txt_precio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_precioKeyTyped(evt);
+            }
+        });
         jPanel5.add(txt_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 250, -1));
 
         lbl_precio.setText("Precio");
@@ -218,6 +236,21 @@ public class jFrameMenu extends javax.swing.JFrame {
         }
     
     }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void txt_id_menuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id_menuKeyTyped
+        // TODO add your handling code here:
+        valN.valKeyTypeNumeros(evt);
+    }//GEN-LAST:event_txt_id_menuKeyTyped
+
+    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+        // TODO add your handling code here:
+        valS.letras(evt);
+    }//GEN-LAST:event_txt_nombreKeyTyped
+
+    private void txt_precioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precioKeyTyped
+        // TODO add your handling code here:
+        valN.valKeyTypeNumeros(evt);
+    }//GEN-LAST:event_txt_precioKeyTyped
 
     /**
      * @param args the command line arguments

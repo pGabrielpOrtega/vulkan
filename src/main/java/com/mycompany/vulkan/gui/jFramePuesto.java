@@ -185,7 +185,7 @@ public class jFramePuesto extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbl_registros);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 420));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1280, 420));
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -199,7 +199,6 @@ public class jFramePuesto extends javax.swing.JFrame {
         puesto.setId(Integer.parseInt(txt_id_area.getText()));
         puesto.setNombre(txt_nombre_puestos.getText());
         puesto.setDescripcion(txt_descripcion.getText());
-       
         try {
             puestoDao.edit(puesto);
         } catch (Exception ex) {
