@@ -38,14 +38,16 @@ public class mainMenu extends javax.swing.JFrame {
         btn_proveedores = new javax.swing.JButton();
         btn_inventario = new javax.swing.JButton();
         btn_factura = new javax.swing.JButton();
-        btn_pedidos = new javax.swing.JButton();
         btn_mesas = new javax.swing.JButton();
         btn_reservaciones = new javax.swing.JButton();
         btn_historial_precios = new javax.swing.JButton();
         btn_tipo_documento = new javax.swing.JButton();
         btn_menu = new javax.swing.JButton();
         btn_cerrar_sesion = new javax.swing.JButton();
+        btn_pedidos = new javax.swing.JButton();
         btn_Puesto = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -56,114 +58,136 @@ public class mainMenu extends javax.swing.JFrame {
         titulo.setLayout(new java.awt.GridBagLayout());
 
         lbl_titulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        lbl_titulo.setForeground(new java.awt.Color(0, 0, 255));
+        lbl_titulo.setForeground(new java.awt.Color(0, 0, 0));
         lbl_titulo.setText("MENU PRINCIPAL");
         titulo.add(lbl_titulo, new java.awt.GridBagConstraints());
 
         getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1310, 80));
 
         menu.setBackground(new java.awt.Color(244, 255, 255));
-        menu.setLayout(new java.awt.GridBagLayout());
+        menu.setPreferredSize(new java.awt.Dimension(1280, 720));
+        menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setPreferredSize(new java.awt.Dimension(1100, 400));
-        jPanel4.setLayout(new java.awt.GridLayout(2, 7, 20, 100));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_clientes.setBackground(new java.awt.Color(204, 204, 204));
         btn_clientes.setForeground(new java.awt.Color(0, 0, 255));
-        btn_clientes.setText("Clientes");
+        btn_clientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientes.png"))); // NOI18N
+        btn_clientes.setPreferredSize(new java.awt.Dimension(300, 50));
         btn_clientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_clientesActionPerformed(evt);
             }
         });
-        jPanel4.add(btn_clientes);
+        jPanel4.add(btn_clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 300, 50));
 
         btn_empleados.setBackground(new java.awt.Color(204, 204, 204));
         btn_empleados.setForeground(new java.awt.Color(0, 0, 255));
-        btn_empleados.setText("Empleados");
-        jPanel4.add(btn_empleados);
+        btn_empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/empleado.png"))); // NOI18N
+        btn_empleados.setPreferredSize(new java.awt.Dimension(300, 50));
+        jPanel4.add(btn_empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 300, 50));
 
         btn_proveedores.setBackground(new java.awt.Color(204, 204, 204));
         btn_proveedores.setForeground(new java.awt.Color(0, 0, 255));
-        btn_proveedores.setText("Proveedores");
-        jPanel4.add(btn_proveedores);
+        btn_proveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/proveedores.png"))); // NOI18N
+        btn_proveedores.setPreferredSize(new java.awt.Dimension(300, 50));
+        jPanel4.add(btn_proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 300, 50));
 
         btn_inventario.setBackground(new java.awt.Color(204, 204, 204));
         btn_inventario.setForeground(new java.awt.Color(0, 0, 255));
-        btn_inventario.setText("Inventario");
-        jPanel4.add(btn_inventario);
+        btn_inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/inventario.png"))); // NOI18N
+        btn_inventario.setPreferredSize(new java.awt.Dimension(300, 50));
+        jPanel4.add(btn_inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 300, 50));
 
         btn_factura.setBackground(new java.awt.Color(204, 204, 204));
         btn_factura.setForeground(new java.awt.Color(0, 0, 255));
-        btn_factura.setText("Factura");
-        jPanel4.add(btn_factura);
-
-        btn_pedidos.setBackground(new java.awt.Color(204, 204, 204));
-        btn_pedidos.setForeground(new java.awt.Color(0, 0, 255));
-        btn_pedidos.setText("Pedidos");
-        jPanel4.add(btn_pedidos);
+        btn_factura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/factura.png"))); // NOI18N
+        btn_factura.setPreferredSize(new java.awt.Dimension(300, 50));
+        jPanel4.add(btn_factura, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 300, 50));
 
         btn_mesas.setBackground(new java.awt.Color(204, 204, 204));
         btn_mesas.setForeground(new java.awt.Color(0, 0, 255));
-        btn_mesas.setText("Mesas");
+        btn_mesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mesas.png"))); // NOI18N
+        btn_mesas.setPreferredSize(new java.awt.Dimension(300, 50));
         btn_mesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_mesasActionPerformed(evt);
             }
         });
-        jPanel4.add(btn_mesas);
+        jPanel4.add(btn_mesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 300, -1));
 
         btn_reservaciones.setBackground(new java.awt.Color(204, 204, 204));
         btn_reservaciones.setForeground(new java.awt.Color(0, 0, 255));
-        btn_reservaciones.setText("Reservaciones");
-        jPanel4.add(btn_reservaciones);
+        btn_reservaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reservaciones.png"))); // NOI18N
+        btn_reservaciones.setPreferredSize(new java.awt.Dimension(300, 50));
+        jPanel4.add(btn_reservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 300, 50));
 
         btn_historial_precios.setBackground(new java.awt.Color(204, 204, 204));
         btn_historial_precios.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         btn_historial_precios.setForeground(new java.awt.Color(0, 0, 255));
-        btn_historial_precios.setText("Historial de precios");
-        jPanel4.add(btn_historial_precios);
+        btn_historial_precios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/historial-precios.png"))); // NOI18N
+        btn_historial_precios.setPreferredSize(new java.awt.Dimension(300, 50));
+        jPanel4.add(btn_historial_precios, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 300, 50));
 
         btn_tipo_documento.setBackground(new java.awt.Color(204, 204, 204));
         btn_tipo_documento.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         btn_tipo_documento.setForeground(new java.awt.Color(0, 0, 255));
-        btn_tipo_documento.setText("Tipos de Documento");
+        btn_tipo_documento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tipos-de-documento.png"))); // NOI18N
+        btn_tipo_documento.setPreferredSize(new java.awt.Dimension(300, 50));
         btn_tipo_documento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_tipo_documentoActionPerformed(evt);
             }
         });
-        jPanel4.add(btn_tipo_documento);
+        jPanel4.add(btn_tipo_documento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 300, 50));
 
         btn_menu.setBackground(new java.awt.Color(204, 204, 204));
         btn_menu.setForeground(new java.awt.Color(0, 0, 255));
-        btn_menu.setText("Menu");
+        btn_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu.png"))); // NOI18N
+        btn_menu.setPreferredSize(new java.awt.Dimension(300, 50));
         btn_menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_menuActionPerformed(evt);
             }
         });
-        jPanel4.add(btn_menu);
+        jPanel4.add(btn_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 300, -1));
 
         btn_cerrar_sesion.setBackground(new java.awt.Color(204, 204, 204));
         btn_cerrar_sesion.setForeground(new java.awt.Color(255, 0, 51));
-        btn_cerrar_sesion.setText("Cerrar Sesion");
-        jPanel4.add(btn_cerrar_sesion);
+        btn_cerrar_sesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logout.png"))); // NOI18N
+        btn_cerrar_sesion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51)));
+        btn_cerrar_sesion.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel4.add(btn_cerrar_sesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 10, -1, -1));
 
-        menu.add(jPanel4, new java.awt.GridBagConstraints());
+        btn_pedidos.setBackground(new java.awt.Color(204, 204, 204));
+        btn_pedidos.setForeground(new java.awt.Color(0, 0, 255));
+        btn_pedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pedidos.png"))); // NOI18N
+        btn_pedidos.setPreferredSize(new java.awt.Dimension(300, 50));
+        jPanel4.add(btn_pedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, -1, -1));
 
         btn_Puesto.setBackground(new java.awt.Color(204, 204, 204));
         btn_Puesto.setForeground(new java.awt.Color(0, 0, 255));
-        btn_Puesto.setText("Tipo Puesto");
+        btn_Puesto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tipo puesto.png"))); // NOI18N
+        btn_Puesto.setPreferredSize(new java.awt.Dimension(300, 50));
         btn_Puesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_PuestoActionPerformed(evt);
             }
         });
-        menu.add(btn_Puesto, new java.awt.GridBagConstraints());
+        jPanel4.add(btn_Puesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1310, 680));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo2.png"))); // NOI18N
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 380, -1, -1));
+
+        menu.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1140, 500));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BackgroundRes.png"))); // NOI18N
+        menu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -80, -1, -1));
+
+        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1280, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,6 +267,8 @@ public class mainMenu extends javax.swing.JFrame {
     private javax.swing.JButton btn_proveedores;
     private javax.swing.JButton btn_reservaciones;
     private javax.swing.JButton btn_tipo_documento;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lbl_titulo;
     private javax.swing.JPanel menu;
