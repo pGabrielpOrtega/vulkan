@@ -12,14 +12,14 @@ import javax.persistence.Table;
  * @author gabri
  */
 @Entity
-@Table (name="Menu")
-public class decMenu {
-    @Column
+@Table (name="Mesa")
+public class decMesa {
+     @Column
     private String nombre;
     @Column
     private int precio;
     @Id
-    private int id_menu;
+    private int id_mesa;
      public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -35,11 +35,10 @@ public class decMenu {
         this.precio = apellido;
     }
     public int getId() {
-        return id_menu;
+        return id_mesa;
     }
 
     public void setId(int id) {
-        this.id_menu = id;
+        this.id_mesa = id;
     }
-    
 }
