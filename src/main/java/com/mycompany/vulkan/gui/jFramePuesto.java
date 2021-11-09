@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author gabri
@@ -151,6 +152,8 @@ public class jFramePuesto extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
 
+        tbl_registros.setBackground(new java.awt.Color(255, 255, 255));
+        tbl_registros.setForeground(new java.awt.Color(0, 0, 0));
         tbl_registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -162,8 +165,8 @@ public class jFramePuesto extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tbl_registros.setGridColor(new java.awt.Color(102, 0, 255));
-        tbl_registros.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tbl_registros.setGridColor(new java.awt.Color(255, 255, 255));
+        tbl_registros.setSelectionBackground(new java.awt.Color(0, 255, 204));
         tbl_registros.setSelectionForeground(new java.awt.Color(204, 204, 255));
         jScrollPane1.setViewportView(tbl_registros);
 
@@ -277,15 +280,23 @@ public class jFramePuesto extends javax.swing.JFrame {
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
-        puesto.setId(Integer.parseInt(txt_id_area.getText()));
+        if(valString.tresKey(txt_nombre_puestos.getText())== false){  
+            JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
+        }else if(valString.ochoKey(txt_descripcion.getText())== false){
+            JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Guardando");
+            puesto.setId(Integer.parseInt(txt_id_area.getText()));
         puesto.setNombre(txt_nombre_puestos.getText());
         puesto.setDescripcion(txt_descripcion.getText());
-       
         try {
             puestoDao.guardar(puesto);
         } catch (Exception ex) {
             Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+        
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

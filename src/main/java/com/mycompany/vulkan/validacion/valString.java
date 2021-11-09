@@ -24,13 +24,25 @@ public class valString extends javax.swing.JFrame{
         }
     }
     // validar que el string tenga tres letras
-    public void tresKey(String str){
+    public static boolean tresKey(String str){
         int a = str.length();
         if(a >= 3){
-             JOptionPane.showMessageDialog(this, "Es mayor a 3");
+             
+             return true;
+             
         }else{
-            JOptionPane.showMessageDialog(this, "Es menor a 3 ");
+            return false;
         }
     }
+    public static boolean ochoKey(String str){
+        int a = str.length();
+        if(a >= 8){
+             return true;
+ 
+        }else{
+            return false;
+        }
+    }
+    
     
 }

@@ -15,5 +15,13 @@ public class valNumero {
             evt.consume();
         }
     }
+    public static boolean numMayorUno(int a ){
+        if(a >= 1){
+            return true;
+            
+    }else {
+            return false;
+        }
+    }
     
 }

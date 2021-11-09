@@ -3,13 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.vulkan.gui;
-import com.mycompany.vulkan.gui.mainMenu;
+
 /**
  *
  * @author gabri
  */
 public class inicio extends javax.swing.JFrame {
-    mainMenu menu = new mainMenu();
+    
     /**
      * Creates new form inicio
      */
@@ -164,7 +164,7 @@ public class inicio extends javax.swing.JFrame {
 
     private void btn_iniciar_sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciar_sesionActionPerformed
         // TODO add your handling code here:
-        menu.setVisible(true);
+        
     }//GEN-LAST:event_btn_iniciar_sesionActionPerformed
 
     /**
