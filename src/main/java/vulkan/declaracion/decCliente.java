@@ -25,7 +25,7 @@ public class decCliente {
     @Column
     private String correo;
     @Id
-    private int idCliente;
+    private int id_cliente;
 
     public String getNombre() {
         return nombre;
@@ -68,10 +68,10 @@ public class decCliente {
     }
 
     public int getId() {
-        return idCliente;
+        return id_cliente;
     }
 
     public void setId(int id) {
-        this.idCliente = id;
+        this.id_cliente = id;
 }
 }

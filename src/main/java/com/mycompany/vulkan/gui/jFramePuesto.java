@@ -80,7 +80,7 @@ public class jFramePuesto extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_puestos_trabajo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lbl_puestos_trabajo.setText("PUESTOS DE TRABAJO");
+        lbl_puestos_trabajo.setText("Puesto");
         jPanel4.add(lbl_puestos_trabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
 
         jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
@@ -116,15 +116,12 @@ public class jFramePuesto extends javax.swing.JFrame {
         });
         jPanel6.add(txt_id_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 250, -1));
 
-        lbl_descripcion.setForeground(new java.awt.Color(0, 0, 0));
         lbl_descripcion.setText("Descripcion");
         jPanel6.add(lbl_descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-        lbl_nombre_puesto.setForeground(new java.awt.Color(0, 0, 0));
         lbl_nombre_puesto.setText("Nombre de puesto");
         jPanel6.add(lbl_nombre_puesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        lbl_id_area.setForeground(new java.awt.Color(0, 0, 0));
         lbl_id_area.setText("ID de area");
         lbl_id_area.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lbl_id_area.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -134,7 +131,7 @@ public class jFramePuesto extends javax.swing.JFrame {
         });
         jPanel6.add(lbl_id_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
-        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 410, 230));
+        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 610, 260));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo2.png"))); // NOI18N
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 10, -1, -1));
@@ -152,8 +149,6 @@ public class jFramePuesto extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
 
-        tbl_registros.setBackground(new java.awt.Color(255, 255, 255));
-        tbl_registros.setForeground(new java.awt.Color(0, 0, 0));
         tbl_registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
