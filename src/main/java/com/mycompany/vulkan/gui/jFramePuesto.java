@@ -264,8 +264,9 @@ public class jFramePuesto extends javax.swing.JFrame {
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
         // TODO add your handling code here:
-        //prin.setVisible(true);
-        //this.setVisible(false);
+        mainMenu menu = new mainMenu();
+        this.dispose();
+        menu.setVisible(true);
     }//GEN-LAST:event_btn_regresarActionPerformed
 
     private void lbl_id_areaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_id_areaMouseClicked

@@ -3,16 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.vulkan.gui;
-
+import com.mycompany.vulkan.gui.jFramePuesto;
 import com.mycompany.vulkan.gui.jFrameMenu;
 /**
  *
  * @author gabri
  */
 public class mainMenu extends javax.swing.JFrame {
-    //jFramePuesto framePuesto = new jFramePuesto();
-    jFrameMenu frameMenu = new jFrameMenu();
-    jFramePuesto framePuesto = new jFramePuesto();
+    
+    
     /**
      * Creates new form mainMenu
      */
@@ -207,14 +206,18 @@ public class mainMenu extends javax.swing.JFrame {
 
     private void btn_PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuestoActionPerformed
         // TODO add your handling code here:
+        jFramePuesto framePuesto = new jFramePuesto();
+        this.dispose();
         framePuesto.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_btn_PuestoActionPerformed
 
     private void btn_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_menuActionPerformed
         // TODO add your handling code here:
+        jFrameMenu frameMenu = new jFrameMenu();
+        this.dispose();
         frameMenu.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_btn_menuActionPerformed
 
     /**

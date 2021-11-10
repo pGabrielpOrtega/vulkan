@@ -5,11 +5,12 @@
  */
 package vulkan.declaracion;
 
-import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.ColumnTransformer;
 
 /**
  * @author fer3dev
@@ -21,9 +22,34 @@ public class decUsuario {
     @Column
     private String nombre_usuario;
     @Column
+    private String tipo_usuario;
+    @Column
+    private int fallos;
+    
+    @ColumnTransformer(
+        read = "cast(aes_decrypt(contrasenia, 'vulkan') as char(255))", 
+        write = "aes_encrypt(?, 'vulkan')")
+    @Column(columnDefinition = "varbinary")
     private String contrasenia;
+    
     @Id
     private int id_usuario;
+
+    public String getTipo_usuario() {
+        return tipo_usuario;
+    }
+
+    public void setTipo_usuario(String tipo_usuario) {
+        this.tipo_usuario = tipo_usuario;
+    }
+
+    public int getFallos() {
+        return fallos;
+    }
+
+    public void setFallos(int fallos) {
+        this.fallos = fallos;
+    }
 
     public String getNombre_usuario() {
         return nombre_usuario;

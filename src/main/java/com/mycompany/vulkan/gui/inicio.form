@@ -6,9 +6,6 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
-    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Default Cursor"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1280, 720]"/>
     </Property>
@@ -195,6 +192,18 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
+                    <Component class="javax.swing.JTextField" name="txt_usuario">
+                      <Events>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_usuarioKeyTyped"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_usuarioKeyPressed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JPasswordField" name="txt_contrasenia">
+                      <Events>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_contraseniaKeyTyped"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_contraseniaKeyPressed"/>
+                      </Events>
+                    </Component>
                     <Component class="javax.swing.JLabel" name="lbl_ingresar_datos">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -207,11 +216,6 @@
                     <Component class="javax.swing.JLabel" name="lbl_usuario">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Usuario"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="txt_usuario">
-                      <Properties>
-                        <Property name="toolTipText" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lbl_contrasenia">
@@ -245,8 +249,6 @@
                           <Image iconType="3" name="/Imagenes/pass.png"/>
                         </Property>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JPasswordField" name="txt_contrasenia">
                     </Component>
                   </SubComponents>
                 </Container>

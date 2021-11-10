@@ -3,13 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.vulkan.gui;
+import com.mycompany.vulkan.validacion.*;
+import vulkan.declaracion.decUsuario;
+import com.mycompany.controlador.controlUsuario;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
- *
  * @author gabri
  */
+
 public class inicio extends javax.swing.JFrame {
-    
+    mainMenu menu = new mainMenu();
+    valStringInt valSI = new valStringInt();
+    controlUsuario usuarioDao = new controlUsuario();
+    decUsuario puesto = new decUsuario();
+    int contarUsuario = 0;
+    int contarContrasenia = 0;
+    int consumirLetra = 0;
     /**
      * Creates new form inicio
      */
@@ -33,19 +46,18 @@ public class inicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Grid_1_2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        txt_usuario = new javax.swing.JTextField();
+        txt_contrasenia = new javax.swing.JPasswordField();
         lbl_ingresar_datos = new javax.swing.JLabel();
         lbl_usuario = new javax.swing.JLabel();
-        txt_usuario = new javax.swing.JTextField();
         lbl_contrasenia = new javax.swing.JLabel();
         btn_iniciar_sesion = new javax.swing.JButton();
         img_usuario = new javax.swing.JLabel();
         img_contrasenia = new javax.swing.JLabel();
-        txt_contrasenia = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
@@ -72,13 +84,29 @@ public class inicio extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 300));
 
+        txt_usuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_usuarioKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_usuarioKeyPressed(evt);
+            }
+        });
+
+        txt_contrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_contraseniaKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_contraseniaKeyPressed(evt);
+            }
+        });
+
         lbl_ingresar_datos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lbl_ingresar_datos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_ingresar_datos.setText("INGRESE SUS DATOS");
 
         lbl_usuario.setText("Usuario");
-
-        txt_usuario.setToolTipText("");
 
         lbl_contrasenia.setText("Contraseña");
 
@@ -163,9 +191,114 @@ public class inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_iniciar_sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciar_sesionActionPerformed
-        // TODO add your handling code here:
         
+        List<decUsuario> usuario = usuarioDao.findusuarioEntities();
+        String nombreT = txt_usuario.getText();
+        var passT = txt_contrasenia.getText();
+        boolean usuarioEncontrado = false;
+        
+        for (decUsuario usr : usuario){
+            String nombreR = usr.getNombre_usuario();
+            String passR = "marx";
+            int fallos = usr.getFallos();
+            
+            if(nombreR.equals(nombreT)){
+                System.out.println("usuario encontrado");
+                usuarioEncontrado = true;
+                if(passR.equals(passT)){
+                    if(fallos == 3){
+                        showMessageDialog(null, "SU CUENTA HA SIDO BLOQUEADA: COMUNIQUESE CON UN ADMINISTRADOR");
+                    }
+                    else{
+                        System.out.println("Contrasenia correcta");
+                        usr.setFallos(0);
+                        try {
+                            usuarioDao.edit(usr);
+                        } catch (Exception ex) {
+                            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        this.dispose();
+                        menu.setVisible(true);
+                    }
+                }
+                else{
+                    if(fallos < 3){
+                        usr.setFallos(fallos+1);
+                        System.out.println(usr.getFallos());
+                        try {
+                            usuarioDao.edit(usr);
+                        } catch (Exception ex) {
+                            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        showMessageDialog(null, "CONTRASEÑA INCORRECTA");
+                        break;
+                    }
+                    else if(fallos == 3){
+                        showMessageDialog(null, "SU CUENTA HA SIDO BLOQUEADA: COMUNIQUESE CON UN ADMINISTRADOR");
+                        break;
+                    }
+                }
+            }
+        }
+        if(!usuarioEncontrado){
+            showMessageDialog(null, "NOMBRE DE USUARIO INCORRECTO");
+        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_btn_iniciar_sesionActionPerformed
+
+    private void txt_usuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usuarioKeyTyped
+        valSI.letras_numeros(evt);
+        if (consumirLetra == 1){
+            evt.consume();
+            consumirLetra = 0;
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_usuarioKeyTyped
+
+    private void txt_contraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contraseniaKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_BACK_SPACE){
+            if(contarContrasenia != 0){
+                contarContrasenia -= 1;
+            }
+        }
+        else if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_SPACE){
+            consumirLetra = 1;
+        }
+        else{
+            if(contarContrasenia == 15){
+                consumirLetra = 1;
+            }
+            else{
+                contarContrasenia += 1;
+            }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_contraseniaKeyPressed
+
+    private void txt_contraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contraseniaKeyTyped
+        if (consumirLetra == 1){
+            evt.consume();
+            consumirLetra = 0;
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_contraseniaKeyTyped
+
+    private void txt_usuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usuarioKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_BACK_SPACE){
+            if(contarUsuario != 0){
+                contarUsuario -= 1;
+            }
+        }
+        else{
+            if(contarUsuario == 15){
+                consumirLetra = 1;
+            }
+            else{
+                contarUsuario += 1;
+            }
+        }  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_usuarioKeyPressed
 
     /**
      * @param args the command line arguments
@@ -192,6 +325,7 @@ public class inicio extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
