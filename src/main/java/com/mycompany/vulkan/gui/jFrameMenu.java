@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author gabri
@@ -261,7 +262,23 @@ public class jFrameMenu extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+        
+        if(valString.tresKey(txt_nombre.getText())== false){  
+            JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
+        }else if(valNumero.numMayorUno(Integer.parseInt(txt_precio.getText()))== false){
+            JOptionPane.showMessageDialog(this, "Error numero menor a uno");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Guardando");
+             menu.setId(Integer.parseInt(txt_id_menu.getText()));
+            menu.setNombre(txt_nombre.getText());
+            menu.setPrecio(Integer.parseInt(txt_precio.getText()));
+        try {
+            menuDao.guardar(menu);
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void txt_id_menuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id_menuKeyTyped
