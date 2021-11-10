@@ -43,7 +43,11 @@
             <artifactId>protobuf-java</artifactId>
             <version>3.11.4</version>
         </dependency>
-        
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.4.1</version>
+        </dependency>
         
     
     

@@ -23,5 +23,29 @@ public class valNumero {
             return false;
         }
     }
+    public static boolean telefono(int a){
+        boolean f ;
+        switch(a){
+            case 2: 
+                f = true;
+                break;
+            case 7:
+                f = true;
+                break;
+            case 8:
+                f = true;
+                break;
+            case 3:
+                f = true;
+                break;
+            case 9:
+                f = true;
+                break;
+            default: f = false;
+        }
+        
+        return f;    
+    }
+   
     
 }

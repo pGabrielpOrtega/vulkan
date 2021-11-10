@@ -12,7 +12,7 @@ import com.mycompany.vulkan.gui.jFrameMenu;
 public class mainMenu extends javax.swing.JFrame {
     //jFramePuesto framePuesto = new jFramePuesto();
     jFrameMenu frameMenu = new jFrameMenu();
-    
+    jFramePuesto framePuesto = new jFramePuesto();
     /**
      * Creates new form mainMenu
      */
@@ -207,8 +207,8 @@ public class mainMenu extends javax.swing.JFrame {
 
     private void btn_PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuestoActionPerformed
         // TODO add your handling code here:
-        //framePuesto.setVisible(true);
-        //this.setVisible(false);
+        framePuesto.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_PuestoActionPerformed
 
     private void btn_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_menuActionPerformed

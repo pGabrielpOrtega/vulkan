@@ -43,6 +43,22 @@ public class valString extends javax.swing.JFrame{
             return false;
         }
     }
+    public void consumeMayor25(java.awt.event.KeyEvent evt,String str){
+        int a = str.length();
+        if(a <= 25){
+            
+        }else{
+            evt.consume();
+        }
+    }
+    public void consumeMayor50(java.awt.event.KeyEvent evt,String str){
+        int a = str.length();
+        if(a <= 49){
+            
+        }else{
+            evt.consume();
+        }
+    }
     
     
 }

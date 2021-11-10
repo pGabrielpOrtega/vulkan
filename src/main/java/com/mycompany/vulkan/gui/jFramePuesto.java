@@ -5,7 +5,6 @@
  */
 package com.mycompany.vulkan.gui;
 import com.mycompany.vulkan.validacion.*;
-import com.mycompany.vulkan.gui.mainMenu;
 import vulkan.declaracion.decPuesto;
 import com.mycompany.controlador.controlPuesto;
 import java.util.List;
@@ -20,7 +19,7 @@ import javax.swing.JOptionPane;
 public class jFramePuesto extends javax.swing.JFrame {
     valString valS = new valString();
     valNumero valN = new valNumero();
-    mainMenu prin = new mainMenu();
+    
     controlPuesto puestoDao = new controlPuesto();
     decPuesto puesto = new decPuesto();
     /**
@@ -102,6 +101,11 @@ public class jFramePuesto extends javax.swing.JFrame {
 
         jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 250, -1));
 
+        txt_nombre_puestos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombre_puestosActionPerformed(evt);
+            }
+        });
         txt_nombre_puestos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_nombre_puestosKeyTyped(evt);
@@ -243,6 +247,8 @@ public class jFramePuesto extends javax.swing.JFrame {
     private void txt_nombre_puestosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombre_puestosKeyTyped
         // TODO add your handling code here:
         valS.letras(evt);
+        valS.consumeMayor25(evt, txt_nombre_puestos.getText());
+        
     }//GEN-LAST:event_txt_nombre_puestosKeyTyped
 
     private void txt_id_areaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id_areaKeyTyped
@@ -253,12 +259,13 @@ public class jFramePuesto extends javax.swing.JFrame {
     private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
         // TODO add your handling code here:
         valS.letras(evt);
+        valS.consumeMayor50(evt, txt_descripcion.getText());
     }//GEN-LAST:event_txt_descripcionKeyTyped
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
         // TODO add your handling code here:
-        prin.setVisible(true);
-        this.setVisible(false);
+        //prin.setVisible(true);
+        //this.setVisible(false);
     }//GEN-LAST:event_btn_regresarActionPerformed
 
     private void lbl_id_areaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_id_areaMouseClicked
@@ -315,6 +322,10 @@ public class jFramePuesto extends javax.swing.JFrame {
             );
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_nombre_puestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_puestosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombre_puestosActionPerformed
 
     /**
      * @param args the command line arguments

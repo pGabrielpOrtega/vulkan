@@ -23,6 +23,9 @@ public class decPuesto implements Serializable{
     private String descripcion;
     @Id
     private int id_puesto;
+    
+    
+    
      public String getNombre() {
         return nombre;
     }

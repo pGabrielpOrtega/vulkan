@@ -9,12 +9,13 @@ import com.mycompany.vulkan.validacion.valString;
 import javax.swing.table.DefaultTableModel;
 import vulkan.declaracion.decEmpleado;
 import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author gabri
  */
 public class jFrameEmpleado extends javax.swing.JFrame {
-        valString valS = new valString();
+    valString valS = new valString();
     valNumero valN = new valNumero();
     controlEmpleado empleadoDao = new controlEmpleado();
     decEmpleado empleado = new decEmpleado();
@@ -40,8 +41,21 @@ public class jFrameEmpleado extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         lbl_menu_restaurante = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
+        lbl_id_menu = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txt_email = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
+        txt_apellido = new javax.swing.JTextField();
+        txt_descripcion = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txt_telefono = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -78,12 +92,40 @@ public class jFrameEmpleado extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(244, 255, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo2.png"))); // NOI18N
-        jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 10, -1, -1));
-
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 510, 220));
+
+        lbl_id_menu.setText("ID de menu");
+        jPanel7.add(lbl_id_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel1.setText("Nombre");
+        jPanel7.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        jLabel5.setText("Apellido");
+        jPanel7.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        jLabel6.setText("Direccion");
+        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        jLabel7.setText("Email");
+        jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
+        jPanel7.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 210, -1));
+        jPanel7.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 200, -1));
+        jPanel7.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 200, -1));
+        jPanel7.add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 200, -1));
+        jPanel7.add(txt_descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 210, -1));
+
+        jLabel4.setText("Telefono");
+        jPanel7.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, -1, -1));
+        jPanel7.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 220, -1));
+
+        jLabel8.setText("Puesto");
+        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel7.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, -1, -1));
+
+        jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 1060, 260));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BackgroundRes.png"))); // NOI18N
         jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -186,9 +228,11 @@ public class jFrameEmpleado extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel();
         tbl_registros.setModel(modelo);
         modelo.addColumn("Id");
-        modelo.addColumn("Nombre Plato");
-        modelo.addColumn("precio");
-
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Email");
         List<decEmpleado> puesto = empleadoDao.findclientesEntities();
 
         for(decEmpleado cliente : puesto){
@@ -197,10 +241,10 @@ public class jFrameEmpleado extends javax.swing.JFrame {
 
                     cliente.getId_empleado(),
                     cliente.getNombre(),
+                    cliente.getAppelido(),
                     cliente.getTelefono(),
                     cliente.getDireccion(),
-                    cliente.getTelefono(),
-                    cliente.getCorreo()
+                    cliente.getEmail()
                 }
             );
         }
@@ -208,7 +252,13 @@ public class jFrameEmpleado extends javax.swing.JFrame {
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
-
+        int a = Integer.parseInt(txt_telefono.getText());
+        int b = Integer.parseInt(Integer.toString(a).substring(0, 1));
+        if(valNumero.telefono(b)== false){
+            JOptionPane.showMessageDialog(this, "Error numero no es igual a 2 7 8 9");
+        }else{
+            JOptionPane.showMessageDialog(this, "guardar");
+        }
         
 
     }//GEN-LAST:event_btn_agregarActionPerformed
@@ -264,9 +314,15 @@ public class jFrameEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_regresar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -275,7 +331,14 @@ public class jFrameEmpleado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lbl_id_menu;
     private javax.swing.JLabel lbl_menu_restaurante;
     private javax.swing.JTable tbl_registros;
+    private javax.swing.JTextField txt_apellido;
+    private javax.swing.JTextField txt_descripcion;
+    private javax.swing.JTextField txt_email;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -148,6 +148,7 @@
                     </Container>
                     <Component class="javax.swing.JTextField" name="txt_nombre_puestos">
                       <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_nombre_puestosActionPerformed"/>
                         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_nombre_puestosKeyTyped"/>
                       </Events>
                       <Constraints>

@@ -16,18 +16,19 @@ import javax.persistence.Table;
 @Entity
 @Table (name="Empleado")
 public class decEmpleado {
+    @Id
+    private int id_empleado;
     @Column
     private String nombre;
     @Column
     private int telefono;
     @Column
-    private String appelido;
+    private String apellido;
     @Column
     private String direccion;
     @Column
-    private String correo;
-    @Id
-    private int id_empleado;
+    private String email;
+    
 
     public String getNombre() {
         return nombre;
@@ -46,11 +47,11 @@ public class decEmpleado {
     }
 
     public String getAppelido() {
-        return appelido;
+        return apellido;
     }
 
     public void setAppelido(String appelido) {
-        this.appelido = appelido;
+        this.apellido = appelido;
     }
 
     public String getDireccion() {
@@ -61,12 +62,12 @@ public class decEmpleado {
         this.direccion = direccion;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String correo) {
+        this.email = correo;
     }
 
     public int getId_empleado() {

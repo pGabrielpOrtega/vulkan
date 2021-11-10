@@ -6,7 +6,6 @@ package com.mycompany.controlador;
 
 import clases.exceptions.NonexistentEntityException;
 import clases.exceptions.PreexistingEntityException;
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
