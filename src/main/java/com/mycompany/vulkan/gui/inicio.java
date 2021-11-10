@@ -8,7 +8,9 @@ import com.mycompany.vulkan.gui.mainMenu;
 import com.mycompany.vulkan.validacion.*;
 import vulkan.declaracion.decUsuario;
 import com.mycompany.controlador.controlUsuario;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -203,17 +205,43 @@ public class inicio extends javax.swing.JFrame {
         for (decUsuario usr : usuario){
             String nombreR = usr.getNombre_usuario();
             String passR = usr.getContrasenia();
+            int fallos = usr.getFallos();
+            
             if(nombreR.equals(nombreT)){
                 System.out.println("usuario encontrado");
                 usuarioEncontrado = true;
                 if(passR.equals(passT)){
-                    System.out.println("Contrasenia correcta");
-                    this.dispose();
-                    menu.setVisible(true);
+                    if(fallos == 3){
+                        showMessageDialog(null, "SU CUENTA HA SIDO BLOQUEADA: COMUNIQUESE CON UN ADMINISTRADOR");
+                    }
+                    else{
+                        System.out.println("Contrasenia correcta");
+                        usr.setFallos(0);
+                        try {
+                            usuarioDao.edit(usr);
+                        } catch (Exception ex) {
+                            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        this.dispose();
+                        menu.setVisible(true);
+                    }
                 }
                 else{
-                    showMessageDialog(null, "CONTRASEÑA INCORRECTA");
-                    break;
+                    if(fallos < 3){
+                        usr.setFallos(fallos+1);
+                        System.out.println(usr.getFallos());
+                        try {
+                            usuarioDao.edit(usr);
+                        } catch (Exception ex) {
+                            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        showMessageDialog(null, "CONTRASEÑA INCORRECTA");
+                        break;
+                    }
+                    else if(fallos == 3){
+                        showMessageDialog(null, "SU CUENTA HA SIDO BLOQUEADA: COMUNIQUESE CON UN ADMINISTRADOR");
+                        break;
+                    }
                 }
             }
         }
