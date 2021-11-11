@@ -210,14 +210,21 @@ public class jFrameMenu extends javax.swing.JFrame {
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
-        menu.setId(Integer.parseInt(txt_id_menu.getText()));
-        menu.setNombre(txt_nombre.getText());
-        menu.setPrecio(Integer.parseInt(txt_precio.getText()));
-       
+        if(valString.tresKey(txt_nombre.getText())== false){  
+            JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
+        }else if(valNumero.numMayorUno(Integer.parseInt(txt_precio.getText()))== false){
+            JOptionPane.showMessageDialog(this, "Error numero menor a uno");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Guardando");
+            menu.setId(Integer.parseInt(txt_id_menu.getText()));
+            menu.setNombre(txt_nombre.getText());
+            menu.setPrecio(Integer.parseInt(txt_precio.getText()));
         try {
             menuDao.edit(menu);
         } catch (Exception ex) {
             Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_btn_modificarActionPerformed
 
@@ -252,17 +259,6 @@ public class jFrameMenu extends javax.swing.JFrame {
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
-        
-        menu.setId(Integer.parseInt(txt_id_menu.getText()));
-        menu.setNombre(txt_nombre.getText());
-        menu.setPrecio(Integer.parseInt(txt_precio.getText()));
-       
-        try {
-            menuDao.guardar(menu);
-        } catch (Exception ex) {
-            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         if(valString.tresKey(txt_nombre.getText())== false){  
             JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
         }else if(valNumero.numMayorUno(Integer.parseInt(txt_precio.getText()))== false){
@@ -270,7 +266,7 @@ public class jFrameMenu extends javax.swing.JFrame {
         }
         else{
             JOptionPane.showMessageDialog(this, "Guardando");
-             menu.setId(Integer.parseInt(txt_id_menu.getText()));
+            menu.setId(Integer.parseInt(txt_id_menu.getText()));
             menu.setNombre(txt_nombre.getText());
             menu.setPrecio(Integer.parseInt(txt_precio.getText()));
         try {

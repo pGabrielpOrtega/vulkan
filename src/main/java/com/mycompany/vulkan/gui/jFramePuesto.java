@@ -234,13 +234,21 @@ public class jFramePuesto extends javax.swing.JFrame {
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
-        puesto.setId(Integer.parseInt(txt_id_area.getText()));
+       if(valString.tresKey(txt_nombre_puestos.getText())== false){  
+            JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
+        }else if(valString.ochoKey(txt_descripcion.getText())== false){
+            JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Guardando");
+            puesto.setId(Integer.parseInt(txt_id_area.getText()));
         puesto.setNombre(txt_nombre_puestos.getText());
         puesto.setDescripcion(txt_descripcion.getText());
         try {
             puestoDao.edit(puesto);
         } catch (Exception ex) {
             Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_btn_modificarActionPerformed
 
