@@ -194,14 +194,14 @@ public class inicio extends javax.swing.JFrame {
         
         List<decUsuario> usuario = usuarioDao.findusuarioEntities();
         String nombreT = txt_usuario.getText();
-        //String passT = txt_contrasenia.getText();
-        var passT = txt_contrasenia.getText();
+        String passT = txt_contrasenia.getText();
+        //var passT = txt_contrasenia.getText();
         boolean usuarioEncontrado = false;
         
         for (decUsuario usr : usuario){
             String nombreR = usr.getNombre_usuario();
-            String passR = "marx";
-            //String passR = usr.getContrasenia();
+            //String passR = "marx";
+            String passR = usr.getContrasenia();
             int fallos = usr.getFallos();
             
             if(nombreR.equals(nombreT)){
