@@ -87,6 +87,11 @@ public class mainMenu extends javax.swing.JFrame {
         btn_empleados.setForeground(new java.awt.Color(0, 0, 255));
         btn_empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/empleado.png"))); // NOI18N
         btn_empleados.setPreferredSize(new java.awt.Dimension(300, 50));
+        btn_empleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_empleadosActionPerformed(evt);
+            }
+        });
         jPanel4.add(btn_empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 300, 50));
 
         btn_proveedores.setBackground(new java.awt.Color(204, 204, 204));
@@ -219,6 +224,13 @@ public class mainMenu extends javax.swing.JFrame {
         frameMenu.setVisible(true);
         
     }//GEN-LAST:event_btn_menuActionPerformed
+
+    private void btn_empleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_empleadosActionPerformed
+        // TODO add your handling code here:
+        jFrameEmpleado frameEmpleado = new jFrameEmpleado();
+        this.dispose();
+        frameEmpleado.setVisible(true);
+    }//GEN-LAST:event_btn_empleadosActionPerformed
 
     /**
      * @param args the command line arguments

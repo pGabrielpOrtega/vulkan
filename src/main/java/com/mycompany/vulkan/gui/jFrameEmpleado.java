@@ -291,7 +291,9 @@ public class jFrameEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
-        
+    mainMenu menu = new mainMenu();
+        this.dispose();
+        menu.setVisible(true);        
 
     }//GEN-LAST:event_btn_regresarActionPerformed
 
