@@ -27,6 +27,7 @@ public class jFramePuesto extends javax.swing.JFrame {
      */
     public jFramePuesto() {
         initComponents();
+        this.llenadoTabla();
     }
 
     /**
@@ -167,6 +168,11 @@ public class jFramePuesto extends javax.swing.JFrame {
         tbl_registros.setGridColor(new java.awt.Color(255, 255, 255));
         tbl_registros.setSelectionBackground(new java.awt.Color(0, 255, 204));
         tbl_registros.setSelectionForeground(new java.awt.Color(204, 204, 255));
+        tbl_registros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_registrosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_registros);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1280, 310));
@@ -309,9 +315,7 @@ public class jFramePuesto extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_agregarActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void llenadoTabla(){
         DefaultTableModel modelo = new DefaultTableModel();
         tbl_registros.setModel(modelo);
         modelo.addColumn("Id");
@@ -330,11 +334,43 @@ public class jFramePuesto extends javax.swing.JFrame {
                 }
             );
         }
+        btn_modificar.setEnabled(false);
+        btn_desactivar.setEnabled(false);
+        btn_agregar.setEnabled(true);
+        txt_id_area.setText("");
+        txt_nombre_puestos.setText("");
+        txt_descripcion.setText("");
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.llenadoTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_nombre_puestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_puestosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nombre_puestosActionPerformed
+
+    private void tbl_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_registrosMouseClicked
+        // TODO add your handling code here:
+        int fila = tbl_registros.getSelectedRow();
+        if (fila == -1) {
+
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una Fila");
+
+        } else {
+            btn_agregar.setEnabled(false);
+            btn_modificar.setEnabled(true);
+            btn_desactivar.setEnabled(true);
+            String Id = tbl_registros.getValueAt(fila, 0).toString();
+            String Nombre = tbl_registros.getValueAt(fila, 1).toString();
+            String Descripcion = tbl_registros.getValueAt(fila, 2).toString();
+            //String Activo = tbl_registros.getValueAt(fila, 3).toString();
+            txt_id_area.setText(Id);
+            txt_nombre_puestos.setText(Nombre);
+            txt_descripcion.setText(Descripcion);
+            //Txt_Activo.setText(Activo);
+        }
+    }//GEN-LAST:event_tbl_registrosMouseClicked
 
     /**
      * @param args the command line arguments

@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author gabri
  */
-public class jFrameMenu extends javax.swing.JFrame {
+public class jFrameProvedor extends javax.swing.JFrame {
     valString valS = new valString();
     valNumero valN = new valNumero();
     controlMenu menuDao = new controlMenu();
@@ -24,9 +24,8 @@ public class jFrameMenu extends javax.swing.JFrame {
     /**
      * Creates new form jFrameMenu
      */
-    public jFrameMenu() {
+    public jFrameProvedor() {
         initComponents();
-        this.llenadoTabla();
     }
 
     /**
@@ -45,12 +44,7 @@ public class jFrameMenu extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        txt_id_menu = new javax.swing.JTextField();
-        lbl_id_menu = new javax.swing.JLabel();
-        txt_nombre = new javax.swing.JTextField();
-        lbl_nombre = new javax.swing.JLabel();
-        txt_precio = new javax.swing.JTextField();
-        lbl_precio = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -92,35 +86,8 @@ public class jFrameMenu extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_id_menu.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_id_menuKeyTyped(evt);
-            }
-        });
-        jPanel6.add(txt_id_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 250, -1));
-
-        lbl_id_menu.setText("ID de menu");
-        jPanel6.add(lbl_id_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_nombreKeyTyped(evt);
-            }
-        });
-        jPanel6.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 250, -1));
-
-        lbl_nombre.setText("Nombre");
-        jPanel6.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
-
-        txt_precio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_precioKeyTyped(evt);
-            }
-        });
-        jPanel6.add(txt_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 250, -1));
-
-        lbl_precio.setText("Precio");
-        jPanel6.add(lbl_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jLabel4.setText("jLabel4");
+        jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 410, 150));
 
@@ -211,22 +178,7 @@ public class jFrameMenu extends javax.swing.JFrame {
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
-        if(valString.tresKey(txt_nombre.getText())== false){  
-            JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
-        }else if(valNumero.numMayorUno(Integer.parseInt(txt_precio.getText()))== false){
-            JOptionPane.showMessageDialog(this, "Error numero menor a uno");
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Guardando");
-            menu.setId(Integer.parseInt(txt_id_menu.getText()));
-            menu.setNombre(txt_nombre.getText());
-            menu.setPrecio(Integer.parseInt(txt_precio.getText()));
-        try {
-            menuDao.edit(menu);
-        } catch (Exception ex) {
-            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
+        
     }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
@@ -235,7 +187,9 @@ public class jFrameMenu extends javax.swing.JFrame {
         menu.setVisible(true);
         
     }//GEN-LAST:event_btn_regresarActionPerformed
-    private void llenadoTabla(){
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();
         tbl_registros.setModel(modelo);
         modelo.addColumn("Id");
@@ -254,48 +208,12 @@ public class jFrameMenu extends javax.swing.JFrame {
                 }
             );
         }
-        btn_modificar.setEnabled(false);
-        btn_desactivar.setEnabled(false);
-    }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.llenadoTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
-        if(valString.tresKey(txt_nombre.getText())== false){  
-            JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
-        }else if(valNumero.numMayorUno(Integer.parseInt(txt_precio.getText()))== false){
-            JOptionPane.showMessageDialog(this, "Error numero menor a uno");
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Guardando");
-            menu.setId(Integer.parseInt(txt_id_menu.getText()));
-            menu.setNombre(txt_nombre.getText());
-            menu.setPrecio(Integer.parseInt(txt_precio.getText()));
-        try {
-            menuDao.guardar(menu);
-        } catch (Exception ex) {
-            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
+        
     }//GEN-LAST:event_btn_agregarActionPerformed
-
-    private void txt_id_menuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id_menuKeyTyped
-        // TODO add your handling code here:
-        valN.valKeyTypeNumeros(evt);
-    }//GEN-LAST:event_txt_id_menuKeyTyped
-
-    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
-        // TODO add your handling code here:
-        valS.letras(evt);
-    }//GEN-LAST:event_txt_nombreKeyTyped
-
-    private void txt_precioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precioKeyTyped
-        // TODO add your handling code here:
-        valN.valKeyTypeNumeros(evt);
-    }//GEN-LAST:event_txt_precioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -315,21 +233,23 @@ public class jFrameMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jFrameMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jFrameMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jFrameMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jFrameMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jFrameMenu().setVisible(true);
+                new jFrameProvedor().setVisible(true);
             }
         });
     }
@@ -343,6 +263,7 @@ public class jFrameMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -350,13 +271,7 @@ public class jFrameMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbl_id_menu;
     private javax.swing.JLabel lbl_menu_restaurante;
-    private javax.swing.JLabel lbl_nombre;
-    private javax.swing.JLabel lbl_precio;
     private javax.swing.JTable tbl_registros;
-    private javax.swing.JTextField txt_id_menu;
-    private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_precio;
     // End of variables declaration//GEN-END:variables
 }

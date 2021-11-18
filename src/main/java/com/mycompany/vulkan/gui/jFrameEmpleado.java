@@ -279,7 +279,6 @@ public class jFrameEmpleado extends javax.swing.JFrame {
         
         a = Integer.parseInt(txt_telefono.getText());
         
-        
         int b = Integer.parseInt(Integer.toString(a).substring(0, 1));
        
 
@@ -291,7 +290,7 @@ public class jFrameEmpleado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "email No valido");
         }else if(valString.tresKey(txt_apellido.getText())== false){
             JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 3 caracteres");
-        }else if(valNumero.telefono(b)== true){
+        }else if(valNumero.telefono(b)== false){
             JOptionPane.showMessageDialog(this, "Error numero no es igual a 2 7 8 9");
         }
         else{
