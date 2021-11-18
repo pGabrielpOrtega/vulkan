@@ -25,15 +25,21 @@ public class decUsuario {
     private String tipo_usuario;
     @Column
     private int fallos;
-    
-    @ColumnTransformer(
-        read = "cast(aes_decrypt(contrasenia, 'vulkan') as char(255))", 
-        write = "aes_encrypt(?, 'vulkan')")
-    @Column(columnDefinition = "varbinary")
+    @Column
     private String contrasenia;
+    @Column
+    private int desactivado;
     
     @Id
     private int id_usuario;
+
+    public int getDesactivado() {
+        return desactivado;
+    }
+
+    public void setDesactivado(int desactivado) {
+        this.desactivado = desactivado;
+    }
 
     public String getTipo_usuario() {
         return tipo_usuario;

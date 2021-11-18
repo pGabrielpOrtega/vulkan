@@ -16,8 +16,6 @@ import javax.persistence.Table;
 @Entity
 @Table (name="Empleado")
 public class decEmpleado {
-    @Id
-    private int id_empleado;
     @Column
     private String nombre;
     @Column
@@ -28,7 +26,13 @@ public class decEmpleado {
     private String direccion;
     @Column
     private String email;
+    @Column
+    private int desactivado;
+    @Column
+    private int id_tipo_documento;
     
+    @Id
+    private int id_empleado;
 
     public String getNombre() {
         return nombre;
@@ -46,12 +50,12 @@ public class decEmpleado {
         this.telefono = telefono;
     }
 
-    public String getAppelido() {
+    public String getApellido() {
         return apellido;
     }
 
-    public void setAppelido(String appelido) {
-        this.apellido = appelido;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getDireccion() {
@@ -66,8 +70,24 @@ public class decEmpleado {
         return email;
     }
 
-    public void setEmail(String correo) {
-        this.email = correo;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getDesactivado() {
+        return desactivado;
+    }
+
+    public void setDesactivado(int desactivado) {
+        this.desactivado = desactivado;
+    }
+
+    public int getId_tipo_documento() {
+        return id_tipo_documento;
+    }
+
+    public void setId_tipo_documento(int id_tipo_documento) {
+        this.id_tipo_documento = id_tipo_documento;
     }
 
     public int getId_empleado() {
@@ -77,6 +97,5 @@ public class decEmpleado {
     public void setId_empleado(int id_empleado) {
         this.id_empleado = id_empleado;
     }
-    
     
 }

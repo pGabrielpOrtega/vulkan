@@ -36,7 +36,7 @@ public class controlMenu implements Serializable  {
             em.persist(clientes);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findclientes(clientes.getId()) != null) {
+            if (findclientes(clientes.getId_menu()) != null) {
                 throw new PreexistingEntityException("clientes " + clientes + " already exists.", ex);
             }
             throw ex;
@@ -57,7 +57,7 @@ public class controlMenu implements Serializable  {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = clientes.getId();
+                int id = clientes.getId_menu();
                 if (findclientes(id) == null) {
                     throw new NonexistentEntityException("The clientes with id " + id + " no longer exists.");
                 }
@@ -78,7 +78,7 @@ public class controlMenu implements Serializable  {
             decMenu clientes;
             try {
                 clientes = em.getReference(decMenu.class, id);
-                clientes.getId();
+                clientes.getId_menu();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The clientes with id " + id + " no longer exists.", enfe);
             }

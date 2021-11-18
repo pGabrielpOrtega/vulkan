@@ -227,9 +227,9 @@ public class mainMenu extends javax.swing.JFrame {
 
     private void btn_empleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_empleadosActionPerformed
         // TODO add your handling code here:
-        jFrameEmpleado frameEmpleado = new jFrameEmpleado();
-        this.dispose();
-        frameEmpleado.setVisible(true);
+        //jFrameEmpleado frameEmpleado = new jFrameEmpleado();
+        //this.dispose();
+        //frameEmpleado.setVisible(true);
     }//GEN-LAST:event_btn_empleadosActionPerformed
 
     /**

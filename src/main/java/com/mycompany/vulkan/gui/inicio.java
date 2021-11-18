@@ -6,6 +6,7 @@ package com.mycompany.vulkan.gui;
 import com.mycompany.vulkan.validacion.*;
 import vulkan.declaracion.decUsuario;
 import com.mycompany.controlador.controlUsuario;
+import com.mycompany.vulkan.validacion.MD5;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -194,13 +195,12 @@ public class inicio extends javax.swing.JFrame {
         
         List<decUsuario> usuario = usuarioDao.findusuarioEntities();
         String nombreT = txt_usuario.getText();
-        String passT = txt_contrasenia.getText();
-        //var passT = txt_contrasenia.getText();
+        MD5 md5 = new MD5();
+        String passT = md5.ecnode(txt_contrasenia.getText());
         boolean usuarioEncontrado = false;
         
         for (decUsuario usr : usuario){
             String nombreR = usr.getNombre_usuario();
-            //String passR = "marx";
             String passR = usr.getContrasenia();
             int fallos = usr.getFallos();
             
@@ -250,55 +250,25 @@ public class inicio extends javax.swing.JFrame {
 
     private void txt_usuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usuarioKeyTyped
         valSI.letras_numeros(evt);
-        if (consumirLetra == 1){
+        
+        if (txt_usuario.getText().length() == 15){
             evt.consume();
-            consumirLetra = 0;
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_usuarioKeyTyped
 
     private void txt_contraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contraseniaKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_BACK_SPACE){
-            if(contarContrasenia != 0){
-                contarContrasenia -= 1;
-            }
-        }
-        else if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_SPACE){
-            consumirLetra = 1;
-        }
-        else{
-            if(contarContrasenia == 15){
-                consumirLetra = 1;
-            }
-            else{
-                contarContrasenia += 1;
-            }
-        }
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_contraseniaKeyPressed
 
     private void txt_contraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contraseniaKeyTyped
-        if (consumirLetra == 1){
+        if (txt_contrasenia.getText().length() == 15){
             evt.consume();
-            consumirLetra = 0;
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_contraseniaKeyTyped
 
     private void txt_usuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usuarioKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_BACK_SPACE){
-            if(contarUsuario != 0){
-                contarUsuario -= 1;
-            }
-        }
-        else{
-            if(contarUsuario == 15){
-                consumirLetra = 1;
-            }
-            else{
-                contarUsuario += 1;
-            }
-        }  
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_usuarioKeyPressed
 

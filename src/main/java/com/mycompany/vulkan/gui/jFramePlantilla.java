@@ -4,28 +4,17 @@
  * and open the template in the editor.
  */
 package com.mycompany.vulkan.gui;
-import com.mycompany.vulkan.validacion.*;
-import vulkan.declaracion.decPuesto;
-import com.mycompany.controlador.controlPuesto;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 /**
  *
- * @author gabri
+ * @author fer3dev
  */
-public class jFramePuesto extends javax.swing.JFrame {
-    valString valS = new valString();
-    valNumero valN = new valNumero();
-    
-    controlPuesto puestoDao = new controlPuesto();
-    decPuesto puesto = new decPuesto();
+public class jFramePlantilla extends javax.swing.JFrame {
+
     /**
-     * Creates new form jFramePuesto
+     * Creates new form jFramePlantilla
      */
-    public jFramePuesto() {
+    public jFramePlantilla() {
         initComponents();
     }
 
@@ -44,13 +33,6 @@ public class jFramePuesto extends javax.swing.JFrame {
         lbl_puestos_trabajo = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txt_descripcion = new javax.swing.JTextArea();
-        txt_nombre_puestos = new javax.swing.JTextField();
-        txt_id_area = new javax.swing.JTextField();
-        lbl_descripcion = new javax.swing.JLabel();
-        lbl_nombre_puesto = new javax.swing.JLabel();
-        lbl_id_area = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -64,7 +46,6 @@ public class jFramePuesto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -79,8 +60,8 @@ public class jFramePuesto extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_puestos_trabajo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lbl_puestos_trabajo.setText("Puesto");
-        jPanel4.add(lbl_puestos_trabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
+        lbl_puestos_trabajo.setText("Plantilla");
+        jPanel4.add(lbl_puestos_trabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
 
         jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
@@ -89,53 +70,7 @@ public class jFramePuesto extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txt_descripcion.setColumns(20);
-        txt_descripcion.setRows(5);
-        txt_descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_descripcionKeyTyped(evt);
-            }
-        });
-        jScrollPane2.setViewportView(txt_descripcion);
-
-        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 250, -1));
-
-        txt_nombre_puestos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nombre_puestosActionPerformed(evt);
-            }
-        });
-        txt_nombre_puestos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_nombre_puestosKeyTyped(evt);
-            }
-        });
-        jPanel6.add(txt_nombre_puestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 250, -1));
-
-        txt_id_area.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_id_areaKeyTyped(evt);
-            }
-        });
-        jPanel6.add(txt_id_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 250, -1));
-
-        lbl_descripcion.setText("Descripcion");
-        jPanel6.add(lbl_descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
-
-        lbl_nombre_puesto.setText("Nombre de puesto");
-        jPanel6.add(lbl_nombre_puesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
-
-        lbl_id_area.setText("ID de area");
-        lbl_id_area.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lbl_id_area.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbl_id_areaMouseClicked(evt);
-            }
-        });
-        jPanel6.add(lbl_id_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
-
-        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 610, 260));
+        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 360, 230));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo2.png"))); // NOI18N
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 10, -1, -1));
@@ -232,101 +167,21 @@ public class jFramePuesto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        puesto.setId_puesto(Integer.parseInt(txt_id_area.getText()));
-        puesto.setNombre(txt_nombre_puestos.getText());
-        puesto.setDescripcion(txt_descripcion.getText());
-        try {
-            puestoDao.edit(puesto);
-        } catch (Exception ex) {
-            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btn_modificarActionPerformed
-
-    private void txt_nombre_puestosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombre_puestosKeyTyped
-        // TODO add your handling code here:
-        valS.letras(evt);
-        valS.consumeMayor25(evt, txt_nombre_puestos.getText());
-        
-    }//GEN-LAST:event_txt_nombre_puestosKeyTyped
-
-    private void txt_id_areaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id_areaKeyTyped
-        // TODO add your handling code here:
-        valN.valKeyTypeNumeros(evt);
-    }//GEN-LAST:event_txt_id_areaKeyTyped
-
-    private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
-        // TODO add your handling code here:
-        valS.letras(evt);
-        valS.consumeMayor50(evt, txt_descripcion.getText());
-    }//GEN-LAST:event_txt_descripcionKeyTyped
-
-    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
-        // TODO add your handling code here:
-        mainMenu menu = new mainMenu();
-        this.dispose();
-        menu.setVisible(true);
-    }//GEN-LAST:event_btn_regresarActionPerformed
-
-    private void lbl_id_areaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_id_areaMouseClicked
-        // TODO add your handling code here: if(Tab_vendedores.getSelectedIndex()==1)
-             if(tbl_registros.getSelectedColumn()==1)
-        { 
-           
-        }else if (tbl_registros.getSelectedColumn()== 0)
-             txt_nombre_puestos.requestFocus();    
- 
-   
-    
-    }//GEN-LAST:event_lbl_id_areaMouseClicked
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
-        if(valString.tresKey(txt_nombre_puestos.getText())== false){  
-            JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
-        }else if(valString.ochoKey(txt_descripcion.getText())== false){
-            JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Guardando");
-            puesto.setId_puesto(Integer.parseInt(txt_id_area.getText()));
-        puesto.setNombre(txt_nombre_puestos.getText());
-        puesto.setDescripcion(txt_descripcion.getText());
-        try {
-            puestoDao.guardar(puesto);
-        } catch (Exception ex) {
-            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-        
     }//GEN-LAST:event_btn_agregarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel modelo = new DefaultTableModel();
-        tbl_registros.setModel(modelo);
-        modelo.addColumn("Id");
-        modelo.addColumn("Nombre Puesto");
-        modelo.addColumn("Descripcion");
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
-        List<decPuesto> puesto = puestoDao.findclientesEntities();
-
-        for(decPuesto cliente : puesto){
-            modelo.addRow(
-                new Object[]{
-
-                    cliente.getId_puesto(),
-                    cliente.getNombre(),
-                    cliente.getDescripcion()
-                }
-            );
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txt_nombre_puestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_puestosActionPerformed
+    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombre_puestosActionPerformed
+    }//GEN-LAST:event_btn_regresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,21 +200,20 @@ public class jFramePuesto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jFramePuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFramePlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jFramePuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFramePlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jFramePuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFramePlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jFramePuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFramePlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jFramePuesto().setVisible(true);
+                new jFramePlantilla().setVisible(true);
             }
         });
     }
@@ -380,14 +234,7 @@ public class jFramePuesto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lbl_descripcion;
-    private javax.swing.JLabel lbl_id_area;
-    private javax.swing.JLabel lbl_nombre_puesto;
     private javax.swing.JLabel lbl_puestos_trabajo;
     private javax.swing.JTable tbl_registros;
-    private javax.swing.JTextArea txt_descripcion;
-    private javax.swing.JTextField txt_id_area;
-    private javax.swing.JTextField txt_nombre_puestos;
     // End of variables declaration//GEN-END:variables
 }

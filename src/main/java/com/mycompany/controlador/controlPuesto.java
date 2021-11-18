@@ -37,7 +37,7 @@ public class controlPuesto  implements Serializable {
             em.persist(clientes);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findclientes(clientes.getId()) != null) {
+            if (findclientes(clientes.getId_puesto()) != null) {
                 throw new PreexistingEntityException("clientes " + clientes + " already exists.", ex);
             }
             throw ex;
@@ -58,7 +58,7 @@ public class controlPuesto  implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = clientes.getId();
+                int id = clientes.getId_puesto();
                 if (findclientes(id) == null) {
                     throw new NonexistentEntityException("The clientes with id " + id + " no longer exists.");
                 }
@@ -79,7 +79,7 @@ public class controlPuesto  implements Serializable {
             decPuesto clientes;
             try {
                 clientes = em.getReference(decPuesto.class, id);
-                clientes.getId();
+                clientes.getId_puesto();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The clientes with id " + id + " no longer exists.", enfe);
             }
