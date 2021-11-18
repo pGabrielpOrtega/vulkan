@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author gabri
  */
 public class ah extends javax.swing.JFrame {
-
+//prueba
     /**
      * Creates new form ah
      */
