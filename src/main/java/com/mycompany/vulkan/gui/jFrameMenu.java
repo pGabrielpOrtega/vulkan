@@ -210,7 +210,7 @@ public class jFrameMenu extends javax.swing.JFrame {
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
-        menu.setId(Integer.parseInt(txt_id_menu.getText()));
+        menu.setId_menu(Integer.parseInt(txt_id_menu.getText()));
         menu.setNombre(txt_nombre.getText());
         menu.setPrecio(Integer.parseInt(txt_precio.getText()));
        
@@ -242,7 +242,7 @@ public class jFrameMenu extends javax.swing.JFrame {
             modelo.addRow(
                 new Object[]{
 
-                    cliente.getId(),
+                    cliente.getId_menu(),
                     cliente.getNombre(),
                     cliente.getPrecio()
                 }
@@ -253,7 +253,7 @@ public class jFrameMenu extends javax.swing.JFrame {
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
         
-        menu.setId(Integer.parseInt(txt_id_menu.getText()));
+        menu.setId_menu(Integer.parseInt(txt_id_menu.getText()));
         menu.setNombre(txt_nombre.getText());
         menu.setPrecio(Integer.parseInt(txt_precio.getText()));
        
@@ -270,7 +270,7 @@ public class jFrameMenu extends javax.swing.JFrame {
         }
         else{
             JOptionPane.showMessageDialog(this, "Guardando");
-             menu.setId(Integer.parseInt(txt_id_menu.getText()));
+             menu.setId_menu(Integer.parseInt(txt_id_menu.getText()));
             menu.setNombre(txt_nombre.getText());
             menu.setPrecio(Integer.parseInt(txt_precio.getText()));
         try {

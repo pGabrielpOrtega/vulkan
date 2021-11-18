@@ -15,18 +15,19 @@ import javax.persistence.Table;
  * @author gabri
  */
 @Entity
-@Table (name="puesto")
+@Table (name="Puesto")
 public class decPuesto implements Serializable{
     @Column
     private String nombre;
     @Column
     private String descripcion;
+    @Column
+    private int desactivado;
+    
     @Id
     private int id_puesto;
-    
-    
-    
-     public String getNombre() {
+
+    public String getNombre() {
         return nombre;
     }
 
@@ -38,16 +39,24 @@ public class decPuesto implements Serializable{
         return descripcion;
     }
 
-    public void setDescripcion(String apellido) {
-        this.descripcion = apellido;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
-    public int getId() {
+
+    public int getDesactivado() {
+        return desactivado;
+    }
+
+    public void setDesactivado(int desactivado) {
+        this.desactivado = desactivado;
+    }
+
+    public int getId_puesto() {
         return id_puesto;
     }
 
-    public void setId(int id) {
-        this.id_puesto = id;
+    public void setId_puesto(int id_puesto) {
+        this.id_puesto = id_puesto;
     }
-    
     
 }
