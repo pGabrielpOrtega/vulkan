@@ -214,10 +214,21 @@ public class jFrameMenu extends javax.swing.JFrame {
         menu.setNombre(txt_nombre.getText());
         menu.setPrecio(Integer.parseInt(txt_precio.getText()));
        
+        if(valString.tresKey(txt_nombre.getText())== false){  
+            JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
+        }else if(valNumero.numMayorUno(Integer.parseInt(txt_precio.getText()))== false){
+            JOptionPane.showMessageDialog(this, "Error numero menor a uno");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Guardando");
+            menu.setId_menu(Integer.parseInt(txt_id_menu.getText()));
+            menu.setNombre(txt_nombre.getText());
+            menu.setPrecio(Integer.parseInt(txt_precio.getText()));
         try {
             menuDao.edit(menu);
         } catch (Exception ex) {
             Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_btn_modificarActionPerformed
 
@@ -262,7 +273,6 @@ public class jFrameMenu extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         if(valString.tresKey(txt_nombre.getText())== false){  
             JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
         }else if(valNumero.numMayorUno(Integer.parseInt(txt_precio.getText()))== false){
@@ -270,7 +280,7 @@ public class jFrameMenu extends javax.swing.JFrame {
         }
         else{
             JOptionPane.showMessageDialog(this, "Guardando");
-             menu.setId_menu(Integer.parseInt(txt_id_menu.getText()));
+            menu.setId_menu(Integer.parseInt(txt_id_menu.getText()));
             menu.setNombre(txt_nombre.getText());
             menu.setPrecio(Integer.parseInt(txt_precio.getText()));
         try {

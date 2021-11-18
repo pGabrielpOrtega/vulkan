@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.vulkan.gui;
+
 import com.mycompany.vulkan.validacion.*;
 import vulkan.declaracion.decPuesto;
 import com.mycompany.controlador.controlPuesto;
@@ -12,16 +13,19 @@ import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author gabri
  */
 public class jFramePuesto extends javax.swing.JFrame {
+
     valString valS = new valString();
     valNumero valN = new valNumero();
-    
+
     controlPuesto puestoDao = new controlPuesto();
     decPuesto puesto = new decPuesto();
+
     /**
      * Creates new form jFramePuesto
      */
@@ -235,12 +239,20 @@ public class jFramePuesto extends javax.swing.JFrame {
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
         puesto.setId_puesto(Integer.parseInt(txt_id_area.getText()));
-        puesto.setNombre(txt_nombre_puestos.getText());
-        puesto.setDescripcion(txt_descripcion.getText());
-        try {
-            puestoDao.edit(puesto);
-        } catch (Exception ex) {
-            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        if (valString.tresKey(txt_nombre_puestos.getText()) == false) {
+            JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
+        } else if (valString.ochoKey(txt_descripcion.getText()) == false) {
+            JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
+        } else {
+            JOptionPane.showMessageDialog(this, "Guardando");
+            puesto.setId_puesto(Integer.parseInt(txt_id_area.getText()));
+            puesto.setNombre(txt_nombre_puestos.getText());
+            puesto.setDescripcion(txt_descripcion.getText());
+            try {
+                puestoDao.edit(puesto);
+            } catch (Exception ex) {
+                Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btn_modificarActionPerformed
 
@@ -248,7 +260,7 @@ public class jFramePuesto extends javax.swing.JFrame {
         // TODO add your handling code here:
         valS.letras(evt);
         valS.consumeMayor25(evt, txt_nombre_puestos.getText());
-        
+
     }//GEN-LAST:event_txt_nombre_puestosKeyTyped
 
     private void txt_id_areaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id_areaKeyTyped
@@ -271,35 +283,33 @@ public class jFramePuesto extends javax.swing.JFrame {
 
     private void lbl_id_areaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_id_areaMouseClicked
         // TODO add your handling code here: if(Tab_vendedores.getSelectedIndex()==1)
-             if(tbl_registros.getSelectedColumn()==1)
-        { 
-           
-        }else if (tbl_registros.getSelectedColumn()== 0)
-             txt_nombre_puestos.requestFocus();    
- 
-   
-    
+        if (tbl_registros.getSelectedColumn() == 1) {
+
+        } else if (tbl_registros.getSelectedColumn() == 0) {
+            txt_nombre_puestos.requestFocus();
+        }
+
+
     }//GEN-LAST:event_lbl_id_areaMouseClicked
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
-        if(valString.tresKey(txt_nombre_puestos.getText())== false){  
+        if (valString.tresKey(txt_nombre_puestos.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
-        }else if(valString.ochoKey(txt_descripcion.getText())== false){
+        } else if (valString.ochoKey(txt_descripcion.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "Guardando");
             puesto.setId_puesto(Integer.parseInt(txt_id_area.getText()));
-        puesto.setNombre(txt_nombre_puestos.getText());
-        puesto.setDescripcion(txt_descripcion.getText());
-        try {
-            puestoDao.guardar(puesto);
-        } catch (Exception ex) {
-            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+            puesto.setNombre(txt_nombre_puestos.getText());
+            puesto.setDescripcion(txt_descripcion.getText());
+            try {
+                puestoDao.guardar(puesto);
+            } catch (Exception ex) {
+                Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        }
-        
+
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -312,14 +322,13 @@ public class jFramePuesto extends javax.swing.JFrame {
 
         List<decPuesto> puesto = puestoDao.findclientesEntities();
 
-        for(decPuesto cliente : puesto){
+        for (decPuesto cliente : puesto) {
             modelo.addRow(
-                new Object[]{
-
-                    cliente.getId_puesto(),
-                    cliente.getNombre(),
-                    cliente.getDescripcion()
-                }
+                    new Object[]{
+                        cliente.getId_puesto(),
+                        cliente.getNombre(),
+                        cliente.getDescripcion()
+                    }
             );
         }
     }//GEN-LAST:event_jButton1ActionPerformed

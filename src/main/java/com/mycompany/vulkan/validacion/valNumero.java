@@ -46,6 +46,13 @@ public class valNumero {
         
         return f;    
     }
-   
+    public void valTelefonoKeyType(java.awt.event.KeyEvent evt,Integer a){
+        if(a <=8){
+            
+        }else{
+            evt.consume();
+        }
+                
+    }
     
 }
