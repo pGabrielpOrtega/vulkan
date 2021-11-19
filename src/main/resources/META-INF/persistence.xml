@@ -6,6 +6,10 @@
     <class>vulkan.declaracion.decMenu</class>
     <class>vulkan.declaracion.decUsuario</class>
     <class>vulkan.declaracion.decEmpleado</class>
+    <class>vulkan.declaracion.decAlmacen</class>
+    <class>vulkan.declaracion.decClientes</class>
+    <class>vulkan.declaracion.decMesas</class>
+    <class>vulkan.declaracion.decTipoPago</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Vulkan?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

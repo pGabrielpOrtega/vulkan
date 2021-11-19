@@ -300,7 +300,7 @@ public class jFramePuesto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
         } else {
             JOptionPane.showMessageDialog(this, "Guardando");
-            puesto.setId_puesto(Integer.parseInt(txt_id_area.getText()));
+            //puesto.setId_puesto(Integer.parseInt(txt_id_area.getText()));
             puesto.setNombre(txt_nombre_puestos.getText());
             puesto.setDescripcion(txt_descripcion.getText());
             try {

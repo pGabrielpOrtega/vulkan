@@ -4,11 +4,18 @@
  * and open the template in the editor.
  */
 package com.mycompany.vulkan.gui;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import static java.lang.Integer.parseInt;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
 /**
- *
  * @author fer3dev
  */
+
 public class jFramePlantilla extends javax.swing.JFrame {
 
     /**
@@ -38,7 +45,7 @@ public class jFramePlantilla extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_registros = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
         btn_agregar = new javax.swing.JButton();
         btn_modificar = new javax.swing.JButton();
         btn_desactivar = new javax.swing.JButton();
@@ -106,37 +113,22 @@ public class jFramePlantilla extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1280, 310));
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar1.png"))); // NOI18N
-        jButton1.setToolTipText("");
-        jButton1.setPreferredSize(new java.awt.Dimension(50, 50));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        btn_update.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar1.png"))); // NOI18N
+        btn_update.setToolTipText("");
+        btn_update.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel2.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         btn_agregar.setBackground(new java.awt.Color(204, 204, 204));
         btn_agregar.setForeground(new java.awt.Color(0, 0, 255));
         btn_agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Añadir1.png"))); // NOI18N
         btn_agregar.setPreferredSize(new java.awt.Dimension(150, 50));
-        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_agregarActionPerformed(evt);
-            }
-        });
         jPanel2.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, -1, -1));
 
         btn_modificar.setBackground(new java.awt.Color(204, 204, 204));
         btn_modificar.setForeground(new java.awt.Color(0, 0, 255));
         btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar1.png"))); // NOI18N
         btn_modificar.setPreferredSize(new java.awt.Dimension(150, 50));
-        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_modificarActionPerformed(evt);
-            }
-        });
         jPanel2.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, -1, -1));
 
         btn_desactivar.setBackground(new java.awt.Color(204, 204, 204));
@@ -167,19 +159,10 @@ public class jFramePlantilla extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_agregarActionPerformed
-
-    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_modificarActionPerformed
-
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+        mainMenu menu = new mainMenu();
+        this.dispose();
+        menu.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_regresarActionPerformed
 
@@ -223,7 +206,7 @@ public class jFramePlantilla extends javax.swing.JFrame {
     private javax.swing.JButton btn_desactivar;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_regresar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_update;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
