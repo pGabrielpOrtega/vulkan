@@ -13,3 +13,4 @@ CREATE TABLE vulkan.b
     delivery_date   DATE NOT NULL,
     delivery_status TINYINT NOT NULL
 );
+SELECT id_puesto,nombre,descripcion FROM vulkan.puesto;

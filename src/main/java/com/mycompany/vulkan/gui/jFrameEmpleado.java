@@ -3,13 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.vulkan.gui;
-
+import com.mycompany.controlador.controlEmpleado;
+import com.mycompany.vulkan.validacion.valEmail;
+import com.mycompany.vulkan.validacion.valNumero;
+import com.mycompany.vulkan.validacion.valString;
+import javax.swing.table.DefaultTableModel;
+import vulkan.declaracion.decEmpleado;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author gabri
  */
 public class jFrameEmpleado extends javax.swing.JFrame {
-
+    valString valS = new valString();
+    valNumero valN = new valNumero();
+    controlEmpleado empleadoDao = new controlEmpleado();
+    decEmpleado empleado = new decEmpleado();
     /**
      * Creates new form jFrameEmpleado
      */
@@ -27,25 +39,192 @@ public class jFrameEmpleado extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        lbl_menu_restaurante = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        lbl_id_menu = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txt_email = new javax.swing.JTextField();
+        txt_id_area = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
+        txt_apellido = new javax.swing.JTextField();
+        txt_direccion = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txt_telefono = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_registros = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        btn_agregar = new javax.swing.JButton();
+        btn_modificar = new javax.swing.JButton();
+        btn_desactivar = new javax.swing.JButton();
+        btn_regresar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
-        );
+        jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 340));
+        jPanel4.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel4.setPreferredSize(new java.awt.Dimension(1280, 300));
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setPreferredSize(new java.awt.Dimension(1280, 50));
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
+        lbl_menu_restaurante.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lbl_menu_restaurante.setText("Empleado");
+        jPanel5.add(lbl_menu_restaurante, new java.awt.GridBagConstraints());
+
+        jPanel4.add(jPanel5, java.awt.BorderLayout.PAGE_START);
+
+        jPanel6.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl_id_menu.setText("ID de em");
+        jPanel7.add(lbl_id_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel1.setText("Nombre");
+        jPanel7.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        jLabel5.setText("Apellido");
+        jPanel7.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        jLabel6.setText("Direccion");
+        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        jLabel7.setText("Email");
+        jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, -1, -1));
+        jPanel7.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 210, -1));
+        jPanel7.add(txt_id_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 200, -1));
+        jPanel7.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 200, -1));
+        jPanel7.add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 200, -1));
+        jPanel7.add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 210, -1));
+
+        jLabel4.setText("Telefono");
+        jPanel7.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
+
+        txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telefonoKeyTyped(evt);
+            }
+        });
+        jPanel7.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 220, -1));
+
+        jLabel8.setText("Puesto");
+        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel7.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel7.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, -1, -1));
+
+        jLabel9.setText("Tipo de documento");
+        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, -1, -1));
+
+        jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 1060, 260));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BackgroundRes.png"))); // NOI18N
+        jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanel4.add(jPanel6, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
+
+        jPanel2.setBackground(new java.awt.Color(244, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tbl_registros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tbl_registros.setGridColor(new java.awt.Color(102, 0, 255));
+        jScrollPane1.setViewportView(tbl_registros);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1280, 310));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar1.png"))); // NOI18N
+        jButton1.setPreferredSize(new java.awt.Dimension(50, 50));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        btn_agregar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_agregar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Añadir1.png"))); // NOI18N
+        btn_agregar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, -1, -1));
+
+        btn_modificar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_modificar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar1.png"))); // NOI18N
+        btn_modificar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, -1, -1));
+
+        btn_desactivar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_desactivar.setForeground(new java.awt.Color(0, 0, 255));
+        btn_desactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Desactivar1.png"))); // NOI18N
+        btn_desactivar.setPreferredSize(new java.awt.Dimension(150, 50));
+        jPanel2.add(btn_desactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 50, -1, -1));
+
+        btn_regresar.setBackground(new java.awt.Color(204, 204, 204));
+        btn_regresar.setForeground(new java.awt.Color(255, 0, 51));
+        btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Regresar1.png"))); // NOI18N
+        btn_regresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51)));
+        btn_regresar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_regresarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 50, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BackgroundRes.png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -250, -1, -1));
+
+        jPanel3.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,6 +239,94 @@ public class jFrameEmpleado extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modelo = new DefaultTableModel();
+        tbl_registros.setModel(modelo);
+        modelo.addColumn("Id");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Email");
+        List<decEmpleado> puesto = empleadoDao.findclientesEntities();
+
+        for(decEmpleado cliente : puesto){
+            modelo.addRow(
+                new Object[]{
+
+                    cliente.getId_empleado(),
+                    cliente.getNombre(),
+                    cliente.getApellido(),
+                    cliente.getTelefono(),
+                    cliente.getDireccion(),
+                    cliente.getEmail()
+                }
+            );
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+        // TODO add your handling code here:
+        boolean email= false;
+        int a= 0;
+        if(valString.tresKey(txt_email.getText())== false){
+            
+        }else{
+            email = valEmail.email(txt_email.getText());
+        }
+        
+        a = Integer.parseInt(txt_telefono.getText());
+        
+        
+        int b = Integer.parseInt(Integer.toString(a).substring(0, 1));
+       
+
+        if(valString.tresKey(txt_nombre.getText())== false){  
+            JOptionPane.showMessageDialog(this, "Error nombre tiene menos de 3 letras");
+        }else if(valString.tresKey(txt_direccion.getText())== false){
+            JOptionPane.showMessageDialog(this, "Error en dirrecion tiene menos de 3 caracteres");
+        }else if(email == false){
+            JOptionPane.showMessageDialog(this, "email No valido");
+        }else if(valString.tresKey(txt_apellido.getText())== false){
+            JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 3 caracteres");
+        }else if(valNumero.telefono(b)== true){
+            JOptionPane.showMessageDialog(this, "Error numero no es igual a 2 7 8 9");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Guardando");
+            empleado.setId_empleado(Integer.parseInt(txt_id_area.getText()));
+            empleado.setNombre(txt_nombre.getText());
+            empleado.setApellido(txt_apellido.getText());
+            empleado.setTelefono(a);
+            empleado.setEmail(txt_email.getText());
+            empleado.setDireccion(txt_direccion.getText());
+        try {
+            empleadoDao.guardar(empleado);
+        } catch (Exception ex) {
+            Logger.getLogger(jFrameEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+    }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btn_modificarActionPerformed
+
+    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+        mainMenu menu = new mainMenu();
+        this.dispose();
+        menu.setVisible(true);        
+
+    }//GEN-LAST:event_btn_regresarActionPerformed
+
+    private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
+        // TODO add your handling code here:
+        valN.valKeyTypeNumeros(evt);
+        
+    }//GEN-LAST:event_txt_telefonoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -97,7 +364,38 @@ public class jFrameEmpleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_agregar;
+    private javax.swing.JButton btn_desactivar;
+    private javax.swing.JButton btn_modificar;
+    private javax.swing.JButton btn_regresar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_id_menu;
+    private javax.swing.JLabel lbl_menu_restaurante;
+    private javax.swing.JTable tbl_registros;
+    private javax.swing.JTextField txt_apellido;
+    private javax.swing.JTextField txt_direccion;
+    private javax.swing.JTextField txt_email;
+    private javax.swing.JTextField txt_id_area;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 }

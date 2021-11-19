@@ -3,12 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.vulkan.gui;
+import com.mycompany.vulkan.validacion.*;
+import vulkan.declaracion.decUsuario;
+import com.mycompany.controlador.controlUsuario;
+import com.mycompany.vulkan.validacion.MD5;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
- *
  * @author gabri
  */
-public class inicio extends javax.swing.JFrame {
 
+public class inicio extends javax.swing.JFrame {
+    mainMenu menu = new mainMenu();
+    valStringInt valSI = new valStringInt();
+    controlUsuario usuarioDao = new controlUsuario();
+    decUsuario puesto = new decUsuario();
+    int contarUsuario = 0;
+    int contarContrasenia = 0;
+    int consumirLetra = 0;
     /**
      * Creates new form inicio
      */
@@ -25,112 +40,237 @@ public class inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backgroung = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Background = new javax.swing.JPanel();
+        Card = new javax.swing.JPanel();
+        Grid_1_1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Grid_1_2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        txt_usuario = new javax.swing.JTextField();
+        txt_contrasenia = new javax.swing.JPasswordField();
+        lbl_ingresar_datos = new javax.swing.JLabel();
+        lbl_usuario = new javax.swing.JLabel();
+        lbl_contrasenia = new javax.swing.JLabel();
+        btn_iniciar_sesion = new javax.swing.JButton();
+        img_usuario = new javax.swing.JLabel();
+        img_contrasenia = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
-        backgroung.setBackground(new java.awt.Color(255, 255, 255));
-        backgroung.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Background.setBackground(new java.awt.Color(244, 255, 255));
+        Background.setPreferredSize(new java.awt.Dimension(1280, 720));
+        Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        Card.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Card.setLayout(new java.awt.GridLayout(1, 2));
 
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
+        Grid_1_1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel5.setText("Usuario");
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/login1.png"))); // NOI18N
+        Grid_1_1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 370));
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel3.setText("Iniciar Sesión");
+        jLabel1.setText("jLabel1");
+        Grid_1_1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel1.setText("Contraseña");
+        Card.add(Grid_1_1);
 
-        jButton1.setText("Iniciar sesión");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        Grid_1_2.setBackground(new java.awt.Color(255, 255, 255));
+        Grid_1_2.setLayout(new java.awt.GridBagLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(300, 300));
+
+        txt_usuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_usuarioKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_usuarioKeyPressed(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\gabri\\Downloads\\images.png")); // NOI18N
+        txt_contrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_contraseniaKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_contraseniaKeyPressed(evt);
+            }
+        });
+
+        lbl_ingresar_datos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lbl_ingresar_datos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_ingresar_datos.setText("INGRESE SUS DATOS");
+
+        lbl_usuario.setText("Usuario");
+
+        lbl_contrasenia.setText("Contraseña");
+
+        btn_iniciar_sesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iniciar.png"))); // NOI18N
+        btn_iniciar_sesion.setPreferredSize(new java.awt.Dimension(160, 35));
+        btn_iniciar_sesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_iniciar_sesionActionPerformed(evt);
+            }
+        });
+
+        img_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/user.png"))); // NOI18N
+
+        img_contrasenia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pass.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(lbl_ingresar_datos, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(img_contrasenia)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbl_contrasenia))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(img_usuario)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbl_usuario)))
+                                .addGap(128, 128, 128))
+                            .addComponent(txt_contrasenia)
+                            .addComponent(txt_usuario))))
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_iniciar_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jButton1)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(lbl_ingresar_datos)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbl_usuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(img_contrasenia)
+                            .addComponent(lbl_contrasenia)))
+                    .addComponent(img_usuario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btn_iniciar_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgroung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(backgroung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        Grid_1_2.add(jPanel1, new java.awt.GridBagConstraints());
+
+        Card.add(Grid_1_2);
+
+        Background.add(Card, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 175, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BackgroundRes.png"))); // NOI18N
+        Background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(Background, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_iniciar_sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciar_sesionActionPerformed
+        
+        List<decUsuario> usuario = usuarioDao.findusuarioEntities();
+        String nombreT = txt_usuario.getText();
+        MD5 md5 = new MD5();
+        String passT = md5.ecnode(txt_contrasenia.getText());
+        boolean usuarioEncontrado = false;
+        
+        for (decUsuario usr : usuario){
+            String nombreR = usr.getNombre_usuario();
+            String passR = usr.getContrasenia();
+            int fallos = usr.getFallos();
+            
+            if(nombreR.equals(nombreT)){
+                System.out.println("usuario encontrado");
+                usuarioEncontrado = true;
+                if(passR.equals(passT)){
+                    if(fallos == 3){
+                        showMessageDialog(null, "SU CUENTA HA SIDO BLOQUEADA: COMUNIQUESE CON UN ADMINISTRADOR");
+                    }
+                    else{
+                        System.out.println("Contrasenia correcta");
+                        usr.setFallos(0);
+                        try {
+                            usuarioDao.edit(usr);
+                        } catch (Exception ex) {
+                            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        this.dispose();
+                        menu.setVisible(true);
+                    }
+                }
+                else{
+                    if(fallos < 3){
+                        usr.setFallos(fallos+1);
+                        System.out.println(usr.getFallos());
+                        try {
+                            usuarioDao.edit(usr);
+                        } catch (Exception ex) {
+                            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        showMessageDialog(null, "CONTRASEÑA INCORRECTA");
+                        break;
+                    }
+                    else if(fallos == 3){
+                        showMessageDialog(null, "SU CUENTA HA SIDO BLOQUEADA: COMUNIQUESE CON UN ADMINISTRADOR");
+                        break;
+                    }
+                }
+            }
+        }
+        if(!usuarioEncontrado){
+            showMessageDialog(null, "NOMBRE DE USUARIO INCORRECTO");
+        }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_iniciar_sesionActionPerformed
+
+    private void txt_usuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usuarioKeyTyped
+        valSI.letras_numeros(evt);
+        
+        if (txt_usuario.getText().length() == 15){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_usuarioKeyTyped
+
+    private void txt_contraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contraseniaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_contraseniaKeyPressed
+
+    private void txt_contraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contraseniaKeyTyped
+        if (txt_contrasenia.getText().length() == 15){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_contraseniaKeyTyped
+
+    private void txt_usuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usuarioKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_usuarioKeyPressed
 
     /**
      * @param args the command line arguments
@@ -158,6 +298,7 @@ public class inicio extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -168,14 +309,21 @@ public class inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel backgroung;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel Background;
+    private javax.swing.JPanel Card;
+    private javax.swing.JPanel Grid_1_1;
+    private javax.swing.JPanel Grid_1_2;
+    private javax.swing.JButton btn_iniciar_sesion;
+    private javax.swing.JLabel img_contrasenia;
+    private javax.swing.JLabel img_usuario;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lbl_contrasenia;
+    private javax.swing.JLabel lbl_ingresar_datos;
+    private javax.swing.JLabel lbl_usuario;
+    private javax.swing.JPasswordField txt_contrasenia;
+    private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }

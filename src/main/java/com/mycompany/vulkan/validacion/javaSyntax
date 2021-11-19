@@ -1,2 +1,9 @@
 Esta es para mostrar tipo de error
-JOptionPane.showMessageDialog(this, "Xd buenas noches");
+JOptionPane.showMessageDialog(this, "Error");
+
+
+para poner visible a un frame
+x.setVisible(true);
+
+Para cerrar el frame puesto
+this.setVisible(false);
