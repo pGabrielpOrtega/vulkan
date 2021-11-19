@@ -62,6 +62,7 @@ public class jFrameUsuario extends javax.swing.JFrame {
     private void registrar() {
         decUsuario usuario = new decUsuario();
         valContrasenia valPass = new valContrasenia();
+        int usado = 0;
         if (txt_usuario.getText().length() < 5) {
             JOptionPane.showMessageDialog(this, "El nombre de usuairo debe ser de 5 o más caracteres");
         } else if (!valPass.Password_Validation(txt_contrasenia.getText())) {
@@ -71,21 +72,32 @@ public class jFrameUsuario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "La contraseña debe contener al menos: 1 número, 1 letra y 1 carácter especial");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Registrado");
-            String pass;
-            usuario.setNombre_usuario(txt_usuario.getText());
-            MD5 md5 = new MD5();
-            pass = md5.ecnode(txt_contrasenia.getText());
-            usuario.setContrasenia(pass);
-            try {
-                usuarioDao.guardar(usuario);
-            } catch (Exception ex) {
-                Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+            List<decUsuario> usuariosActuales = usuarioDao.findusuarioEntities();
+
+            for (decUsuario unUsuario : usuariosActuales) {
+                if (unUsuario.getNombre_usuario().equals(txt_usuario.getText())) {
+                    usado = 1;
+                    JOptionPane.showMessageDialog(this, "Este usuario ya está en uso");
+                    break;
+                }
             }
-            txt_id.setText("");
-            txt_usuario.setText("");
-            txt_contrasenia.setText("");
-            actualizar();
+            if (usado != 1) {
+                JOptionPane.showMessageDialog(this, "Registrado");
+                String pass;
+                usuario.setNombre_usuario(txt_usuario.getText());
+                MD5 md5 = new MD5();
+                pass = md5.ecnode(txt_contrasenia.getText());
+                usuario.setContrasenia(pass);
+                try {
+                    usuarioDao.guardar(usuario);
+                } catch (Exception ex) {
+                    Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                txt_id.setText("");
+                txt_usuario.setText("");
+                txt_contrasenia.setText("");
+                actualizar();
+            }
         }
     }
 
@@ -201,13 +213,19 @@ public class jFrameUsuario extends javax.swing.JFrame {
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("ID");
-        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         jLabel5.setText("Usuario");
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         jLabel6.setText("Contraseña");
         jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+
+        txt_contrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_contraseniaKeyTyped(evt);
+            }
+        });
         jPanel6.add(txt_contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 190, -1));
 
         txt_usuario.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -219,20 +237,27 @@ public class jFrameUsuario extends javax.swing.JFrame {
 
         txt_id.setEditable(false);
         txt_id.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel6.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 90, -1));
+        jPanel6.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 90, -1));
 
-        btn_limpiar.setText("CLR");
+        btn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar50.png"))); // NOI18N
+        btn_limpiar.setPreferredSize(new java.awt.Dimension(50, 50));
         btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_limpiarActionPerformed(evt);
             }
         });
-        jPanel6.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
+        jPanel6.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
 
-        btn_buscar.setText("SRC");
-        jPanel6.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar50.png"))); // NOI18N
+        btn_buscar.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
 
-        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 430, 210));
+        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 480, 210));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo2.png"))); // NOI18N
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 10, -1, -1));
@@ -403,6 +428,37 @@ public class jFrameUsuario extends javax.swing.JFrame {
         actualizar();
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_limpiarActionPerformed
+
+    private void txt_contraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contraseniaKeyTyped
+        if (txt_contrasenia.getText().length() == 15) {
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_contraseniaKeyTyped
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        String hola = JOptionPane.showInputDialog("Ingrese el ID del usuario a buscar");
+        try {
+            parseInt(hola);
+            decUsuario usuariosBuscar = usuarioDao.findusuario(parseInt(hola));
+            if (usuariosBuscar == null) {
+                JOptionPane.showMessageDialog(this, "Usuario no encontrado");
+            } else if (usuariosBuscar.getDesactivado() == 1) {
+                JOptionPane.showMessageDialog(this, "Usuario actualmente desactivado");
+            } else {
+                String idn = String.valueOf(usuariosBuscar.getId_usuario());
+                txt_id.setText(idn);
+                txt_usuario.setText(usuariosBuscar.getNombre_usuario());
+                MD5 md5 = new MD5();
+                String pass = md5.deecnode(usuariosBuscar.getContrasenia());
+                txt_contrasenia.setText(pass);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "El ID solo puede contener números");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_buscarActionPerformed
 
     /**
      * @param args the command line arguments
