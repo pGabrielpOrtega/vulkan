@@ -6,85 +6,85 @@
 package com.mycompany.vulkan.gui;
 
 import javax.swing.table.DefaultTableModel;
-import vulkan.declaracion.decTipoPago;
-import com.mycompany.controlador.controlTipoPago;
 import static java.lang.Integer.parseInt;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
-import com.mycompany.vulkan.validacion.valStringInt;
+import vulkan.declaracion.decAlmacen;
+import com.mycompany.controlador.controlAlmacen;
 
 /**
  * @author fer3dev
  */
-public class jFrameTipoPago extends javax.swing.JFrame {
 
-    controlTipoPago tipoPagoDao = new controlTipoPago();
+public class jFrameAlmacen extends javax.swing.JFrame {
 
+    controlAlmacen almacenDao = new controlAlmacen();
+    
     /**
-     * Creates new form jFrameTipoPago
+     * Creates new form jFrameAlmacen
      */
-    public jFrameTipoPago() {
+    public jFrameAlmacen() {
         initComponents();
         actualizar();
     }
-
+    
     private void actualizar() {
         DefaultTableModel modelo = new DefaultTableModel();
         tbl_registros.setModel(modelo);
         modelo.addColumn("Id");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Descripcion");
+        modelo.addColumn("Dirección");
 
-        List<decTipoPago> tipoPago = tipoPagoDao.findTipoPagoEntities();
+        List<decAlmacen> almacen = almacenDao.findAlmacenEntities();
 
-        for (decTipoPago unTipo : tipoPago) {
-            if (unTipo.getDesactivado() == 0) {
+        for (decAlmacen unAlmacen : almacen) {
+            if (unAlmacen.getDesactivado() == 0) {
                 modelo.addRow(
                         new Object[]{
-                            unTipo.getId_tipo_pago(),
-                            unTipo.getNombre(),
-                            unTipo.getDescripcion(),}
+                            unAlmacen.getId_almacen(),
+                            unAlmacen.getNombre(),
+                            unAlmacen.getDireccion(),}
                 );
             }
         }
     }
-
-    private void limpiar() {
+    
+    private void limpiar(){
         txt_id.setText("");
         txt_nombre.setText("");
-        txt_descripcion.setText("");
+        txt_direccion.setText("");
     }
-
+    
     private void desactivar(int id) {
-        decTipoPago tipoPago = new decTipoPago();
-        tipoPago.setId_tipo_pago(id);
-        tipoPago.setNombre(txt_nombre.getText());
-        tipoPago.setDescripcion(txt_descripcion.getText());
-        tipoPago.setDesactivado(1);
+        decAlmacen almacen = new decAlmacen();
+        almacen.setId_almacen(id);
+        almacen.setNombre(txt_nombre.getText());
+        almacen.setDireccion(txt_direccion.getText());
+        almacen.setDesactivado(1);
         try {
-            tipoPagoDao.edit(tipoPago);
+            almacenDao.edit(almacen);
         } catch (Exception ex) {
             Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
         }
         limpiar();
         actualizar();
     }
-
-    private void registrar() {
-        decTipoPago tipoPago = new decTipoPago();
+    
+    private void registrar(){
+        decAlmacen almacen = new decAlmacen();
         if (txt_nombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un nombre");
-        } else if (txt_descripcion.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar una descripción");
+        } else if (txt_direccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar una dirección");
         } else {
             JOptionPane.showMessageDialog(this, "Registrado");
-            tipoPago.setNombre(txt_nombre.getText());
-            tipoPago.setDescripcion(txt_descripcion.getText());
+            almacen.setNombre(txt_nombre.getText());
+            almacen.setDireccion(txt_direccion.getText());
             try {
-                tipoPagoDao.guardar(tipoPago);
+                almacenDao.guardar(almacen);
             } catch (Exception ex) {
                 Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -92,20 +92,20 @@ public class jFrameTipoPago extends javax.swing.JFrame {
             actualizar();
         }
     }
-
-    private void registrar(int id) {
-        decTipoPago tipoPago = new decTipoPago();
+    
+    private void registrar(int id){
+        decAlmacen almacen = new decAlmacen();
         if (txt_nombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un nombre");
-        } else if (txt_descripcion.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar una descripción");
+        } else if (txt_direccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar una dirección");
         } else {
-            JOptionPane.showMessageDialog(this, "Tipo de pago editado correctamente");
-            tipoPago.setId_tipo_pago(id);
-            tipoPago.setNombre(txt_nombre.getText());
-            tipoPago.setDescripcion(txt_descripcion.getText());
+            JOptionPane.showMessageDialog(this, "Almacén editado correctamente");
+            almacen.setId_almacen(id);
+            almacen.setNombre(txt_nombre.getText());
+            almacen.setDireccion(txt_direccion.getText());
             try {
-                tipoPagoDao.edit(tipoPago);
+                almacenDao.edit(almacen);
             } catch (Exception ex) {
                 Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -113,6 +113,8 @@ public class jFrameTipoPago extends javax.swing.JFrame {
             actualizar();
         }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,13 +131,13 @@ public class jFrameTipoPago extends javax.swing.JFrame {
         lbl_puestos_trabajo = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        txt_id = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txt_id = new javax.swing.JTextField();
-        btn_limpiar = new javax.swing.JButton();
         btn_buscar = new javax.swing.JButton();
+        btn_limpiar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txt_descripcion = new javax.swing.JTextArea();
+        txt_direccion = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -166,8 +168,8 @@ public class jFrameTipoPago extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_puestos_trabajo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lbl_puestos_trabajo.setText("Tipos de pago");
-        jPanel4.add(lbl_puestos_trabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
+        lbl_puestos_trabajo.setText("Almacén");
+        jPanel4.add(lbl_puestos_trabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, -1, -1));
 
         jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
@@ -177,24 +179,15 @@ public class jFrameTipoPago extends javax.swing.JFrame {
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setText("ID");
-        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
-
-        jLabel5.setText("Descripción");
-        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
-
         txt_id.setEditable(false);
         txt_id.setBackground(new java.awt.Color(204, 204, 204));
         jPanel6.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 90, -1));
 
-        btn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar50.png"))); // NOI18N
-        btn_limpiar.setPreferredSize(new java.awt.Dimension(50, 50));
-        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_limpiarActionPerformed(evt);
-            }
-        });
-        jPanel6.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, -1, -1));
+        jLabel3.setText("ID");
+        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jLabel5.setText("Dirección");
+        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar50.png"))); // NOI18N
         btn_buscar.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -203,30 +196,39 @@ public class jFrameTipoPago extends javax.swing.JFrame {
                 btn_buscarActionPerformed(evt);
             }
         });
-        jPanel6.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
+        jPanel6.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
 
-        txt_descripcion.setColumns(20);
-        txt_descripcion.setRows(5);
-        txt_descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_descripcionKeyTyped(evt);
+        btn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar50.png"))); // NOI18N
+        btn_limpiar.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
             }
         });
-        jScrollPane2.setViewportView(txt_descripcion);
+        jPanel6.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
 
-        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 240, 100));
+        txt_direccion.setColumns(20);
+        txt_direccion.setRows(5);
+        txt_direccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_direccionKeyTyped(evt);
+            }
+        });
+        jScrollPane2.setViewportView(txt_direccion);
+
+        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
 
         jLabel6.setText("Nombre");
-        jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
         txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_nombreKeyTyped(evt);
             }
         });
-        jPanel6.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 240, -1));
+        jPanel6.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 220, -1));
 
-        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 500, 210));
+        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 440, 230));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo2.png"))); // NOI18N
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 10, -1, -1));
@@ -350,44 +352,21 @@ public class jFrameTipoPago extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_limpiarActionPerformed
 
-    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-        registrar();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_agregarActionPerformed
-
-    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
-        if (!txt_id.getText().equals("")) {
-            registrar(parseInt(txt_id.getText()));
-        } else {
-            JOptionPane.showMessageDialog(this, "No selecciono ningún tipo de pago a modificar");
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_modificarActionPerformed
-
-    private void btn_desactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_desactivarActionPerformed
-        if (!txt_id.getText().equals("")) {
-            desactivar(parseInt(txt_id.getText()));
-        } else {
-            JOptionPane.showMessageDialog(this, "No selecciono ningún tipo de pago a desactivar");
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_desactivarActionPerformed
-
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        String input = JOptionPane.showInputDialog("Ingrese el ID de el tipo de pago a buscar");
+        String input = JOptionPane.showInputDialog("Ingrese el ID de el almacén a buscar");
         System.out.println(input);
         try {
             parseInt(input);
-            decTipoPago tipoPagoBuscar = tipoPagoDao.findTipoPago(parseInt(input));
-            if (tipoPagoBuscar == null) {
-                JOptionPane.showMessageDialog(this, "Tipo de pago no encontrado");
-            } else if (tipoPagoBuscar.getDesactivado() == 1) {
-                JOptionPane.showMessageDialog(this, "Tipo de pago actualmente desactivado");
+            decAlmacen almacenBuscar = almacenDao.findAlmacen(parseInt(input));
+            if (almacenBuscar == null) {
+                JOptionPane.showMessageDialog(this, "Almacén no encontrado");
+            } else if (almacenBuscar.getDesactivado() == 1) {
+                JOptionPane.showMessageDialog(this, "Almacén está actualmente desactivado");
             } else {
-                String idn = String.valueOf(tipoPagoBuscar.getId_tipo_pago());
+                String idn = String.valueOf(almacenBuscar.getId_almacen());
                 txt_id.setText(idn);
-                txt_nombre.setText(tipoPagoBuscar.getNombre());
-                txt_descripcion.setText(tipoPagoBuscar.getDescripcion());
+                txt_nombre.setText(almacenBuscar.getNombre());
+                txt_direccion.setText(almacenBuscar.getDireccion());
             }
         } catch (Exception ex) {
             Logger.getLogger(jFramePuesto.class
@@ -405,25 +384,46 @@ public class jFrameTipoPago extends javax.swing.JFrame {
 
         txt_id.setText(model.getValueAt(row, 0).toString());
         txt_nombre.setText(model.getValueAt(row, 1).toString());
-        txt_descripcion.setText(model.getValueAt(row, 2).toString());
+        txt_direccion.setText(model.getValueAt(row, 2).toString());
         // TODO add your handling code here:
     }//GEN-LAST:event_tbl_registrosMouseClicked
 
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+        registrar();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void btn_desactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_desactivarActionPerformed
+        if (!txt_id.getText().equals("")) {
+            desactivar(parseInt(txt_id.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "No selecciono ningún Almacén a desactivar");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_desactivarActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        if (!txt_id.getText().equals("")) {
+            registrar(parseInt(txt_id.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "No selecciono ningún Almacén a modificar");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_modificarActionPerformed
+
     private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
-        valStringInt valS = new valStringInt();
-        valS.letras(evt);
-        if(txt_nombre.getText().length() == 15){
+        if(txt_nombre.getText().length() == 20){
             evt.consume();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nombreKeyTyped
 
-    private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
-        if(txt_descripcion.getText().length() == 50){
+    private void txt_direccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_direccionKeyTyped
+        if(txt_direccion.getText().length() == 50){
             evt.consume();
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_descripcionKeyTyped
+    }//GEN-LAST:event_txt_direccionKeyTyped
 
     /**
      * @param args the command line arguments
@@ -442,20 +442,20 @@ public class jFrameTipoPago extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jFrameTipoPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameAlmacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jFrameTipoPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameAlmacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jFrameTipoPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameAlmacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jFrameTipoPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameAlmacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jFrameTipoPago().setVisible(true);
+                new jFrameAlmacen().setVisible(true);
             }
         });
     }
@@ -484,7 +484,7 @@ public class jFrameTipoPago extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbl_puestos_trabajo;
     private javax.swing.JTable tbl_registros;
-    private javax.swing.JTextArea txt_descripcion;
+    private javax.swing.JTextArea txt_direccion;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables

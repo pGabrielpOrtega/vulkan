@@ -40,23 +40,17 @@ public class jFrameInventario extends javax.swing.JFrame {
         lbl_puestos_trabajo = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        txt_id = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txt_nombre = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txt_direccion = new javax.swing.JTextArea();
         btn_limpiar = new javax.swing.JButton();
-        btn_buscar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txt_maxima = new javax.swing.JLabel();
+        cbb_producto = new javax.swing.JComboBox<>();
+        txt_actual = new javax.swing.JTextField();
+        txt_minima = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
+        cbb_almacen = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -70,6 +64,7 @@ public class jFrameInventario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -96,52 +91,33 @@ public class jFrameInventario extends javax.swing.JFrame {
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setText("ID");
-        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
-
-        txt_id.setEditable(false);
-        txt_id.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel6.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 90, -1));
-
         jLabel5.setText("Nombre de almacén");
-        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
-
-        jLabel6.setText("Dirección");
-        jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
-        jPanel6.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 220, -1));
-
-        txt_direccion.setColumns(20);
-        txt_direccion.setRows(5);
-        jScrollPane2.setViewportView(txt_direccion);
-
-        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
+        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
         btn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar50.png"))); // NOI18N
         btn_limpiar.setPreferredSize(new java.awt.Dimension(50, 50));
-        jPanel6.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 170, -1, -1));
-
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar50.png"))); // NOI18N
-        btn_buscar.setPreferredSize(new java.awt.Dimension(50, 50));
-        jPanel6.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 110, -1, -1));
+        jPanel6.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, -1));
 
         jLabel7.setText("Nombre de producto");
-        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
         jLabel8.setText("Cantidad actual");
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, -1, -1));
+        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         jLabel9.setText("Cantidad mínima");
-        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, -1, -1));
+        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
-        jLabel10.setText("Cantidad máxima");
-        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, -1));
+        txt_maxima.setText("Cantidad máxima");
+        jPanel6.add(txt_maxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
-        jPanel6.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 180, -1));
-        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 80, -1));
-        jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, 80, -1));
-        jPanel6.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 80, -1));
+        jPanel6.add(cbb_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 180, -1));
+        jPanel6.add(txt_actual, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 80, -1));
+        jPanel6.add(txt_minima, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 80, -1));
+        jPanel6.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 80, -1));
 
-        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 910, 230));
+        jPanel6.add(cbb_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 180, -1));
+
+        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 500, 240));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo2.png"))); // NOI18N
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 10, -1, -1));
@@ -267,20 +243,17 @@ public class jFrameInventario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregar;
-    private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_desactivar;
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_regresar;
     private javax.swing.JButton btn_update;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbb_almacen;
+    private javax.swing.JComboBox<String> cbb_producto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -291,14 +264,11 @@ public class jFrameInventario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lbl_puestos_trabajo;
     private javax.swing.JTable tbl_registros;
-    private javax.swing.JTextArea txt_direccion;
-    private javax.swing.JTextField txt_id;
-    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_actual;
+    private javax.swing.JLabel txt_maxima;
+    private javax.swing.JTextField txt_minima;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package vulkan.declaracion;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table (name="Menu")
-public class decMenu {
+public class decMenu implements Serializable{
     @Column
     private String nombre;
     @Column

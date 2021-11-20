@@ -5,6 +5,7 @@
  */
 package vulkan.declaracion;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="Almacen")
-public class decAlmacen {
+public class decAlmacen implements Serializable{
     @Column
     private String nombre;
     @Column

@@ -4,17 +4,169 @@
  */
 package com.mycompany.vulkan.gui;
 
+import javax.swing.table.DefaultTableModel;
+import vulkan.declaracion.decClientes;
+import com.mycompany.controlador.controlClientes;
+import static java.lang.Integer.parseInt;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+import com.mycompany.vulkan.validacion.valStringInt;
+import com.mycompany.vulkan.validacion.valEmail;
+
 /**
  *
  * @author gabri
  */
 public class jFrameClientes extends javax.swing.JFrame {
 
+    controlClientes clientesDao = new controlClientes();
+
     /**
      * Creates new form jFrameClientes
      */
     public jFrameClientes() {
         initComponents();
+        actualizar();
+        updateCBB();
+    }
+
+    private void actualizar() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        tbl_registros.setModel(modelo);
+        modelo.addColumn("Id");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Email");
+        modelo.addColumn("Tipo de documento");
+        modelo.addColumn("ID de documento");
+        modelo.addColumn("Direccion");
+
+        List<decClientes> clientes = clientesDao.findClientesEntities();
+
+        for (decClientes unCliente : clientes) {
+            if (unCliente.getDesactivado() == 0) {
+                modelo.addRow(
+                        new Object[]{
+                            unCliente.getId_cliente(),
+                            unCliente.getNombre(),
+                            unCliente.getApellido(),
+                            unCliente.getTelefono(),
+                            unCliente.getEmail(),
+                            //CAMBIAR CUANDO LA TABLA ESTE LISTA
+                            unCliente.getId_tipo_documento(),
+                            unCliente.getId_tipo_documento(),
+                            unCliente.getDireccion(),}
+                );
+            }
+        }
+    }
+
+    private void limpiar() {
+        txt_id.setText("");
+        txt_nombre.setText("");
+        txt_apellido.setText("");
+        txt_telefono.setText("");
+        txt_email.setText("");
+        cbb_documento.setSelectedItem("Seleccionar");
+        txt_id_documento.setText("");
+        txt_direccion.setText("");
+    }
+
+    private void updateCBB() {
+        cbb_documento.addItem("Seleccionar");
+        cbb_documento.addItem("Identidad");
+        cbb_documento.addItem("Pasaporte");
+    }
+
+    private void desactivar(int id) {
+        decClientes clientes = new decClientes();
+        clientes.setId_cliente(id);
+        clientes.setNombre(txt_nombre.getText());
+        clientes.setApellido(txt_apellido.getText());
+        clientes.setTelefono(parseInt(txt_telefono.getText()));
+        clientes.setEmail(txt_email.getText());
+        clientes.setDireccion(txt_direccion.getText());
+        //CAMBIAAR CUANDO LA TABLA ESTE LISTA
+        clientes.setId_tipo_documento(1);
+        clientes.setDesactivado(1);
+        try {
+            clientesDao.edit(clientes);
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        limpiar();
+        actualizar();
+    }
+
+    private void registrar() {
+        decClientes clientes = new decClientes();
+        valEmail valE = new valEmail();
+        if (cbb_documento.getSelectedItem().toString().equals("Seleccionar")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de documento");
+        } else if (txt_nombre.getText().isEmpty()
+                || txt_apellido.getText().isEmpty()
+                || txt_telefono.getText().isEmpty()
+                || txt_email.getText().isEmpty()
+                || txt_id_documento.getText().isEmpty()
+                || txt_direccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos");
+        } else if(!valE.email(txt_email.getText())){
+            JOptionPane.showMessageDialog(this, "Email debe seguir la forma \"direccion@dominio.com\"");
+        } else {
+            JOptionPane.showMessageDialog(this, "Registrado");
+            clientes.setNombre(txt_nombre.getText());
+            clientes.setApellido(txt_apellido.getText());
+            clientes.setTelefono(parseInt(txt_telefono.getText()));
+            clientes.setEmail(txt_email.getText());
+            clientes.setDireccion(txt_direccion.getText());
+            //CAMBIAAR CUANDO LA TABLA ESTE LISTA
+            clientes.setId_tipo_documento(1);
+            try {
+                clientesDao.guardar(clientes);
+            } catch (Exception ex) {
+                Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            limpiar();
+            actualizar();
+        }
+    }
+
+    private void registrar(int id) {
+        decClientes clientes = new decClientes();
+        valEmail valE = new valEmail();
+        if (cbb_documento.getSelectedItem().toString().equals("Seleccionar")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de documento");
+        } else if (txt_nombre.getText().isEmpty()
+                || txt_apellido.getText().isEmpty()
+                || txt_telefono.getText().isEmpty()
+                || txt_email.getText().isEmpty()
+                || txt_id_documento.getText().isEmpty()
+                || txt_direccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos");
+        } else if(!valE.email(txt_email.getText())){
+            JOptionPane.showMessageDialog(this, "Email debe seguir la forma \"direccion@dominio.com\"");
+        } else {
+            JOptionPane.showMessageDialog(this, "cliente modificado correctamente");
+            clientes.setId_cliente(id);
+            clientes.setNombre(txt_nombre.getText());
+            clientes.setApellido(txt_apellido.getText());
+            clientes.setTelefono(parseInt(txt_telefono.getText()));
+            clientes.setEmail(txt_email.getText());
+            clientes.setDireccion(txt_direccion.getText());
+            //CAMBIAAR CUANDO LA TABLA ESTE LISTA
+            clientes.setId_tipo_documento(1);
+            try {
+                clientesDao.edit(clientes);
+            } catch (Exception ex) {
+                Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            limpiar();
+            actualizar();
+        }
     }
 
     /**
@@ -49,6 +201,8 @@ public class jFrameClientes extends javax.swing.JFrame {
         txt_apellido = new javax.swing.JTextField();
         txt_telefono = new javax.swing.JTextField();
         txt_email = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txt_id_documento = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -62,6 +216,7 @@ public class jFrameClientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -96,42 +251,91 @@ public class jFrameClientes extends javax.swing.JFrame {
         jPanel6.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 90, -1));
 
         jLabel5.setText("Nombre");
-        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         jLabel6.setText("Dirección");
         jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, -1, -1));
 
         btn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar50.png"))); // NOI18N
         btn_limpiar.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
         jPanel6.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 170, -1, -1));
 
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar50.png"))); // NOI18N
         btn_buscar.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
         jPanel6.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 110, -1, -1));
 
         jLabel7.setText("Apellido");
-        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         jLabel8.setText("Teléfono");
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jLabel9.setText("Email");
-        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         jLabel10.setText("Tipo de documento");
-        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
+        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
 
         txt_direccion.setColumns(20);
         txt_direccion.setRows(5);
+        txt_direccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_direccionKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(txt_direccion);
 
         jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, -1, -1));
 
-        jPanel6.add(cbb_documento, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 220, -1));
-        jPanel6.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 190, -1));
-        jPanel6.add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 190, -1));
-        jPanel6.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 190, -1));
-        jPanel6.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 190, -1));
+        jPanel6.add(cbb_documento, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 220, -1));
+
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyTyped(evt);
+            }
+        });
+        jPanel6.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 190, -1));
+
+        txt_apellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_apellidoKeyTyped(evt);
+            }
+        });
+        jPanel6.add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 190, -1));
+
+        txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telefonoKeyTyped(evt);
+            }
+        });
+        jPanel6.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 190, -1));
+
+        txt_email.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_emailKeyTyped(evt);
+            }
+        });
+        jPanel6.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 190, -1));
+
+        jLabel11.setText("ID de documento");
+        jPanel6.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
+
+        txt_id_documento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_id_documentoKeyTyped(evt);
+            }
+        });
+        jPanel6.add(txt_id_documento, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 220, -1));
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 850, 230));
 
@@ -165,6 +369,11 @@ public class jFrameClientes extends javax.swing.JFrame {
         tbl_registros.setGridColor(new java.awt.Color(255, 255, 255));
         tbl_registros.setSelectionBackground(new java.awt.Color(0, 255, 204));
         tbl_registros.setSelectionForeground(new java.awt.Color(204, 204, 255));
+        tbl_registros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_registrosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_registros);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1280, 310));
@@ -173,24 +382,44 @@ public class jFrameClientes extends javax.swing.JFrame {
         btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar1.png"))); // NOI18N
         btn_update.setToolTipText("");
         btn_update.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         btn_agregar.setBackground(new java.awt.Color(204, 204, 204));
         btn_agregar.setForeground(new java.awt.Color(0, 0, 255));
         btn_agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Añadir1.png"))); // NOI18N
         btn_agregar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, -1, -1));
 
         btn_modificar.setBackground(new java.awt.Color(204, 204, 204));
         btn_modificar.setForeground(new java.awt.Color(0, 0, 255));
         btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar1.png"))); // NOI18N
         btn_modificar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, -1, -1));
 
         btn_desactivar.setBackground(new java.awt.Color(204, 204, 204));
         btn_desactivar.setForeground(new java.awt.Color(0, 0, 255));
         btn_desactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Desactivar1.png"))); // NOI18N
         btn_desactivar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btn_desactivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_desactivarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_desactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 50, -1, -1));
 
         btn_regresar.setBackground(new java.awt.Color(204, 204, 204));
@@ -221,6 +450,139 @@ public class jFrameClientes extends javax.swing.JFrame {
         menu.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_regresarActionPerformed
+
+    private void btn_desactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_desactivarActionPerformed
+        if (!txt_id.getText().equals("")) {
+            desactivar(parseInt(txt_id.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "No selecciono ningún cliente a desactivar");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_desactivarActionPerformed
+
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+        registrar();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        if (!txt_id.getText().equals("")) {
+            registrar(parseInt(txt_id.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "No selecciono ningún cliente a modificar");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_modificarActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        actualizar();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void tbl_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_registrosMouseClicked
+        int row = tbl_registros.getSelectedRow();
+        TableModel model = tbl_registros.getModel();
+
+        txt_id.setText(model.getValueAt(row, 0).toString());
+        txt_nombre.setText(model.getValueAt(row, 1).toString());
+        txt_apellido.setText(model.getValueAt(row, 2).toString());
+        txt_telefono.setText(model.getValueAt(row, 3).toString());
+        txt_email.setText(model.getValueAt(row, 4).toString());
+        txt_id_documento.setText(model.getValueAt(row, 6).toString());
+        //ID DE DOCUMENTO CUANDO ESTE LISTA LA TABLA
+        cbb_documento.setSelectedItem("Identidad");
+        txt_direccion.setText(model.getValueAt(row, 7).toString());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_registrosMouseClicked
+
+    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+        valStringInt valS = new valStringInt();
+        valS.letras(evt);
+        if(txt_nombre.getText().length() == 15){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreKeyTyped
+
+    private void txt_apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidoKeyTyped
+        valStringInt valS = new valStringInt();
+        valS.letras(evt);
+        if(txt_apellido.getText().length() == 15){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_apellidoKeyTyped
+
+    private void txt_direccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_direccionKeyTyped
+        valStringInt valS = new valStringInt();
+        valS.letras(evt);
+        if(txt_direccion.getText().length() == 50){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_direccionKeyTyped
+
+    private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
+        valStringInt valS = new valStringInt();
+        valS.numeros(evt);
+        if(txt_telefono.getText().length() == 15){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_telefonoKeyTyped
+
+    private void txt_id_documentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id_documentoKeyTyped
+        valStringInt valS = new valStringInt();
+        valS.numeros(evt);
+        if(txt_id_documento.getText().length() == 15){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_id_documentoKeyTyped
+
+    private void txt_emailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_emailKeyTyped
+        if(txt_id_documento.getText().length() == 30){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_emailKeyTyped
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        String input = JOptionPane.showInputDialog("Ingrese el ID del cliente a buscar");
+        System.out.println(input);
+        try {
+            parseInt(input);
+            decClientes clienteBuscar = clientesDao.findClientes(parseInt(input));
+            if (clienteBuscar == null) {
+                JOptionPane.showMessageDialog(this, "Cliente no encontrada");
+            } else if (clienteBuscar.getDesactivado() == 1) {
+                JOptionPane.showMessageDialog(this, "Cliente actualmente desactivada");
+            } else {
+                String idn = String.valueOf(clienteBuscar.getId_cliente());
+                txt_id.setText(idn);
+                txt_nombre.setText(clienteBuscar.getNombre());
+                txt_apellido.setText(clienteBuscar.getApellido());
+                txt_telefono.setText(String.valueOf(clienteBuscar.getTelefono()));
+                txt_email.setText(clienteBuscar.getEmail());
+                txt_direccion.setText(clienteBuscar.getDireccion());
+                //ID DE DOCUMENTO CUANDO ESTE LISTA LA TABLA
+                txt_id_documento.setText("50");
+                cbb_documento.setSelectedItem("Identidad");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class
+                .getName()).log(Level.SEVERE, null, ex);
+            if (input != null) {
+                JOptionPane.showMessageDialog(this, "El ID solo puede contener números");
+            }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        limpiar();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_limpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +630,7 @@ public class jFrameClientes extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbb_documento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -290,6 +653,7 @@ public class jFrameClientes extends javax.swing.JFrame {
     private javax.swing.JTextArea txt_direccion;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_id;
+    private javax.swing.JTextField txt_id_documento;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables

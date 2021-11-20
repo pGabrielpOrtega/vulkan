@@ -5,17 +5,120 @@
  */
 package com.mycompany.vulkan.gui;
 
+import javax.swing.table.DefaultTableModel;
+import vulkan.declaracion.decMesas;
+import com.mycompany.controlador.controlMesas;
+import static java.lang.Integer.parseInt;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+
 /**
- *
  * @author fer3dev
  */
 public class jFrameMesas extends javax.swing.JFrame {
+
+    controlMesas mesasDao = new controlMesas();
 
     /**
      * Creates new form jFrameMesas
      */
     public jFrameMesas() {
         initComponents();
+        updateCBB();
+        actualizar();
+    }
+
+    private void actualizar() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        tbl_registros.setModel(modelo);
+        modelo.addColumn("Id");
+        modelo.addColumn("Cantidad de asientos");
+        modelo.addColumn("Descripcion");
+
+        List<decMesas> mesas = mesasDao.findMesasEntities();
+
+        for (decMesas unMesa : mesas) {
+            if (unMesa.getDesactivado() == 0) {
+                modelo.addRow(
+                        new Object[]{
+                            unMesa.getId_mesa(),
+                            unMesa.getCantidad(),
+                            unMesa.getDescripcion(),}
+                );
+            }
+        }
+    }
+
+    private void limpiar() {
+        txt_id.setText("");
+        txt_descripcion.setText("");
+        cbb_cantidad.setSelectedItem("Seleccionar");
+    }
+
+    private void updateCBB() {
+        cbb_cantidad.addItem("Seleccionar");
+        cbb_cantidad.addItem("2");
+        cbb_cantidad.addItem("4");
+        cbb_cantidad.addItem("6");
+    }
+
+    private void desactivar(int id) {
+        decMesas mesas = new decMesas();
+        mesas.setId_mesa(id);
+        mesas.setCantidad(parseInt(cbb_cantidad.getSelectedItem().toString()));
+        mesas.setDescripcion(txt_descripcion.getText());
+        mesas.setDesactivado(1);
+        try {
+            mesasDao.edit(mesas);
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        limpiar();
+        actualizar();
+    }
+
+    private void registrar() {
+        decMesas mesa = new decMesas();
+        if (cbb_cantidad.getSelectedItem().toString().equals("Seleccionar")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una cantidad de asientos");
+        } else if (txt_descripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar una descripción");
+        } else {
+            JOptionPane.showMessageDialog(this, "Registrado");
+            mesa.setDescripcion(txt_descripcion.getText());
+            mesa.setCantidad(parseInt(cbb_cantidad.getSelectedItem().toString()));
+            try {
+                mesasDao.guardar(mesa);
+            } catch (Exception ex) {
+                Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            limpiar();
+            actualizar();
+        }
+    }
+
+    private void registrar(int id) {
+        decMesas mesa = new decMesas();
+        if (cbb_cantidad.getSelectedItem().toString().equals("Seleccionar")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una cantidad de asientos");
+        } else if (txt_descripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar una descripción");
+        } else {
+            JOptionPane.showMessageDialog(this, "Mesa modificada correctamente");
+            mesa.setId_mesa(id);
+            mesa.setDescripcion(txt_descripcion.getText());
+            mesa.setCantidad(parseInt(cbb_cantidad.getSelectedItem().toString()));
+            try {
+                mesasDao.edit(mesa);
+            } catch (Exception ex) {
+                Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            limpiar();
+            actualizar();
+        }
     }
 
     /**
@@ -55,6 +158,7 @@ public class jFrameMesas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -95,16 +199,31 @@ public class jFrameMesas extends javax.swing.JFrame {
 
         btn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar50.png"))); // NOI18N
         btn_limpiar.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
         jPanel6.add(btn_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, -1, -1));
 
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar50.png"))); // NOI18N
         btn_buscar.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
         jPanel6.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
 
         jPanel6.add(cbb_cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 160, -1));
 
         txt_descripcion.setColumns(20);
         txt_descripcion.setRows(5);
+        txt_descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_descripcionKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(txt_descripcion);
 
         jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
@@ -141,6 +260,11 @@ public class jFrameMesas extends javax.swing.JFrame {
         tbl_registros.setGridColor(new java.awt.Color(255, 255, 255));
         tbl_registros.setSelectionBackground(new java.awt.Color(0, 255, 204));
         tbl_registros.setSelectionForeground(new java.awt.Color(204, 204, 255));
+        tbl_registros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_registrosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_registros);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1280, 310));
@@ -149,24 +273,44 @@ public class jFrameMesas extends javax.swing.JFrame {
         btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar1.png"))); // NOI18N
         btn_update.setToolTipText("");
         btn_update.setPreferredSize(new java.awt.Dimension(50, 50));
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         btn_agregar.setBackground(new java.awt.Color(204, 204, 204));
         btn_agregar.setForeground(new java.awt.Color(0, 0, 255));
         btn_agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Añadir1.png"))); // NOI18N
         btn_agregar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, -1, -1));
 
         btn_modificar.setBackground(new java.awt.Color(204, 204, 204));
         btn_modificar.setForeground(new java.awt.Color(0, 0, 255));
         btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar1.png"))); // NOI18N
         btn_modificar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, -1, -1));
 
         btn_desactivar.setBackground(new java.awt.Color(204, 204, 204));
         btn_desactivar.setForeground(new java.awt.Color(0, 0, 255));
         btn_desactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Desactivar1.png"))); // NOI18N
         btn_desactivar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btn_desactivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_desactivarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_desactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 50, -1, -1));
 
         btn_regresar.setBackground(new java.awt.Color(204, 204, 204));
@@ -198,6 +342,82 @@ public class jFrameMesas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_regresarActionPerformed
 
+    private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
+        if (txt_descripcion.getText().length() == 50) {
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_descripcionKeyTyped
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        actualizar();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        limpiar();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        String input = JOptionPane.showInputDialog("Ingrese el ID de la mesa a buscar");
+        System.out.println(input);
+        try {
+            parseInt(input);
+            decMesas mesaBuscar = mesasDao.findMesas(parseInt(input));
+            if (mesaBuscar == null) {
+                JOptionPane.showMessageDialog(this, "Mesa no encontrada");
+            } else if (mesaBuscar.getDesactivado() == 1) {
+                JOptionPane.showMessageDialog(this, "Mesa actualmente desactivada");
+            } else {
+                String idn = String.valueOf(mesaBuscar.getId_mesa());
+                txt_id.setText(idn);
+                txt_descripcion.setText(mesaBuscar.getDescripcion());
+                cbb_cantidad.setSelectedItem(String.valueOf(mesaBuscar.getCantidad()));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            if (input != null) {
+                JOptionPane.showMessageDialog(this, "El ID solo puede contener números");
+            }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_desactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_desactivarActionPerformed
+        if (!txt_id.getText().equals("")) {
+            desactivar(parseInt(txt_id.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "No selecciono ninguna mesa a desactivar");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_desactivarActionPerformed
+
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+        registrar();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        if (!txt_id.getText().equals("")) {
+            registrar(parseInt(txt_id.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "No selecciono ninguna mesa a modificar");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_modificarActionPerformed
+
+    private void tbl_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_registrosMouseClicked
+        int row = tbl_registros.getSelectedRow();
+        TableModel model = tbl_registros.getModel();
+
+        txt_id.setText(model.getValueAt(row, 0).toString());
+        cbb_cantidad.setSelectedItem(model.getValueAt(row, 1).toString());
+        txt_descripcion.setText(model.getValueAt(row, 2).toString());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_registrosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -215,13 +435,17 @@ public class jFrameMesas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jFrameMesas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameMesas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jFrameMesas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameMesas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jFrameMesas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameMesas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jFrameMesas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFrameMesas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

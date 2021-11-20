@@ -6,11 +6,11 @@
 package vulkan.declaracion;
 
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.annotations.ColumnTransformer;
 
 /**
  * @author fer3dev
@@ -18,7 +18,7 @@ import org.hibernate.annotations.ColumnTransformer;
 
 @Entity
 @Table (name="Usuario")
-public class decUsuario {
+public class decUsuario implements Serializable{
     @Column
     private String nombre_usuario;
     @Column

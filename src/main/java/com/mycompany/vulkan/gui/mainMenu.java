@@ -49,6 +49,7 @@ public class mainMenu extends javax.swing.JFrame {
         btn_sueldos = new javax.swing.JButton();
         btn_productos = new javax.swing.JButton();
         btn_tipopago = new javax.swing.JButton();
+        btn_almacen = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,7 +107,7 @@ public class mainMenu extends javax.swing.JFrame {
                 btn_proveedoresActionPerformed(evt);
             }
         });
-        jPanel4.add(btn_proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, 300, 50));
+        jPanel4.add(btn_proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, 300, 50));
 
         btn_inventario.setBackground(new java.awt.Color(204, 204, 204));
         btn_inventario.setForeground(new java.awt.Color(0, 0, 255));
@@ -260,6 +261,15 @@ public class mainMenu extends javax.swing.JFrame {
         });
         jPanel4.add(btn_tipopago, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
+        btn_almacen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/almacen.png"))); // NOI18N
+        btn_almacen.setPreferredSize(new java.awt.Dimension(300, 50));
+        btn_almacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_almacenActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, -1, -1));
+
         menu.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1140, 500));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BackgroundRes.png"))); // NOI18N
@@ -389,6 +399,13 @@ public class mainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_productosActionPerformed
 
+    private void btn_almacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_almacenActionPerformed
+        jFrameAlmacen frameAlmacen = new jFrameAlmacen();
+        this.dispose();
+        frameAlmacen.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_almacenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -427,6 +444,7 @@ public class mainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Puesto;
+    private javax.swing.JButton btn_almacen;
     private javax.swing.JButton btn_cerrar_sesion;
     private javax.swing.JButton btn_clientes;
     private javax.swing.JButton btn_empleados;
