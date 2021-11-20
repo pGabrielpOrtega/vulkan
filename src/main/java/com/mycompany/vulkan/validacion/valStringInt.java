@@ -8,16 +8,29 @@ package com.mycompany.vulkan.validacion;
 /**
  * @author fer3dev
  */
-
 //Valida que se ingresen solo numeros y letras
 public class valStringInt {
-    
-    public void letras_numeros(java.awt.event.KeyEvent evt){
+
+    public void letras_numeros(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();
-        if((c < 'A' || c > 'Z') && (c <'a' || c > 'z')){
-            if(!Character.isDigit(c)){
+        if ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z')) {
+            if (!Character.isDigit(c)) {
                 evt.consume();
             }
+        }
+    }
+
+    public void letras(java.awt.event.KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z')) {
+            evt.consume();
+        }
+    }
+
+    public void numeros(java.awt.event.KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
         }
     }
 }

@@ -187,6 +187,7 @@ public class jFrameUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -437,10 +438,11 @@ public class jFrameUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_contraseniaKeyTyped
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        String hola = JOptionPane.showInputDialog("Ingrese el ID del usuario a buscar");
+        String input = JOptionPane.showInputDialog("Ingrese el ID del usuario a buscar");
+        System.out.println(input);
         try {
-            parseInt(hola);
-            decUsuario usuariosBuscar = usuarioDao.findusuario(parseInt(hola));
+            parseInt(input);
+            decUsuario usuariosBuscar = usuarioDao.findusuario(parseInt(input));
             if (usuariosBuscar == null) {
                 JOptionPane.showMessageDialog(this, "Usuario no encontrado");
             } else if (usuariosBuscar.getDesactivado() == 1) {
@@ -455,7 +457,8 @@ public class jFrameUsuario extends javax.swing.JFrame {
             }
         } catch (Exception ex) {
             Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "El ID solo puede contener números");
+            if(input != null)
+                JOptionPane.showMessageDialog(this, "El ID solo puede contener números");
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_buscarActionPerformed

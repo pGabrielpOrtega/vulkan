@@ -16,15 +16,15 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import vulkan.declaracion.decUsuario;
+import vulkan.declaracion.decTipoPago;
 
 /**
  * @author fer3dev
  */
 
-public class controlUsuario implements Serializable{
+public class controlTipoPago implements Serializable{
     
-    public controlUsuario() {
+    public controlTipoPago() {
         this.emf = Persistence.createEntityManagerFactory("base_datos_mysql");
     }
     private EntityManagerFactory emf = null;
@@ -32,16 +32,16 @@ public class controlUsuario implements Serializable{
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    public void guardar(decUsuario usuario) throws PreexistingEntityException, Exception {
+    public void guardar(decTipoPago tipoPago) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(usuario);
+            em.persist(tipoPago);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findusuario(usuario.getId_usuario()) != null) {
-                throw new PreexistingEntityException("Usuario " + usuario + " already exists.", ex);
+            if (findTipoPago(tipoPago.getId_tipo_pago()) != null) {
+                throw new PreexistingEntityException("Tipo pago " + tipoPago + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -51,19 +51,19 @@ public class controlUsuario implements Serializable{
         }
     }
     
-    public void edit(decUsuario usuario) throws NonexistentEntityException, Exception {
+    public void edit(decTipoPago tipoPago) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            usuario = em.merge(usuario);
+            tipoPago = em.merge(tipoPago);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = usuario.getId_usuario();
-                if (findusuario(id) == null) {
-                    throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.");
+                int id = tipoPago.getId_tipo_pago();
+                if (findTipoPago(id) == null) {
+                    throw new NonexistentEntityException("The tipo pago with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -79,14 +79,14 @@ public class controlUsuario implements Serializable{
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            decUsuario usuario;
+            decTipoPago tipoPago;
             try {
-                usuario = em.getReference(decUsuario.class, id);
-                usuario.getId_usuario();
+                tipoPago = em.getReference(decTipoPago.class, id);
+                tipoPago.getId_tipo_pago();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The tipo pago with id " + id + " no longer exists.", enfe);
             }
-            em.remove(usuario);
+            em.remove(tipoPago);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -94,19 +94,19 @@ public class controlUsuario implements Serializable{
             }
         }
     }
-    public List<decUsuario> findusuarioEntities() {
-        return findusuarioEntities(true, -1, -1);
+    public List<decTipoPago> findTipoPagoEntities() {
+        return findTipoPagoEntities(true, -1, -1);
     }
 
-    public List<decUsuario> findusuarioEntities(int maxResults, int firstResult) {
-        return findusuarioEntities(false, maxResults, firstResult);
+    public List<decTipoPago> findTipoPagoEntities(int maxResults, int firstResult) {
+        return findTipoPagoEntities(false, maxResults, firstResult);
     }
 
-    private List<decUsuario> findusuarioEntities(boolean all, int maxResults, int firstResult) {
+    private List<decTipoPago> findTipoPagoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(decUsuario.class));
+            cq.select(cq.from(decTipoPago.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -118,29 +118,29 @@ public class controlUsuario implements Serializable{
         }
     }
 
-    public decUsuario findusuario(int id) {
+    public decTipoPago findTipoPago(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(decUsuario.class, id);
+            return em.find(decTipoPago.class, id);
         } finally {
             em.close();
         }
     }
     
-    public decUsuario findusuario(String nombre_usuario) {
+    public decTipoPago findTipoPago(String nombre_usuario) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(decUsuario.class, nombre_usuario);
+            return em.find(decTipoPago.class, nombre_usuario);
         } finally {
             em.close();
         }
     }
 
-    public int getusuarioCount() {
+    public int getTipoPagoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<decUsuario> rt = cq.from(decUsuario.class);
+            Root<decTipoPago> rt = cq.from(decTipoPago.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -148,4 +148,5 @@ public class controlUsuario implements Serializable{
             em.close();
         }
     }
+    
 }
