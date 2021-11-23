@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="base_datos_mysql" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>vulkan.declaracion.decPuesto</class>
+    <class>vulkan.declaracion.decMenu</class>
+    <class>vulkan.declaracion.decUsuario</class>
+    <class>vulkan.declaracion.decEmpleado</class>
+    <class>vulkan.declaracion.decAlmacen</class>
+    <class>vulkan.declaracion.decClientes</class>
+    <class>vulkan.declaracion.decMesas</class>
+    <class>vulkan.declaracion.decTipoPago</class>
+    <class>vulkan.declaracion.decReservacion</class>
+    <class>vulkan.declaracion.decProductoAlmacen</class>
+    <class>vulkan.declaracion.decProducto</class>
+    <class>vulkan.declaracion.decProveedores</class>
+    <class>vulkan.declaracion.decTipoDeDocumento</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/vulkan?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="JKphG1#L"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.hbm2ddl.auto" value="validate"/>
+    </properties>
+  </persistence-unit>
+</persistence>
