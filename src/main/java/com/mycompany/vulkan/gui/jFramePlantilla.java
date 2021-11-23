@@ -107,7 +107,7 @@ public class jFramePlantilla extends javax.swing.JFrame {
             }
         ));
         tbl_registros.setGridColor(new java.awt.Color(255, 255, 255));
-        tbl_registros.setSelectionBackground(new java.awt.Color(0, 255, 204));
+        tbl_registros.setSelectionBackground(new java.awt.Color(255, 255, 255));
         tbl_registros.setSelectionForeground(new java.awt.Color(204, 204, 255));
         jScrollPane1.setViewportView(tbl_registros);
 

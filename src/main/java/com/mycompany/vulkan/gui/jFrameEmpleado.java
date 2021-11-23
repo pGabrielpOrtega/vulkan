@@ -668,7 +668,7 @@ boolean email= false;
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("base_datos_mysql");
         EntityManager em = emf.createEntityManager();
-        String select = "select id_tipo_documento from Tipo_Documento where id_documento = '"+ Nombre+ "'";
+        String select = "select id_tipo_documento from decTipoDeDocumento where nombre = '"+ Nombre+ "'";
         Query query = em.createQuery(select);
     
         return Integer.parseInt(query.getSingleResult().toString());           
