@@ -362,6 +362,7 @@ public class jFrameReservaciones extends javax.swing.JFrame {
         txt_nombre = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btn_buscar_cliente = new javax.swing.JButton();
+        txt_descripcion_mesa = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -423,6 +424,11 @@ public class jFrameReservaciones extends javax.swing.JFrame {
         jLabel9.setText("Hora fin");
         jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
 
+        cbb_mesas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbb_mesasItemStateChanged(evt);
+            }
+        });
         jPanel6.add(cbb_mesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 150, -1));
 
         cbb_dia.setEnabled(false);
@@ -543,6 +549,10 @@ public class jFrameReservaciones extends javax.swing.JFrame {
             }
         });
         jPanel6.add(btn_buscar_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
+
+        txt_descripcion_mesa.setEditable(false);
+        txt_descripcion_mesa.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel6.add(txt_descripcion_mesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 220, 30));
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 600, 230));
 
@@ -932,6 +942,33 @@ public class jFrameReservaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_agregarActionPerformed
 
+    private void cbb_mesasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbb_mesasItemStateChanged
+        // TODO add your handling code here:
+        String input = cbb_mesas.getSelectedItem().toString();
+                //parseInt(cbb_mesas.getSelectedItem().toString()));
+        
+        try {
+            parseInt(input);
+            decMesas clienteBuscar = mesasDao.findMesas(parseInt(input));
+            if (clienteBuscar == null) {
+                JOptionPane.showMessageDialog(this, "documento no encontrada");
+            } else if (clienteBuscar.getDesactivado() == 1) {
+                JOptionPane.showMessageDialog(this, "Documento actualmente desactivado");
+            } else {
+                
+                String name = String.valueOf(clienteBuscar.getDescripcion());
+                String fna = name;
+                txt_descripcion_mesa.setText(fna);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(jFramePuesto.class
+                .getName()).log(Level.SEVERE, null, ex);
+            if (input.equals("Seleccionar")) {
+                txt_descripcion_mesa.setText("");
+            }
+        }
+    }//GEN-LAST:event_cbb_mesasItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -1010,6 +1047,7 @@ public class jFrameReservaciones extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_puestos_trabajo;
     private javax.swing.JTable tbl_registros;
+    private javax.swing.JTextField txt_descripcion_mesa;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_id_cliente;
     private javax.swing.JTextField txt_nombre;

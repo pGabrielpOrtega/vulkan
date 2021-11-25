@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import vulkan.declaracion.decAlmacen;
 import com.mycompany.controlador.controlAlmacen;
+import com.mycompany.vulkan.validacion.valString;
 import javax.swing.ImageIcon;
 
 /**
@@ -88,7 +89,15 @@ public class jFrameAlmacen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar un nombre");
         } else if (txt_direccion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe ingresar una dirección");
-        } else {
+        }else if(valString.tresKey(txt_nombre.getText())== false){
+            JOptionPane.showMessageDialog(this, "Debe ingresar más de 3 caracteres en nombre");
+        }else if(valString.ochoKey(txt_direccion.getText())== false){
+            JOptionPane.showMessageDialog(this, "Debe ingresar más de 8 caracteres en direccion");
+        }else if(valString.tresLetrasRepetidas(txt_nombre.getText()) == false){
+             JOptionPane.showMessageDialog(this, "ERROR ingreso 3 letras repetidas");       
+        }
+        
+        else {
             JOptionPane.showMessageDialog(this, "Registrado");
             almacen.setNombre(txt_nombre.getText());
             almacen.setDireccion(txt_direccion.getText());
@@ -108,6 +117,12 @@ public class jFrameAlmacen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar un nombre");
         } else if (txt_direccion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe ingresar una dirección");
+        }else if(valString.tresKey(txt_nombre.getText())== false){
+            JOptionPane.showMessageDialog(this, "Debe ingresar más de 3 caracteres en nombre");
+        }else if(valString.ochoKey(txt_direccion.getText())== false){
+            JOptionPane.showMessageDialog(this, "Debe ingresar más de 8 caracteres en direccion");
+        }else if(valString.tresLetrasRepetidas(txt_nombre.getText()) == false){
+             JOptionPane.showMessageDialog(this, "ERROR ingreso 3 letras repetidas");       
         } else {
             JOptionPane.showMessageDialog(this, "Almacén editado correctamente");
             almacen.setId_almacen(id);

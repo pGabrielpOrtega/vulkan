@@ -100,6 +100,7 @@ public class jFrameClientes extends javax.swing.JFrame {
         cbb_documento.setSelectedItem("Seleccionar");
         txt_id_documento.setText("");
         txt_direccion.setText("");
+        txt_nombre_tipoDocumento.setText("");
     }
 
     
@@ -647,7 +648,7 @@ public class jFrameClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_id_documentoKeyTyped
 
     private void txt_emailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_emailKeyTyped
-        if(txt_id_documento.getText().length() == 30){
+        if(txt_email.getText().length() == 15){
             evt.consume();
         }
         // TODO add your handling code here:

@@ -8,6 +8,7 @@ package com.mycompany.vulkan.gui;
 import javax.swing.table.DefaultTableModel;
 import vulkan.declaracion.decMesas;
 import com.mycompany.controlador.controlMesas;
+import com.mycompany.vulkan.validacion.valString;
 import static java.lang.Integer.parseInt;
 import java.util.List;
 import java.util.logging.Level;
@@ -97,6 +98,8 @@ public class jFrameMesas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una cantidad de asientos");
         } else if (txt_descripcion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe ingresar una descripción");
+        }else if(valString.ochoKey(txt_descripcion.getText())==false){
+            JOptionPane.showMessageDialog(this, "Debe ingresar una descripción mayor a 8 letras");
         } else {
             JOptionPane.showMessageDialog(this, "Registrado");
             mesa.setDescripcion(txt_descripcion.getText());
@@ -355,6 +358,7 @@ public class jFrameMesas extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_regresarActionPerformed
 
     private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
+        
         if (txt_descripcion.getText().length() == 50) {
             evt.consume();
         }

@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import com.mycompany.controlador.controlMenu;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import vulkan.declaracion.decMenu;
 
@@ -190,6 +191,11 @@ public class jFrameMenu extends javax.swing.JFrame {
 
         txt_descripcion.setColumns(20);
         txt_descripcion.setRows(5);
+        txt_descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_descripcionKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(txt_descripcion);
 
         jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
@@ -300,8 +306,16 @@ public class jFrameMenu extends javax.swing.JFrame {
         int val = (int) Math.round(Double.valueOf(txt_precio.getText()));
         if (valString.tresKey(txt_nombre.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
-        } else if (valNumero.numMayorUno(val) == false) {
+        }else if(valString.tresLetrasRepetidas(txt_nombre.getText()) == false){
+            JOptionPane.showMessageDialog(this, "Error nombre puesto 3 letras repetidas");
+        }else if (valNumero.unoKey(txt_precio.getText()) == false) {
+            JOptionPane.showMessageDialog(this, "Error precio vacio");
+        } else if (Double.parseDouble(txt_precio.getText()) <= 1) {
             JOptionPane.showMessageDialog(this, "Error numero menor a uno");
+        }else if(valString.ochoKey(txt_descripcion.getText()) == false){
+            JOptionPane.showMessageDialog(this, "Error descripción tiene menos de 8 letras");
+        }else if(valString.tresLetrasRepetidas(txt_descripcion.getText()) == false){
+            JOptionPane.showMessageDialog(this, "Error descripción 3 letras repetidas");
         } else {
             JOptionPane.showMessageDialog(this, "Menu editado correctamente");
             menu.setId_menu(parseInt(txt_id_menu.getText()));
@@ -336,11 +350,18 @@ public class jFrameMenu extends javax.swing.JFrame {
 
         if (valString.tresKey(txt_nombre.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
-        } else if (valNumero.unoKey(txt_precio.getText()) == false) {
+        }else if(valString.tresLetrasRepetidas(txt_nombre.getText()) == false){
+            JOptionPane.showMessageDialog(this, "Error nombre puesto 3 letras repetidas");
+        }else if (valNumero.unoKey(txt_precio.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error precio vacio");
-        } else if (valNumero.numMayorUno(Integer.parseInt(txt_precio.getText())) == false) {
+        } else if (Double.parseDouble(txt_precio.getText()) < 1) {
             JOptionPane.showMessageDialog(this, "Error numero menor a uno");
-        } else {
+        }else if(valString.tresKey(txt_descripcion.getText()) == false){
+            JOptionPane.showMessageDialog(this, "Error descripción tiene menos de 3 letras");
+        }else if(valString.tresLetrasRepetidas(txt_descripcion.getText()) == false){
+            JOptionPane.showMessageDialog(this, "Error descripción 3 letras repetidas");
+        }
+        else {
             JOptionPane.showMessageDialog(this, "Registrado");
             menu.setNombre(txt_nombre.getText());
             menu.setPrecio(Double.valueOf(txt_precio.getText()));
@@ -358,11 +379,26 @@ public class jFrameMenu extends javax.swing.JFrame {
     private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
         // TODO add your handling code here:
         valS.letras(evt);
+        valS.consumeMayor25(evt, txt_nombre.getText());
     }//GEN-LAST:event_txt_nombreKeyTyped
 
     private void txt_precioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precioKeyTyped
         // TODO add your handling code here:
-        valN.valKeyTypeNumeros(evt);
+        char n = evt.getKeyChar();
+        
+        // Permitir solo números y puntos
+        if (!Character.isDigit(n) && n != KeyEvent.VK_PERIOD)
+        {
+            evt.consume(); 
+            
+            
+        }
+        
+        // Máximo de carácteres
+        if (txt_precio.getText().length() >= 8)
+        {
+            evt.consume();                
+        }
     }//GEN-LAST:event_txt_precioKeyTyped
 
     private void tbl_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_registrosMouseClicked
@@ -441,6 +477,12 @@ public class jFrameMenu extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_desactivarActionPerformed
+
+    private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
+        // TODO add your handling code here:
+        valS.letras(evt);
+        valS.consumeMayor50(evt, txt_descripcion.getText());
+    }//GEN-LAST:event_txt_descripcionKeyTyped
 
     /**
      * @param args the command line arguments

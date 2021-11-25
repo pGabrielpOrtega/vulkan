@@ -485,7 +485,7 @@ public class jFrameInventario extends javax.swing.JFrame {
     private void txt_actualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_actualKeyTyped
         valStringInt valN = new valStringInt();
         valN.numeros(evt);
-        if (txt_actual.getText().length() == 11) {
+        if (txt_actual.getText().length() == 9) {
             evt.consume();
         }
         // TODO add your handling code here:
@@ -494,7 +494,7 @@ public class jFrameInventario extends javax.swing.JFrame {
     private void txt_minimaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_minimaKeyTyped
         valStringInt valN = new valStringInt();
         valN.numeros(evt);
-        if (txt_actual.getText().length() == 11) {
+        if (txt_actual.getText().length() == 9) {
             evt.consume();
         }
         // TODO add your handling code here:
@@ -503,7 +503,7 @@ public class jFrameInventario extends javax.swing.JFrame {
     private void txt_maximaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_maximaKeyTyped
         valStringInt valN = new valStringInt();
         valN.numeros(evt);
-        if (txt_actual.getText().length() == 11) {
+        if (txt_actual.getText().length() == 9) {
             evt.consume();
         }
         // TODO add your handling code here:

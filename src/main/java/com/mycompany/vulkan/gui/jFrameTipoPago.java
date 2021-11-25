@@ -8,6 +8,7 @@ package com.mycompany.vulkan.gui;
 import javax.swing.table.DefaultTableModel;
 import vulkan.declaracion.decTipoPago;
 import com.mycompany.controlador.controlTipoPago;
+import com.mycompany.vulkan.validacion.valString;
 import static java.lang.Integer.parseInt;
 import java.util.List;
 import java.util.logging.Level;
@@ -109,7 +110,11 @@ public class jFrameTipoPago extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar un nombre");
         } else if (txt_descripcion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe ingresar una descripción");
-        } else {
+        }else if(valString.tresLetrasRepetidas(txt_nombre.getText())==false){
+            JOptionPane.showMessageDialog(this, "3 letras repetidas");
+        }else if(valString.tresKey(txt_nombre.getText())==false){
+            JOptionPane.showMessageDialog(this, "Nombre menor a 3 caracteres");
+        }else {
             JOptionPane.showMessageDialog(this, "Tipo de pago editado correctamente");
             tipoPago.setId_tipo_pago(id);
             tipoPago.setNombre(txt_nombre.getText());

@@ -10,6 +10,10 @@ import com.mycompany.vulkan.validacion.MD5;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.swing.ImageIcon;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -209,7 +213,8 @@ public class inicio extends javax.swing.JFrame {
             String passR = usr.getContrasenia();
             int fallos = usr.getFallos();
             
-            if(nombreR.equals(nombreT)){
+             
+                if(nombreR.equals(nombreT)){
                 System.out.println("usuario encontrado");
                 usuarioEncontrado = true;
                 if(passR.equals(passT)){
@@ -311,6 +316,16 @@ public class inicio extends javax.swing.JFrame {
                 new inicio().setVisible(true);
             }
         });
+    }
+    
+    private static int GetEstadoUsario(String Nombre)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("base_datos_mysql");
+        EntityManager em = emf.createEntityManager();
+        String select = "select id_tipo_documento from decTipoDeDocumento where nombre = '"+ Nombre+ "'";
+        Query query = em.createQuery(select);
+    
+        return Integer.parseInt(query.getSingleResult().toString());           
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

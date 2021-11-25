@@ -28,7 +28,10 @@ public class decProveedores {
     private String email;
     @Column
     private int desactivado;
-    
+    @Column
+    private String idnum_identificacion_empleado;
+    @Column
+    private String nombre_tipoDoc_empleado;
 
     public String getNombre() {
         return nombre;
@@ -101,4 +104,21 @@ public class decProveedores {
     public void setDesactivado(int desactivado) {
         this.desactivado = desactivado;
     }
+
+    public String getIdnum_identificacion_empleado() {
+        return idnum_identificacion_empleado;
+    }
+
+    public void setIdnum_identificacion_empleado(String idnum_identificacion_empleado) {
+        this.idnum_identificacion_empleado = idnum_identificacion_empleado;
+    }
+
+    public String getNombre_tipoDoc_empleado() {
+        return nombre_tipoDoc_empleado;
+    }
+
+    public void setNombre_tipoDoc_empleado(String nombre_tipoDoc_empleado) {
+        this.nombre_tipoDoc_empleado = nombre_tipoDoc_empleado;
+    }
+    
 }

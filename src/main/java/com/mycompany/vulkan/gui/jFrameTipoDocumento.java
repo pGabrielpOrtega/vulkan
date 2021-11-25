@@ -35,9 +35,7 @@ public class jFrameTipoDocumento extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo1.png"));
         setIconImage(icon.getImage());
         setTitle("VK Restaurant");
-        btn_modificar.setEnabled(false);
-        btn_desactivar.setEnabled(false);
-        btn_agregar.setEnabled(true);
+        
         this.llenadoTabla();
     }
 
@@ -60,7 +58,9 @@ public class jFrameTipoDocumento extends javax.swing.JFrame {
                 );
             }
         }
-
+        btn_modificar.setEnabled(false);
+        btn_desactivar.setEnabled(false);
+        btn_agregar.setEnabled(true);
     }
 
     private void limpiar() {
@@ -335,10 +335,12 @@ public class jFrameTipoDocumento extends javax.swing.JFrame {
         if (valString.tresKey(txt_nombre.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
 
-            JOptionPane.showMessageDialog(this, "Error numero menor a uno");
+            
         } else if (valString.ochoKey(txt_descripcion.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
-        } else {
+        }else if(valString.tresLetrasRepetidas(txt_nombre.getText())==false){
+            JOptionPane.showMessageDialog(this, "Error tiene 3 letras repetidas");
+        }else {
             JOptionPane.showMessageDialog(this, "Registrado");
             doc.setNombre(txt_nombre.getText());
             doc.setDescripcion(txt_descripcion.getText());
@@ -358,7 +360,7 @@ public class jFrameTipoDocumento extends javax.swing.JFrame {
         if (valString.tresKey(txt_nombre.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
 
-            JOptionPane.showMessageDialog(this, "Error numero menor a uno");
+            
         } else if (valString.ochoKey(txt_descripcion.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
         } else {

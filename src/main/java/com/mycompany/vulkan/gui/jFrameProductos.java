@@ -10,6 +10,7 @@ import com.mycompany.vulkan.validacion.valString;
 import vulkan.declaracion.decProducto;
 import com.mycompany.controlador.controlProductos;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.util.List;
@@ -54,7 +55,7 @@ public class jFrameProductos extends javax.swing.JFrame {
         List<decProducto> puesto = productosDao.findclientesEntities();
 
         for (decProducto cliente : puesto) {
-            
+            if (cliente.getDesactivado() == 0) {
                 modelo.addRow(
                         new Object[]{
                             cliente.getid_producto(),
@@ -63,6 +64,7 @@ public class jFrameProductos extends javax.swing.JFrame {
                             cliente.getPrecio(),
                             cliente.getDesactivado()}
                 );
+                        }
             
         }
         btn_modificar.setEnabled(false);
@@ -93,7 +95,6 @@ public class jFrameProductos extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         lbl_puestos_trabajo = new javax.swing.JLabel();
-        txt_activo = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -110,6 +111,7 @@ public class jFrameProductos extends javax.swing.JFrame {
         txt_id3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txt_activo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_registros = new javax.swing.JTable();
@@ -137,10 +139,6 @@ public class jFrameProductos extends javax.swing.JFrame {
         lbl_puestos_trabajo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lbl_puestos_trabajo.setText("Productos");
         jPanel4.add(lbl_puestos_trabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, -1, -1));
-
-        txt_activo.setEditable(false);
-        txt_activo.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel4.add(txt_activo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 90, -1));
 
         jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
@@ -220,6 +218,11 @@ public class jFrameProductos extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BackgroundRes.png"))); // NOI18N
         jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        txt_activo.setEditable(false);
+        txt_activo.setBackground(new java.awt.Color(204, 204, 204));
+        txt_activo.setActionCommand("<Not Set>");
+        jPanel5.add(txt_activo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, -1));
 
         jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -328,9 +331,15 @@ public class jFrameProductos extends javax.swing.JFrame {
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
+        
         if (valNumero.unoKey(txt_precio.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error precio vacio");
-        } else if (valNumero.numMayorUno(Integer.parseInt(txt_precio.getText())) == false) {
+        }else if(valString.tresKey(txt_nombre.getText())==false){
+            JOptionPane.showMessageDialog(this, "Error menor de 3 letras en nombre");
+        }else if(valString.tresLetrasRepetidas(txt_nombre.getText())==false){
+            JOptionPane.showMessageDialog(this, "Error 3 letras repetidas en nombre");
+        }
+        else if (Double.parseDouble(txt_precio.getText()) < 1) {
 
             JOptionPane.showMessageDialog(this, "Error numero menor a uno");
         } else if (valString.ochoKey(txt_descripcion.getText()) == false) {
@@ -355,13 +364,18 @@ public class jFrameProductos extends javax.swing.JFrame {
         int val = (int) Math.round(Double.valueOf(txt_precio.getText()));
         if (valNumero.unoKey(txt_precio.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error precio vacio");
-        } else if (valNumero.numMayorUno(val) == false) {
+        }else if(valString.tresKey(txt_nombre.getText())==false){
+            JOptionPane.showMessageDialog(this, "Error menor de 3 letras en nombre");
+        }else if(valString.tresLetrasRepetidas(txt_nombre.getText())==false){
+            JOptionPane.showMessageDialog(this, "Error 3 letras repetidas en nombre");
+        }
+        else if (valNumero.numMayorUno(val) == false) {
             JOptionPane.showMessageDialog(this, "Error numero menor a uno");
         } else if (valString.ochoKey(txt_descripcion.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
         } else {
-            Activar_Desactivar();
-            /*JOptionPane.showMessageDialog(this, "Producto editado correctamente");
+            
+            JOptionPane.showMessageDialog(this, "Producto editado correctamente");
             productos.setid_producto(parseInt(txt_activo.getText()));
             productos.setNombre(txt_nombre.getText());
             productos.setPrecio(Double.parseDouble(txt_precio.getText()));
@@ -372,7 +386,7 @@ public class jFrameProductos extends javax.swing.JFrame {
                 llenarTabla();
             } catch (Exception ex) {
                 Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
+            }
         }
     }//GEN-LAST:event_btn_modificarActionPerformed
 
@@ -391,8 +405,21 @@ public class jFrameProductos extends javax.swing.JFrame {
 
     private void txt_precioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precioKeyTyped
         // TODO add your handling code here:
-        valN.valKeyTypeNumeros(evt);
-        valS.consumeMayor25(evt, txt_nombre.getText());
+        char n = evt.getKeyChar();
+        
+        // Permitir solo números y puntos
+        if (!Character.isDigit(n) && n != KeyEvent.VK_PERIOD)
+        {
+            evt.consume(); 
+            
+            
+        }
+        
+        // Máximo de carácteres
+        if (txt_precio.getText().length() >= 8)
+        {
+            evt.consume();                
+        }
     }//GEN-LAST:event_txt_precioKeyTyped
 
     private void tbl_registrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_registrosMouseClicked
@@ -431,6 +458,10 @@ public class jFrameProductos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error numero menor a uno");
         } else if (valString.ochoKey(txt_descripcion.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
+        }else if(valString.tresKey(txt_nombre.getText())==false){
+            JOptionPane.showMessageDialog(this, "Error menor de 3 letras en nombre");
+        }else if(valString.tresLetrasRepetidas(txt_nombre.getText())==false){
+            JOptionPane.showMessageDialog(this, "Error 3 letras repetidas en nombre");
         } else {
             JOptionPane.showMessageDialog(this, "Producto desactivado correctamente");
             productos.setid_producto(parseInt(txt_activo.getText()));
@@ -438,6 +469,7 @@ public class jFrameProductos extends javax.swing.JFrame {
             productos.setPrecio(Double.parseDouble(txt_precio.getText()));
             productos.setDescripcion(txt_descripcion.getText());
             productos.setDesactivado(1);
+            llenarTabla();
             try {
                 productosDao.edit(productos);
                 limpiar();

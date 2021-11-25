@@ -153,6 +153,7 @@ public class jFrameUsuario extends javax.swing.JFrame {
         String pass = md5.ecnode(txt_contrasenia.getText());
         usuario.setContrasenia(pass);
         usuario.setDesactivado(1);
+        usuario.setFallos(3);
         try {
             usuarioDao.edit(usuario);
         } catch (Exception ex) {

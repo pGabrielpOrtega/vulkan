@@ -29,15 +29,16 @@ public class valNumero {
             case 2: 
                 f = true;
                 break;
+            case 3:
+                f = true;
+                break;
             case 7:
                 f = true;
                 break;
             case 8:
                 f = true;
                 break;
-            case 3:
-                f = true;
-                break;
+            
             case 9:
                 f = true;
                 break;

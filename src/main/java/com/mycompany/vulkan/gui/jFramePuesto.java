@@ -355,7 +355,10 @@ public class jFramePuesto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras");
         } else if (valString.ochoKey(txt_descripcion.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Error en descripcion tiene menos de 8 caracteres");
-        } else {
+        }else if(valString.tresLetrasRepetidas(txt_nombre_puestos.getText())== false){
+            JOptionPane.showMessageDialog(this, "Error nombre puesto tiene menos de 3 letras repetidas");
+        }
+        else {
             JOptionPane.showMessageDialog(this, "Guardando");
 
             puesto.setNombre(txt_nombre_puestos.getText());
