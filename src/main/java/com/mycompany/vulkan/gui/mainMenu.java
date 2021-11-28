@@ -21,6 +21,7 @@ public class mainMenu extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/logo1.png"));
         setIconImage(icon.getImage());
         setTitle("VK Restaurant");
+        btn_pedidos.setEnabled(true);  
     }
 
     /**

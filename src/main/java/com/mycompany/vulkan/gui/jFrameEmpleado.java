@@ -766,17 +766,18 @@ public class jFrameEmpleado extends javax.swing.JFrame {
     }
     
     private void desactivar(int id) {
-        
+        empleado.setId_empleado(id);
         empleado.setNombre(txt_nombre.getText());
         empleado.setApellido(txt_apellido.getText());
         empleado.setTelefono(Integer.parseInt(txt_telefono.getText()));
         empleado.setEmail(txt_email.getText());
         empleado.setDireccion(txt_direccion.getText());
         empleado.setId_tipo_documento(GetIdTipoDocumento(String.valueOf(cbb_documento.getSelectedItem())));
+        empleado.setDesactivado(1);
         try {
             empleadoDao.edit(empleado);
         } catch (Exception ex) {
-            Logger.getLogger(jFramePuesto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(jFrameEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }

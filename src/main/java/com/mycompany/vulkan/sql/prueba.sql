@@ -19,3 +19,19 @@ Alter table empleado add empleadoNombre_puesto varchar(50);
 Alter table proveedores add idnum_identificacion_empleado varchar(50);
 
 Alter table proveedores add nombre_tipoDoc_empleado varchar(50);
+
+ALTER TABLE reservacion MODIFY id_reservacion INTEGER NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE producto_almacen ADD desactivado INT NOT NULL DEFAULT 0;
+
+Alter table tipo_documento add nombre varchar(50);
+
+Alter table Tipo_pago add nombre varchar(50);
+
+Alter table proveedores add apellido varchar(50);
+
+Alter table proveedores add email varchar(50);
+
+/*Todo lo que añadi a las tablas el más confuso seria numIdentidad es su indentidad 
+que se esta registrando osea los numeros pero lo dejo en varchar por el momento ya que visa ocupa letras*/
+
